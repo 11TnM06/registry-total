@@ -1,0 +1,52 @@
+.input {
+    border: 0.125rem solid rgb(145, 158, 171);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    display: block;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem 1.375rem;
+    width: 100%;
+}
+
+.input:focus {
+    border-color: rgb(33, 43, 54);
+    outline: none;
+}
+
+.input.error {
+    border-color: red;
+}
+
+.label {
+    background-color: rgb(255, 255, 255);
+    color: rgb(145, 158, 171);
+    pointer-events: none;
+    padding: 0 0.5rem;
+}
+
+.label[disabled] {
+    background-color: rgb(250, 250, 250);
+}
+
+.label.focus {
+    color: rgb(33, 43, 54);
+}
+
+.label.error {
+    color: red;
+}
+
+p.error {
+    display: block;
+    color: red;
+    line-height: 1.5rem;
+    font-size: 0.75rem;
+    padding: 0;
+    margin: 0 0 0 0.5rem;
+}
+
+.input-wrapper {
+    display: block;
+    width: 100%;
+}
