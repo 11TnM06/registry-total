@@ -1,0 +1,22 @@
+[
+  {
+    "username": "admin",
+    "email": "admin@gmail.com",
+    "password": "123456",
+    "name": "Registry System Admin",
+    "role": "admin"
+  },
+
+  {
+    "username": "3000S",
+    "email": "3000S@gmail.com",
+    "password": "12345678",
+    "name": "Trung Tâm Đăng Kiểm 3000S",
+    "role": ["user"]
+  }
+
+]
+
+
+
+
