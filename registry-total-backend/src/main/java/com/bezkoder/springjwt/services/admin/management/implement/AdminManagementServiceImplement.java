@@ -1,20 +1,17 @@
 package com.bezkoder.springjwt.services.admin.management.implement;
 
-import com.bezkoder.springjwt.models.ERole;
-import com.bezkoder.springjwt.models.Role;
-import com.bezkoder.springjwt.models.User;
+import com.bezkoder.springjwt.models.*;
+//import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
 import com.bezkoder.springjwt.payload.request.user_request.CreateAccountRequest;
 import com.bezkoder.springjwt.payload.response.user_response.MessageResponse;
 import com.bezkoder.springjwt.repository.RoleRepository;
 import com.bezkoder.springjwt.repository.UserRepository;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
-import com.bezkoder.springjwt.security.jwt.JwtUtils;
 import com.bezkoder.springjwt.services.admin.management.AdminManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,11 +34,11 @@ public class AdminManagementServiceImplement implements AdminManagementService {
     public AdminManagementServiceImplement(
             UserRepository userRepository,
             RoleRepository roleRepository,
-            PasswordEncoder encoder) {
+            PasswordEncoder encoder
+            ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
-
     }
 
     public ResponseEntity<?> signupAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
@@ -86,4 +83,25 @@ public class AdminManagementServiceImplement implements AdminManagementService {
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+    public ResponseEntity<?> getAllAccounts() {
+        if (userRepository.findAll().isEmpty()) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
+        }
+
+        return ResponseFactory.success(userRepository.findAll());
+    }
+
+    public ResponseEntity<?> deleteAccount(String id) {
+        if (!userRepository.existsById(Long.valueOf(id))) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
+        }
+        if (userRepository.findById(Long.valueOf(id)).get().getRoles().contains(roleRepository.findByName(ERole.ROLE_ADMIN).get())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+        }
+
+        userRepository.deleteById(Long.valueOf(id));
+        return ResponseFactory.success("Delete account successfully!");
+    }
+
 }

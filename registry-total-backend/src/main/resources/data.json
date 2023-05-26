@@ -13,6 +13,10 @@
     "password": "12345678",
     "name": "Trung Tâm Đăng Kiểm 3000S",
     "role": ["user"]
+  },
+
+  {
+    "licensePlate": "29A-12508"
   }
 
 ]
