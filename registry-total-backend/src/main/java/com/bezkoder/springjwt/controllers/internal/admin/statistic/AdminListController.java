@@ -40,5 +40,13 @@ public class AdminListController {
         return adminListService.getOwner(listCarRequest);
     }
 
+    @PostMapping("/technical")
+    public ResponseEntity<?> getTechnicalData(@Valid @RequestBody ListCarRequest listCarRequest) {
+        return adminListService.getTechnicalData(listCarRequest);
+    }
 
+    @PostMapping("/registration")
+    public ResponseEntity<?> getRegistrations(@Valid @RequestBody ListCarRequest listCarRequest) {
+        return adminListService.getRegistrations(listCarRequest);
+    }
 }

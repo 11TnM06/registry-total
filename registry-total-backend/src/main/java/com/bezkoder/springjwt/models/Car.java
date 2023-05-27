@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -80,7 +81,7 @@ public class Car extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Collection<Registrations> registrations;
+    private List<Registrations> registrations;
 
 
 }

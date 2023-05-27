@@ -24,25 +24,25 @@ public class TechnicalData extends BaseEntity {
     private String size;
 
     @Column(name = "self_weight", nullable = false)
-    private int selfWeight;
+    private Integer selfWeight;
 
     @Column(name = "max_people", nullable = false)
-    private int maxPeople;
+    private Integer maxPeople;
 
     @Column(name = "axles_div_wheelbase", nullable = false)
     private String axlesDivWheelbase;
 
-    @Column(name = "container_size", nullable = false)
+    @Column(name = "container_size")
     private String containerSize;
 
-    @Column(name = "max_container_weight", nullable = false)
-    private int maxContainerWeight;
+    @Column(name = "max_container_weight")
+    private String maxContainerWeight;
 
     @Column(name = "max_weight", nullable = false)
-    private int maxWeight;
+    private String maxWeight;
 
-    @Column(name = "towing_mass", nullable = false)
-    private int towingMass;
+    @Column(name = "towing_mass")
+    private String towingMass;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "technicalData")
     @JsonIgnore

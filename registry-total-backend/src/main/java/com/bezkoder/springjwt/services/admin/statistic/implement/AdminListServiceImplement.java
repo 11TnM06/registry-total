@@ -1,10 +1,9 @@
 package com.bezkoder.springjwt.services.admin.statistic.implement;
 
 import com.bezkoder.springjwt.models.Car;
+import com.bezkoder.springjwt.models.Registrations;
 import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
-import com.bezkoder.springjwt.payload.response.user_response.ListCarResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListCompanyResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListPersonalResponse;
+import com.bezkoder.springjwt.payload.response.user_response.*;
 import com.bezkoder.springjwt.repository.CarRepository;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
@@ -55,12 +54,12 @@ public class AdminListServiceImplement implements AdminListService {
         return ResponseFactory.success(cars);
     }
 
-    public ResponseEntity<?> getOwner(ListCarRequest getCarRequest) {
-        if (!carRepository.existsByLicensePlate(getCarRequest.getLicensePlate())) {
+    public ResponseEntity<?> getOwner(ListCarRequest listCarRequest) {
+        if (!carRepository.existsByLicensePlate(listCarRequest.getLicensePlate())) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
         }
 
-        Car car = carRepository.findByLicensePlate(getCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
 
         if (car.getPersonal_id() == null) {
             ListCompanyResponse listCompanyResponse = new ListCompanyResponse(car.getCompany_id().getCompanyId(),
@@ -87,4 +86,38 @@ public class AdminListServiceImplement implements AdminListService {
         }
 
     }
+
+    public ResponseEntity<?> getTechnicalData(ListCarRequest listCarRequest) {
+        if (!carRepository.existsByLicensePlate(listCarRequest.getLicensePlate())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+        }
+
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        ListTechnicalResponse listTechnicalResponse = new ListTechnicalResponse(
+                car.getTechnicalData().getTechnicalId(),
+                car.getTechnicalData().getSize(),
+                car.getTechnicalData().getSelfWeight(),
+                car.getTechnicalData().getMaxPeople(),
+                car.getTechnicalData().getAxlesDivWheelbase(),
+                car.getTechnicalData().getContainerSize(),
+                car.getTechnicalData().getMaxContainerWeight(),
+                car.getTechnicalData().getMaxWeight(),
+                car.getTechnicalData().getTowingMass()
+        );
+
+
+        return ResponseFactory.success(listTechnicalResponse, ListTechnicalResponse.class);
+    }
+
+    public ResponseEntity<?> getRegistrations(ListCarRequest listCarRequest) {
+        if (!carRepository.existsByLicensePlate(listCarRequest.getLicensePlate())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
+        }
+
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        List<Registrations> registrations = car.getRegistrations();
+        return ResponseFactory.success(registrations);
+    }
 }
+
+

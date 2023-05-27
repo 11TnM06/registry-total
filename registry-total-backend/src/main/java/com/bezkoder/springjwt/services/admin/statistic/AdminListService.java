@@ -7,4 +7,8 @@ public interface AdminListService {
     ResponseEntity<?> getAllCars();
 
     ResponseEntity<?> getOwner(ListCarRequest listCarRequest);
+
+    ResponseEntity<?> getTechnicalData(ListCarRequest listCarRequest);
+
+    ResponseEntity<?> getRegistrations(ListCarRequest listCarRequest);
 }
