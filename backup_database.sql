@@ -119,41 +119,41 @@ CREATE TABLE car
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES car WRITE;
-INSERT INTO car (car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
+INSERT INTO car (id,car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
-VALUES (288239, '29A-12508', '2020-12-20', 'Hà Nội', 'Toyota', 'S13', 'Ô tô con', 'Đỏ', 'KABM586MAHS87', 'GHE965151550',
+VALUES (1, 288239, '29A-12508', '2020-12-20', 'Hà Nội', 'Toyota', 'S13', 'Ô tô con', 'Đỏ', 'KABM586MAHS87', 'GHE965151550',
         'Dịch vụ chở khách', 1, null, 1);
-INSERT INTO car (car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
+INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
-VALUES (300000, '36D-27328', '2018-1-12', 'Thanh Hóa', 'Honda', 'H3000', 'Ô tô tải', 'Trắng', 'MHAN838HNGG82',
+VALUES (2, 300000, '36D-27328', '2018-1-12', 'Thanh Hóa', 'Honda', 'H3000', 'Ô tô tải', 'Trắng', 'MHAN838HNGG82',
         'NAG923323228', 'Đi lại cá nhân', null, 1, 2);
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS registry_information;
 CREATE TABLE registry_information
 (
-    id            BIGINT AUTO_INCREMENT NOT NULL,
-    gcn_id        VARCHAR(20)           NOT NULL,
-    registry_date DATE                  NOT NULL,
-    expired_date  DATE                  NOT NULL,
-    registry_name VARCHAR(20)           NOT NULL,
-    license_plate VARCHAR(20)           NOT NULL,
+    id              BIGINT AUTO_INCREMENT NOT NULL,
+    gcn_id          VARCHAR(20)           NOT NULL,
+    registry_date   DATE                  NOT NULL,
+    expired_date    DATE                  NOT NULL,
+    registry_name   VARCHAR(20)           NOT NULL,
+    registry_car_id BIGINT                NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (gcn_id),
 
-    KEY registry_information_fk (license_plate),
-    CONSTRAINT registry_information_fk FOREIGN KEY (license_plate) REFERENCES car (license_plate) ON DELETE CASCADE ON UPDATE CASCADE
+    KEY registry_information_fk (registry_car_id),
+    CONSTRAINT registry_information_fk FOREIGN KEY (registry_car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES registry_information WRITE;
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
-VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', '29A-12508');
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
-VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3123S', '36D-27328');
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
-VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2904S', '29A-12508');
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
+VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 1);
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
+VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3123S', 2);
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
+VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2904S', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 
@@ -165,8 +165,8 @@ CREATE TABLE users
     name              VARCHAR(50)           NOT NULL,
     password          VARCHAR(120)          NOT NULL,
     username          VARCHAR(50)           NOT NULL,
-    created_time      DATETIME              DEFAULT (now()),
-    last_updated_time DATETIME              DEFAULT (now()),
+    created_time      DATETIME DEFAULT (now()),
+    last_updated_time DATETIME DEFAULT (now()),
     PRIMARY KEY (id),
     unique (username),
     unique (email)
@@ -177,11 +177,14 @@ CREATE TABLE users
 
 LOCK TABLES users WRITE;
 INSERT INTO users (id, email, name, password, username)
-VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326', 'admin');
+VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326',
+        'admin');
 INSERT INTO users (id, email, name, password, username)
-VALUES (2, '1000S@gmail.com', 'Trung Tâm Đăng Kiểm 1000S', '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '1000S');
+VALUES (2, '1000S@gmail.com', 'Trung Tâm Đăng Kiểm 1000S',
+        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '1000S');
 INSERT INTO users (id, email, name, password, username)
-VALUES (3, '32000S@gmail.com', 'Trung Tâm Đăng Kiểm 32000S', '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '32000S');
+VALUES (3, '32000S@gmail.com', 'Trung Tâm Đăng Kiểm 32000S',
+        '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '32000S');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS roles;
@@ -237,6 +240,3 @@ UNLOCK TABLES;
 # DROP TABLE IF EXISTS user_roles;
 # DROP TABLE IF EXISTS users;
 # DROP TABLE IF EXISTS roles;
-
-
-

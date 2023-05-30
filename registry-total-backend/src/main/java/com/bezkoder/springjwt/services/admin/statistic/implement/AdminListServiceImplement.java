@@ -120,7 +120,8 @@ public class AdminListServiceImplement implements AdminListService {
 
         Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
 
-        List<Registrations> registrations = registryInformationRepository.findAll();
+        List<Registrations> registrations = car.getRegistrations();
+
         return ResponseFactory.success(registrations);
     }
 }

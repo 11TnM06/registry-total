@@ -7,4 +7,9 @@ import java.util.List;
 
 public interface RegistryInformationRepository extends JpaRepository<Registrations, Long> {
     List<Registrations> findAll();
+
+    Registrations findByRegistryId(String registryId);
+
+
+
 }
