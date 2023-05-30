@@ -166,6 +166,7 @@ VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 
+
 DROP TABLE IF EXISTS users;
 CREATE TABLE users
 (
@@ -179,6 +180,7 @@ CREATE TABLE users
     PRIMARY KEY (id),
     unique (username),
     unique (email)
+
 
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4

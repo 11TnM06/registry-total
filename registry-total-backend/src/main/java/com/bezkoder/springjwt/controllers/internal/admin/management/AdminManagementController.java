@@ -13,7 +13,6 @@ import javax.validation.Valid;
 @CrossOrigin(value = "*")
 @RestController
 @RequestMapping("/api/admin/user")
-@PreAuthorize("hasRole('ADMIN')")
 
 public class AdminManagementController {
 
