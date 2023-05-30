@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
-import { Register } from "./pages/register";
 import {
   Error404,
   ForgotPassword,
@@ -10,6 +9,7 @@ import {
 } from "./pages";
 import { Layout } from "./layouts/Layout";
 import { LoginLayout } from "./layouts/LoginLayout";
+import RegisteredCar from "./pages/register/RegisteredCar";
 
 function App() {
   const routes = useRoutes([
@@ -25,7 +25,7 @@ function App() {
       children: [
         {
           path: "registered-car",
-          element: <h1>registered-car</h1>,
+          element: <RegisteredCar />,
         },
         {
           path: "add-center",
@@ -51,7 +51,7 @@ function App() {
         ></Layout>
       ),
       children: [
-        { path: "add-certi", element: <h1>registered-car</h1> },
+        { path: "add-certi", element: <h1>registered-car-1</h1> },
         { path: "inspected-car", element: <h1>inspected-car</h1> },
         { path: "expired-car", element: <h1>add center</h1> },
       ],
