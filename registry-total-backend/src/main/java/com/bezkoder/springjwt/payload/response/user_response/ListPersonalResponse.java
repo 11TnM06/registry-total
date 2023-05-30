@@ -8,24 +8,25 @@ import java.util.Date;
 public class ListPersonalResponse {
     private String personalId;
     private String name;
-    private String place;
-    private Date date_id;
-    private Date birthday;
-    private String sex;
+    private String registrationPlace;
+    private Date registrationDate;
+    private Date dob;
+    private String gender;
     private String address;
     private String phone;
-    private String object;
+    private String type;
 
-    public ListPersonalResponse (String personalId, String name, String place, Date date_id,
-                                 Date birthday, String sex, String address, String phone) {
+    public ListPersonalResponse (String personalId, String name, String registrationPlace, Date registrationDate,
+                                 Date dob, String gender, String address, String phone) {
         this.personalId = personalId;
         this.name = name;
-        this.place = place;
-        this.date_id = date_id;
-        this.birthday = birthday;
-        this.sex = sex;
+        this.registrationPlace = registrationPlace;
+        this.registrationDate = registrationDate;
+        this.dob = dob;
+        this.gender = gender;
         this.address = address;
         this.phone = phone;
+        this.type = "personal";
     }
 
 }

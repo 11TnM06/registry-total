@@ -29,8 +29,8 @@ public class TechnicalData extends BaseEntity {
     @Column(name = "max_people", nullable = false)
     private Integer maxPeople;
 
-    @Column(name = "axles_div_wheelbase", nullable = false)
-    private String axlesDivWheelbase;
+    @Column(name = "length", nullable = false)
+    private Integer length;
 
     @Column(name = "container_size")
     private String containerSize;
@@ -44,7 +44,7 @@ public class TechnicalData extends BaseEntity {
     @Column(name = "towing_mass")
     private String towingMass;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "technicalData")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "technical")
     @JsonIgnore
     private Car car;
 }

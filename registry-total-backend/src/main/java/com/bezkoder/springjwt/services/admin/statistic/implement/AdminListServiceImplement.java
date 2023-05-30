@@ -35,12 +35,12 @@ public class AdminListServiceImplement implements AdminListService {
 
         Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
         ListCarResponse listCarResponse = new ListCarResponse(car.getLicensePlate(),
-                car.getCar_id(),
+                car.getCarId(),
                 car.getRegistrationDate(),
                 car.getRegistrationPlace(),
                 car.getBrand(),
                 car.getModel(),
-                car.getType(),
+                car.getGeneration(),
                 car.getColor(),
                 car.getFrameNumber(),
                 car.getEngineNumber(),
@@ -65,25 +65,25 @@ public class AdminListServiceImplement implements AdminListService {
 
         Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
 
-        if (car.getPersonal_id() == null) {
-            ListCompanyResponse listCompanyResponse = new ListCompanyResponse(car.getCompany_id().getCompanyId(),
-                    car.getCompany_id().getName(),
-                    car.getCompany_id().getAddress(),
-                    car.getCompany_id().getRepresentative(),
-                    car.getCompany_id().getPhone()
+        if (car.getPersonal() == null) {
+            ListCompanyResponse listCompanyResponse = new ListCompanyResponse(car.getCompany().getCompanyId(),
+                    car.getCompany().getName(),
+                    car.getCompany().getAddress(),
+                    car.getCompany().getRepresentative(),
+                    car.getCompany().getPhone()
             );
             return ResponseFactory.success(listCompanyResponse, ListCompanyResponse.class);
         }
         else {
             ListPersonalResponse listPersonalResponse = new ListPersonalResponse(
-                    car.getPersonal_id().getPersonalId(),
-                    car.getPersonal_id().getName(),
-                    car.getPersonal_id().getPlace(),
-                    car.getPersonal_id().getDateId(),
-                    car.getPersonal_id().getBirthday(),
-                    car.getPersonal_id().getSex(),
-                    car.getPersonal_id().getAddress(),
-                    car.getPersonal_id().getPhone()
+                    car.getPersonal().getPersonalId(),
+                    car.getPersonal().getName(),
+                    car.getPersonal().getRegistrationPlace(),
+                    car.getPersonal().getRegistrationDate(),
+                    car.getPersonal().getDob(),
+                    car.getPersonal().getGender(),
+                    car.getPersonal().getAddress(),
+                    car.getPersonal().getPhone()
             );
 
             return ResponseFactory.success(listPersonalResponse, ListPersonalResponse.class);
@@ -98,15 +98,15 @@ public class AdminListServiceImplement implements AdminListService {
 
         Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
         ListTechnicalResponse listTechnicalResponse = new ListTechnicalResponse(
-                car.getTechnicalData().getTechnicalId(),
-                car.getTechnicalData().getSize(),
-                car.getTechnicalData().getSelfWeight(),
-                car.getTechnicalData().getMaxPeople(),
-                car.getTechnicalData().getAxlesDivWheelbase(),
-                car.getTechnicalData().getContainerSize(),
-                car.getTechnicalData().getMaxContainerWeight(),
-                car.getTechnicalData().getMaxWeight(),
-                car.getTechnicalData().getTowingMass()
+                car.getTechnical().getTechnicalId(),
+                car.getTechnical().getSize(),
+                car.getTechnical().getSelfWeight(),
+                car.getTechnical().getMaxPeople(),
+                car.getTechnical().getLength(),
+                car.getTechnical().getContainerSize(),
+                car.getTechnical().getMaxContainerWeight(),
+                car.getTechnical().getMaxWeight(),
+                car.getTechnical().getTowingMass()
         );
 
 

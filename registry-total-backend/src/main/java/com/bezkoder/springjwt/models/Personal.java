@@ -27,19 +27,19 @@ public class Personal extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "place", nullable = false)
-    private String place;
+    @Column(name = "registration_place", nullable = false)
+    private String registrationPlace;
 
-    @Column(name = "date_id", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dateId;
+    @Column(name = "registration_date", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date registrationDate;
 
-    @Column(name = "birthday", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date birthday;
+    @Column(name = "DOB", nullable = false)
+    @Temporal(TemporalType.DATE)
+    private Date dob;
 
-    @Column(name = "sex", nullable = false)
-    private String sex;
+    @Column(name = "gender", nullable = false)
+    private String gender;
 
     @Column(name = "address", nullable = false)
     private String address;
@@ -47,7 +47,7 @@ public class Personal extends BaseEntity {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "personal_id", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "personal", cascade = CascadeType.ALL)
     @JsonIgnore
     private Collection<Car> cars;
 

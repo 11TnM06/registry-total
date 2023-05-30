@@ -7,43 +7,41 @@ DROP TABLE IF EXISTS technical_information;
 CREATE TABLE technical_information
 (
     id                   BIGINT AUTO_INCREMENT NOT NULL,
-    technical_id         VARCHAR(50)           NOT NULL,
     size                 VARCHAR(50)           NOT NULL,
     self_weight          INT                   NOT NULL,
     max_people           INT                   NOT NULL,
-    axles_div_wheelbase  VARCHAR(20)           NOT NULL,
+    length               INT                   NOT NULL,
     container_size       VARCHAR(20),
     max_container_weight INT,
     max_weight           INT                   NOT NULL,
     towing_mass          INT,
-    PRIMARY KEY (id),
-    UNIQUE KEY (technical_id)
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES technical_information WRITE;
-INSERT INTO technical_information (id, technical_id, size, self_weight, max_people, axles_div_wheelbase, container_size,
+INSERT INTO technical_information (id, size, self_weight, max_people, length, container_size,
                                    max_container_weight, max_weight, towing_mass)
-VALUES (1, 'KABM586MAHS87', '4410x1700x1475 mm', 1058, 5, '2/2550', null, null, 1500, null);
-INSERT INTO technical_information (id, technical_id, size, self_weight, max_people, axles_div_wheelbase, container_size,
+VALUES (1, '4850 x 1825 x 1470', 1480, 4, 2775, null, null, 2000, null);
+INSERT INTO technical_information (id, size, self_weight, length, max_people, container_size,
                                    max_container_weight, max_weight, towing_mass)
-VALUES (2, 'MHAN838HNGG82', '4410x1700x1475 mm', 1058, 5, '2/2550', null, null, 1500, null);
+VALUES (2, '3801 x 1682 x 1487', 972, 4, 2405, null, null, 1347, null);
 UNLOCK TABLES;
 # ALTER TABLE technical_information DROP FOREIGN KEY technical_information_fk;
 
 DROP TABLE IF EXISTS personal;
 CREATE TABLE personal
 (
-    id          BIGINT       NOT NULL AUTO_INCREMENT,
-    personal_id VARCHAR(20)  NOT NULL,
-    name        VARCHAR(20)  NOT NULL,
-    place       VARCHAR(50)  NOT NULL,
-    date_id     DATE         NOT NULL,
-    birthday    DATE         NOT NULL,
-    sex         VARCHAR(10)  NOT NULL,
-    address     VARCHAR(100) NOT NULL,
-    phone       VARCHAR(20)  NOT NULL,
+    id                BIGINT       NOT NULL AUTO_INCREMENT,
+    personal_id       VARCHAR(20)  NOT NULL,
+    name              VARCHAR(20)  NOT NULL,
+    registrationPlace VARCHAR(50)  NOT NULL,
+    registrationDate  DATE         NOT NULL,
+    DOB               DATE         NOT NULL,
+    gender            VARCHAR(10)  NOT NULL,
+    address           VARCHAR(100) NOT NULL,
+    phone             VARCHAR(20)  NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (personal_id)
 ) ENGINE = InnoDB
@@ -51,7 +49,7 @@ CREATE TABLE personal
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES personal WRITE;
-INSERT INTO personal (id, name, personal_id, place, date_id, birthday, sex, address, phone)
+INSERT INTO personal (id, name, personal_id, registrationPlace, registrationDate, DOB, gender, address, phone)
 VALUES (1, 'Đỗ Hoàng Anh', '038302892102', 'Cục trưởng cục cảnh sát', '2020-02-13', '1998-02-18', 'Nam',
         'Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội', '0987633772');
 UNLOCK TABLES;
@@ -92,7 +90,7 @@ CREATE TABLE car
     registration_place VARCHAR(100)          NOT NULL,
     brand              VARCHAR(100)          NOT NULL,
     model              VARCHAR(100)          NOT NULL,
-    type               VARCHAR(100)          NOT NULL,
+    generation         VARCHAR(100)          NOT NULL,
     color              VARCHAR(100)          NOT NULL,
     frame_number       VARCHAR(100)          NOT NULL,
     engine_number      VARCHAR(100)          NOT NULL,
@@ -119,27 +117,31 @@ CREATE TABLE car
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES car WRITE;
-INSERT INTO car (id,car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
+INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, generation, color,
+                 frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
-VALUES (1, 288239, '29A-12508', '2020-12-20', 'Hà Nội', 'Toyota', 'S13', 'Ô tô con', 'Đỏ', 'KABM586MAHS87', 'GHE965151550',
-        'Dịch vụ chở khách', 1, null, 1);
-INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, type, color, frame_number,
+VALUES (1, 288239, '29A-12508', '2020-12-20', 'Hà Nội', 'Toyota', 'Toyota Camry', 'Camry 2.0E', 'Đỏ',
+        'JTNBF3EK70J007654',
+        '2AZFE315728',
+        'Đi lại cá nhân', 1, null, 1);
+INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, generation, color,
+                 frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
-VALUES (2, 300000, '36D-27328', '2018-1-12', 'Thanh Hóa', 'Honda', 'H3000', 'Ô tô tải', 'Trắng', 'MHAN838HNGG82',
-        'NAG923323228', 'Đi lại cá nhân', null, 1, 2);
+VALUES (2, 300000, '36D-27328', '2018-1-12', 'Thanh Hóa', 'Honda', 'Honda Brio', 'Brio RS', 'Trắng',
+        'MFJHNB4V7LY000123',
+        'L13B2031567', 'Kinh doanh chở khách', null, 1, 2);
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS registry_information;
 CREATE TABLE registry_information
 (
     id              BIGINT AUTO_INCREMENT NOT NULL,
-    gcn_id          VARCHAR(20)           NOT NULL,
+    gcn             VARCHAR(20)           NOT NULL,
     registry_date   DATE                  NOT NULL,
     expired_date    DATE                  NOT NULL,
-    registry_name   VARCHAR(20)           NOT NULL,
     registry_car_id BIGINT                NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY (gcn_id),
+    UNIQUE KEY (gcn),
 
     KEY registry_information_fk (registry_car_id),
     CONSTRAINT registry_information_fk FOREIGN KEY (registry_car_id) REFERENCES car (id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -148,12 +150,12 @@ CREATE TABLE registry_information
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES registry_information WRITE;
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
-VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 1);
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
-VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3123S', 2);
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, registry_car_id)
-VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2904S', 1);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
+VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', 1);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
+VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', 2);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
+VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 

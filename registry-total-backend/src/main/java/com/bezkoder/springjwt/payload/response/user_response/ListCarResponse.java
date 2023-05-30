@@ -8,24 +8,24 @@ import java.util.Date;
 public class ListCarResponse {
     private String licensePlate;
     private String carId;
-    private Date registrations_date;
-    private String registrations_place;
+    private Date registrationsDate;
+    private String registrationsPlace;
     private String carBrand;
     private String model;
-    private String type;
+    private String generation;
     private String color;
     private String frameNumber;
     private String engineNumber;
     private String purpose;
 
-    public ListCarResponse(String licensePlate, String carId, Date registrations_date, String registrations_place, String carBrand, String model, String type, String color, String frameNumber, String engineNumber, String purpose) {
+    public ListCarResponse(String licensePlate, String carId, Date registrationsDate, String registrationsPlace, String carBrand, String model, String generation, String color, String frameNumber, String engineNumber, String purpose) {
         this.licensePlate = licensePlate;
         this.carId = carId;
-        this.registrations_date = registrations_date;
-        this.registrations_place = registrations_place;
+        this.registrationsDate = registrationsDate;
+        this.registrationsPlace = registrationsPlace;
         this.carBrand = carBrand;
         this.model = model;
-        this.type = type;
+        this.generation = generation;
         this.color = color;
         this.frameNumber = frameNumber;
         this.engineNumber = engineNumber;
