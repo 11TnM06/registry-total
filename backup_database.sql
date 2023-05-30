@@ -1,7 +1,14 @@
-show databases;
 create database IF NOT EXISTS registry;
-show tables in registry;
 use registry;
+
+DROP TABLE IF EXISTS registry_information;
+DROP TABLE IF EXISTS car;
+DROP TABLE IF EXISTS company;
+DROP TABLE IF EXISTS personal;
+DROP TABLE IF EXISTS technical_information;
+DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS roles;
 
 DROP TABLE IF EXISTS technical_information;
 CREATE TABLE technical_information
@@ -33,15 +40,15 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS personal;
 CREATE TABLE personal
 (
-    id                BIGINT       NOT NULL AUTO_INCREMENT,
-    personal_id       VARCHAR(20)  NOT NULL,
-    name              VARCHAR(20)  NOT NULL,
-    registrationPlace VARCHAR(50)  NOT NULL,
-    registrationDate  DATE         NOT NULL,
-    DOB               DATE         NOT NULL,
-    gender            VARCHAR(10)  NOT NULL,
-    address           VARCHAR(100) NOT NULL,
-    phone             VARCHAR(20)  NOT NULL,
+    id                 BIGINT       NOT NULL AUTO_INCREMENT,
+    personal_id        VARCHAR(20)  NOT NULL,
+    name               VARCHAR(20)  NOT NULL,
+    registration_place VARCHAR(50)  NOT NULL,
+    registration_date  DATE         NOT NULL,
+    DOB                DATE         NOT NULL,
+    gender             VARCHAR(10)  NOT NULL,
+    address            VARCHAR(100) NOT NULL,
+    phone              VARCHAR(20)  NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (personal_id)
 ) ENGINE = InnoDB
@@ -49,7 +56,7 @@ CREATE TABLE personal
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES personal WRITE;
-INSERT INTO personal (id, name, personal_id, registrationPlace, registrationDate, DOB, gender, address, phone)
+INSERT INTO personal (id, name, personal_id, registration_place, registration_date, DOB, gender, address, phone)
 VALUES (1, 'Đỗ Hoàng Anh', '038302892102', 'Cục trưởng cục cảnh sát', '2020-02-13', '1998-02-18', 'Nam',
         'Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội', '0987633772');
 UNLOCK TABLES;
@@ -233,12 +240,4 @@ INSERT INTO user_roles (user_id, role_id)
 VALUES (3, 1);
 UNLOCK TABLES;
 
-#
-# DROP TABLE IF EXISTS registry_information;
-# DROP TABLE IF EXISTS car;
-# DROP TABLE IF EXISTS company;
-# DROP TABLE IF EXISTS personal;
-# DROP TABLE IF EXISTS technical_information;
-# DROP TABLE IF EXISTS user_roles;
-# DROP TABLE IF EXISTS users;
-# DROP TABLE IF EXISTS roles;
+
