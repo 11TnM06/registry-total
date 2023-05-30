@@ -1,7 +1,6 @@
 show databases;
-create database registry;
+create database IF NOT EXISTS registry;
 show tables in registry;
-show tables in registry like 'account';
 use registry;
 
 DROP TABLE IF EXISTS technical_information;
@@ -100,7 +99,7 @@ CREATE TABLE car
     purpose            VARCHAR(100)          NOT NULL,
     personal_id        BIGINT,
     company_id         BIGINT,
-    technical_id       BIGINT          NOT NULL,
+    technical_id       BIGINT                NOT NULL,
 
     PRIMARY KEY (id),
     UNIQUE KEY (license_plate),
@@ -138,28 +137,106 @@ CREATE TABLE registry_information
     registry_date DATE                  NOT NULL,
     expired_date  DATE                  NOT NULL,
     registry_name VARCHAR(20)           NOT NULL,
-    car_id        BIGINT                NOT NULL,
+    license_plate VARCHAR(20)           NOT NULL,
     PRIMARY KEY (id),
-    UNIQUE KEY (car_id),
     UNIQUE KEY (gcn_id),
 
-    KEY registry_information_fk (car_id),
-    CONSTRAINT registry_information_fk FOREIGN KEY (car_id) REFERENCES car (car_id) ON DELETE CASCADE ON UPDATE CASCADE
+    KEY registry_information_fk (license_plate),
+    CONSTRAINT registry_information_fk FOREIGN KEY (license_plate) REFERENCES car (license_plate) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES registry_information WRITE;
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, car_id)
-VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 288239);
-INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, car_id)
-VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3123S', 300000);
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
+VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', '29A-12508');
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
+VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3123S', '36D-27328');
+INSERT INTO registry_information (id, gcn_id, registry_date, expired_date, registry_name, license_plate)
+VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2904S', '29A-12508');
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+    id                BIGINT AUTO_INCREMENT NOT NULL,
+    email             VARCHAR(50)           NOT NULL,
+    name              VARCHAR(50)           NOT NULL,
+    password          VARCHAR(120)          NOT NULL,
+    username          VARCHAR(50)           NOT NULL,
+    created_time      DATETIME              DEFAULT (now()),
+    last_updated_time DATETIME              DEFAULT (now()),
+    PRIMARY KEY (id),
+    unique (username),
+    unique (email)
 
-DROP TABLE IF EXISTS registry_information;
-DROP TABLE IF EXISTS car;
-DROP TABLE IF EXISTS company;
-DROP TABLE IF EXISTS personal;
-DROP TABLE IF EXISTS technical_information;
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+LOCK TABLES users WRITE;
+INSERT INTO users (id, email, name, password, username)
+VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326', 'admin');
+INSERT INTO users (id, email, name, password, username)
+VALUES (2, '1000S@gmail.com', 'Trung Tâm Đăng Kiểm 1000S', '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '1000S');
+INSERT INTO users (id, email, name, password, username)
+VALUES (3, '32000S@gmail.com', 'Trung Tâm Đăng Kiểm 32000S', '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '32000S');
+UNLOCK TABLES;
+
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles
+(
+    id                BIGINT AUTO_INCREMENT NOT NULL,
+    name              VARCHAR(20)           NOT NULL,
+    created_time      DATETIME              null,
+    last_updated_time DATETIME              null,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+LOCK TABLES roles WRITE;
+INSERT INTO roles (id, name)
+VALUES (1, 'ROLE_USER');
+INSERT INTO roles (id, name)
+VALUES (2, 'ROLE_ADMIN');
+UNLOCK TABLES;
+
+DROP TABLE IF EXISTS user_roles;
+CREATE TABLE user_roles
+(
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+
+    PRIMARY KEY (user_id, role_id),
+
+    KEY user_roles_fk (user_id),
+    KEY user_roles_fk_1 (role_id),
+    CONSTRAINT user_roles_fk FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT user_roles_fk_1 FOREIGN KEY (role_id) REFERENCES roles (id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
+LOCK TABLES user_roles WRITE;
+INSERT INTO user_roles (user_id, role_id)
+VALUES (1, 2);
+INSERT INTO user_roles (user_id, role_id)
+VALUES (2, 1);
+INSERT INTO user_roles (user_id, role_id)
+VALUES (3, 1);
+UNLOCK TABLES;
+
+#
+# DROP TABLE IF EXISTS registry_information;
+# DROP TABLE IF EXISTS car;
+# DROP TABLE IF EXISTS company;
+# DROP TABLE IF EXISTS personal;
+# DROP TABLE IF EXISTS technical_information;
+# DROP TABLE IF EXISTS user_roles;
+# DROP TABLE IF EXISTS users;
+# DROP TABLE IF EXISTS roles;
+
+
+

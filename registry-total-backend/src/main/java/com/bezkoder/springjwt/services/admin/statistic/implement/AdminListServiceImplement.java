@@ -5,6 +5,7 @@ import com.bezkoder.springjwt.models.Registrations;
 import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
 import com.bezkoder.springjwt.payload.response.user_response.*;
 import com.bezkoder.springjwt.repository.CarRepository;
+import com.bezkoder.springjwt.repository.RegistryInformationRepository;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
 import com.bezkoder.springjwt.services.admin.statistic.AdminListService;
@@ -20,9 +21,12 @@ import java.util.List;
 @Service
 public class AdminListServiceImplement implements AdminListService {
     private final CarRepository carRepository;
+    private final RegistryInformationRepository registryInformationRepository;
     @Autowired
-    public AdminListServiceImplement(CarRepository carRepository) {
+    public AdminListServiceImplement(CarRepository carRepository, RegistryInformationRepository registryInformationRepository) {
+
         this.carRepository = carRepository;
+        this.registryInformationRepository = registryInformationRepository;
     }
     public ResponseEntity<?> getCar(@Valid @RequestBody ListCarRequest listCarRequest) {
         if (!carRepository.existsByLicensePlate(listCarRequest.getLicensePlate())) {
@@ -115,7 +119,8 @@ public class AdminListServiceImplement implements AdminListService {
         }
 
         Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
-        List<Registrations> registrations = car.getRegistrations();
+
+        List<Registrations> registrations = registryInformationRepository.findAll();
         return ResponseFactory.success(registrations);
     }
 }

@@ -32,7 +32,7 @@ public class Registrations extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name = "car_id", nullable = false)
-    private Car car;
+    @JoinColumn(name = "license_plate", nullable = false)
+    private Car registryCar;
 }
 

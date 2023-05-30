@@ -79,7 +79,7 @@ public class Car extends BaseEntity {
     @JoinColumn(name = "technical_id", referencedColumnName = "id")
     private TechnicalData technicalData;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "registryCar", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Registrations> registrations;
 

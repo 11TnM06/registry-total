@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RegistryInformationRepository extends JpaRepository<Registrations, Long> {
-    List<Registrations> findAllById(Long id);
+    List<Registrations> findAll();
 }
