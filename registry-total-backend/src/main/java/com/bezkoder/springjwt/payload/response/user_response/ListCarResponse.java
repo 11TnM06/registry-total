@@ -1,35 +1,74 @@
 package com.bezkoder.springjwt.payload.response.user_response;
 
+import com.bezkoder.springjwt.models.*;
+
 import lombok.Data;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class ListCarResponse {
-    private String licensePlate;
-    private String carId;
-    private Date registrationsDate;
-    private String registrationsPlace;
-    private String carBrand;
-    private String model;
-    private String generation;
-    private String color;
-    private String frameNumber;
-    private String engineNumber;
-    private String purpose;
+    private Car car;
+    private TechnicalData technical;
+    private List<Registrations> registrations = new ArrayList<>();
+    private Personal personal;
+    private Company company;
+    public ListCarResponse(Car car) {
+        this.car = new Car(
+                car.getLicensePlate(),
+                car.getCarId(),
+                car.getRegistrationDate(),
+                car.getRegistrationPlace(),
+                car.getBrand(),
+                car.getModel(),
+                car.getPatch(),
+                car.getColor(),
+                car.getFrameNumber(),
+                car.getEngineNumber(),
+                car.getPurpose()
+        );
 
-    public ListCarResponse(String licensePlate, String carId, Date registrationsDate, String registrationsPlace, String carBrand, String model, String generation, String color, String frameNumber, String engineNumber, String purpose) {
-        this.licensePlate = licensePlate;
-        this.carId = carId;
-        this.registrationsDate = registrationsDate;
-        this.registrationsPlace = registrationsPlace;
-        this.carBrand = carBrand;
-        this.model = model;
-        this.generation = generation;
-        this.color = color;
-        this.frameNumber = frameNumber;
-        this.engineNumber = engineNumber;
-        this.purpose = purpose;
+        if (car.getCompany() != null)
+            this.company = new Company(
+                    car.getCompany().getCompanyId(),
+                    car.getCompany().getName(),
+                    car.getCompany().getRepresentative(),
+                    car.getCompany().getPhone(),
+                    car.getCompany().getAddress()
+            );
+        if (car.getPersonal() != null)
+            this.personal = new Personal(
+                    car.getPersonal().getPersonalId(),
+                    car.getPersonal().getName(),
+                    car.getPersonal().getRegistrationPlace(),
+                    car.getPersonal().getRegistrationDate(),
+                    car.getPersonal().getDob(),
+                    car.getPersonal().getGender(),
+                    car.getPersonal().getAddress(),
+                    car.getPersonal().getPhone()
+            );
+
+        this.technical = new TechnicalData(
+                car.getTechnical().getSize(),
+                car.getTechnical().getSelfWeight(),
+                car.getTechnical().getMaxPeople(),
+                car.getTechnical().getLength(),
+                car.getTechnical().getContainerSize(),
+                car.getTechnical().getMaxContainerWeight(),
+                car.getTechnical().getMaxWeight(),
+                car.getTechnical().getTowingMass()
+        );
+
+       for (Registrations registration : car.getRegistrations()) {
+            this.registrations.add(new Registrations(
+                    registration.getGcn(),
+                    registration.getRegistryDate(),
+                    registration.getExpiredDate()
+            ));
+        }
+
+
 
     }
 

@@ -17,9 +17,6 @@ import javax.persistence.*;
 @Table(name = "technical_information")
 public class TechnicalData extends BaseEntity {
 
-    @Column(name = "technical_id", nullable = false)
-    private String technicalId;
-
     @Column(name = "size", nullable = false)
     private String size;
 
@@ -47,4 +44,15 @@ public class TechnicalData extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "technical")
     @JsonIgnore
     private Car car;
+
+    public TechnicalData(String size, Integer selfWeight, Integer maxPeople, Integer length, String containerSize, String maxContainerWeight, String maxWeight, String towingMass) {
+        this.size = size;
+        this.selfWeight = selfWeight;
+        this.maxPeople = maxPeople;
+        this.length = length;
+        this.containerSize = containerSize;
+        this.maxContainerWeight = maxContainerWeight;
+        this.maxWeight = maxWeight;
+        this.towingMass = towingMass;
+    }
 }

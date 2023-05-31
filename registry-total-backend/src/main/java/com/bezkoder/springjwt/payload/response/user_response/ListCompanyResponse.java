@@ -1,22 +1,19 @@
 package com.bezkoder.springjwt.payload.response.user_response;
 
+import com.bezkoder.springjwt.models.Company;
 import lombok.Data;
 
 @Data
 public class ListCompanyResponse {
-    private String companyId;
-    private String type;
-    private String name;
-    private String address;
-    private String representative;
-    private String phone;
+    private Company owner;
 
-    public ListCompanyResponse(String companyId, String name, String address, String representative, String phone) {
-        this.companyId = companyId;
-        this.name = name;
-        this.address = address;
-        this.representative = representative;
-        this.phone = phone;
-        this.type = "company";
+
+    public ListCompanyResponse(Company company) {
+        this.owner = new Company(company.getCompanyId(),
+            company.getName(),
+            company.getRepresentative(),
+            company.getPhone(),
+            company.getAddress()
+        );
     }
 }

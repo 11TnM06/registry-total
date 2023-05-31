@@ -44,9 +44,9 @@ public class Car extends BaseEntity {
     @Size(max = 100)
     private String model;
 
-    @Column(name = "generation", nullable = false)
+    @Column(name = "patch", nullable = false)
     @Size(max = 100)
-    private String generation;
+    private String patch;
 
     @Column(name = "color", nullable = false)
     @Size(max = 100)
@@ -83,5 +83,18 @@ public class Car extends BaseEntity {
     @JsonIgnore
     private List<Registrations> registrations;
 
+    public Car(String licensePlate, String carId, Date registrationDate, String registrationPlace, String brand, String model, String patch, String color, String frameNumber, String engineNumber, String purpose) {
+        this.licensePlate = licensePlate;
+        this.carId = carId;
+        this.registrationDate = registrationDate;
+        this.registrationPlace = registrationPlace;
+        this.brand = brand;
+        this.model = model;
+        this.patch = patch;
+        this.color = color;
+        this.frameNumber = frameNumber;
+        this.engineNumber = engineNumber;
+        this.purpose = purpose;
+    }
 
 }

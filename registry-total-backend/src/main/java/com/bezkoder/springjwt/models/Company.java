@@ -32,7 +32,18 @@ public class Company extends BaseEntity {
     @Column(name = "address", nullable = false)
     private String address;
 
+    private String type;
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnore
     private Collection<Car> cars;
+
+    public Company (String companyId, String name, String representative, String phone, String address) {
+        this.companyId = companyId;
+        this.name = name;
+        this.representative = representative;
+        this.phone = phone;
+        this.address = address;
+        this.type = "Cơ quan";
+    }
 }

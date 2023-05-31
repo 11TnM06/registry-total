@@ -1,9 +1,8 @@
 package com.bezkoder.springjwt.models;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,9 +46,23 @@ public class Personal extends BaseEntity {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    private String type;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "personal", cascade = CascadeType.ALL)
     @JsonIgnore
     private Collection<Car> cars;
+    public Personal(String personalId, String name, String registrationPlace, Date registrationDate,
+                    Date dob, String gender, String address, String phone) {
+        this.personalId = personalId;
+        this.name = name;
+        this.registrationPlace = registrationPlace;
+        this.registrationDate = registrationDate;
+        this.dob = dob;
+        this.gender = gender;
+        this.address = address;
+        this.phone = phone;
+        this.type = "Cá nhân";
+    }
 
 
 }

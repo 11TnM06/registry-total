@@ -24,13 +24,7 @@ public class AdminListController {
         this.adminListService = adminListService;
     }
 
-
-    @PostMapping("/car")
-    public ResponseEntity<?> getCar(@Valid @RequestBody ListCarRequest listCarRequest) {
-        return adminListService.getCar(listCarRequest);
-    }
-
-    @GetMapping("/cars")
+    @GetMapping("/all")
     public ResponseEntity<?> getAllCars() {
         return adminListService.getAllCars();
     }

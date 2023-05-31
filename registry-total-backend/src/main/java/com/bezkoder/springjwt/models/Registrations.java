@@ -31,5 +31,11 @@ public class Registrations extends BaseEntity {
     @JsonIgnore
     @JoinColumn(name = "registry_car_id", nullable = false)
     private Car registryCar;
+
+    public Registrations(String gcn, Date registryDate, Date expiredDate) {
+        this.gcn = gcn;
+        this.registryDate = registryDate;
+        this.expiredDate = expiredDate;
+    }
 }
 
