@@ -16,6 +16,7 @@ public class ListCarResponse {
     private Company company;
     public ListCarResponse(Car car) {
         this.car = new Car(
+                car.getId(),
                 car.getLicensePlate(),
                 car.getCarId(),
                 car.getRegistrationDate(),

@@ -97,4 +97,19 @@ public class Car extends BaseEntity {
         this.purpose = purpose;
     }
 
+
+    public Car(String id, String licensePlate, String carId, Date registrationDate, String registrationPlace, String brand, String model, String patch, String color, String frameNumber, String engineNumber, String purpose) {
+        this.setId(id);
+        this.licensePlate = licensePlate;
+        this.carId = carId;
+        this.registrationDate = registrationDate;
+        this.registrationPlace = registrationPlace;
+        this.brand = brand;
+        this.model = model;
+        this.patch = patch;
+        this.color = color;
+        this.frameNumber = frameNumber;
+        this.engineNumber = engineNumber;
+        this.purpose = purpose;
+    }
 }
