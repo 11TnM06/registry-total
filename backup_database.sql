@@ -97,7 +97,7 @@ CREATE TABLE car
     registration_place VARCHAR(100)          NOT NULL,
     brand              VARCHAR(100)          NOT NULL,
     model              VARCHAR(100)          NOT NULL,
-    generation         VARCHAR(100)          NOT NULL,
+    patch              VARCHAR(100)          NOT NULL,
     color              VARCHAR(100)          NOT NULL,
     frame_number       VARCHAR(100)          NOT NULL,
     engine_number      VARCHAR(100)          NOT NULL,
@@ -124,14 +124,14 @@ CREATE TABLE car
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES car WRITE;
-INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, generation, color,
+INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, patch, color,
                  frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
 VALUES (1, 288239, '29A-12508', '2020-12-20', 'Hà Nội', 'Toyota', 'Toyota Camry', 'Camry 2.0E', 'Đỏ',
         'JTNBF3EK70J007654',
         '2AZFE315728',
         'Đi lại cá nhân', 1, null, 1);
-INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, generation, color,
+INSERT INTO car (id, car_id, license_plate, registration_date, registration_place, brand, model, patch, color,
                  frame_number,
                  engine_number, purpose, personal_id, company_id, technical_id)
 VALUES (2, 300000, '36D-27328', '2018-1-12', 'Thanh Hóa', 'Honda', 'Honda Brio', 'Brio RS', 'Trắng',
@@ -146,7 +146,7 @@ CREATE TABLE registry_information
     gcn             VARCHAR(20)           NOT NULL,
     registry_date   DATE                  NOT NULL,
     expired_date    DATE                  NOT NULL,
-    registry_center  VARCHAR(100)          NOT NULL,
+    registry_center VARCHAR(100)          NOT NULL,
     registry_car_id BIGINT                NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (gcn),
@@ -158,7 +158,7 @@ CREATE TABLE registry_information
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES registry_information WRITE;
-INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center,  registry_car_id)
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
 VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 1);
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
 VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3003S', 2);
