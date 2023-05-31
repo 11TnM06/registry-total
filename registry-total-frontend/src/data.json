@@ -1,74 +1,110 @@
-[
-  {
-    "id": "1",
-    "licensePlate": "29C1-12508",
-    "carId": "288237",
-    "registrations_date": "20/12/2020",
-    "registrations_place": "Hà Nội",
-    "carBrand": "Toyota",
-    "model": "Toyota Camry",
-    "patch": "Camry 2.0E",
-    "color": "Trắng",
-    "frameNumber": "JTNBF3EK70J007654",
-    "engineNumber": "2AZFE315728",
-    "purpose": "Đi lại cá nhân",
-    "size": "4850 x 1825 x 1470",
-    "self_weight": "1480",
-    "max_people": "4",
-    "length": "2775",
-    "container_size": null,
-    "max_container_weight": null,
-    "max_weight": "2000",
-    "towing_mass": null,
-    "owner": {
-      "type": "Cá nhân",
-      "name": "Trịnh Quốc Tuấn",
-      "id": "028203920236",
-      "registrationPlace": "Cục trưởng cục cảnh sát",
-      "registraionDate": "12/11/2020",
-      "DOB": "12/4/1973",
-      "gender": "Nam",
-      "address": "Phường Mỹ Đình, Nam Từ Liêm, Hà Nội",
-      "phone": "0933494876"
-    },
-    "GCN": "1946345",
-    "registryDate": "21/12/2020",
-    "expiredDate": "21/12/2023",
-    "registryCenter": "2903S"
+{
+  "status": {
+    "code": "SUCCESS",
+    "message": "Request successfully"
   },
-  {
-    "id": "2",
-    "licensePlate": "29C2-12508",
-    "carId": "288236",
-    "registrations_date": "20/12/2020",
-    "registrations_place": "Hà Nội",
-    "carBrand": "Toyota",
-    "model": "Toyota Camry",
-    "patch": "Camry 2.0E",
-    "color": "Trắng",
-    "frameNumber": "JTNBF3EK70J007654",
-    "engineNumber": "2AZFE315728",
-    "purpose": "Đi lại cá nhân",
-    "size": "4850 x 1825 x 1470",
-    "self_weight": "1480",
-    "max_people": "4",
-    "length": "2775",
-
-    "container_size": null,
-    "max_container_weight": null,
-    "max_weight": "2000",
-    "towing_mass": null,
-    "owner": {
-      "type": "Cơ quan",
-      "name": "Cơ quan Nhà nước",
-      "id": "028203920236",
-      "address": "Phường Mỹ Đình, Nam Từ Liêm, Hà Nội",
-      "representative": "Nguyễn Hoàng Long",
-      "phone": "0933494876"
+  "data": [
+    {
+      "car": {
+        "id": "1",
+        "licensePlate": "29A-12508",
+        "carId": "288239",
+        "registrationDate": "2020-12-20",
+        "registrationPlace": "Hà Nội",
+        "brand": "Toyota",
+        "model": "Toyota Camry",
+        "patch": "Camry 2.0E",
+        "color": "Đỏ",
+        "frameNumber": "JTNBF3EK70J007654",
+        "engineNumber": "2AZFE315728",
+        "purpose": "Đi lại cá nhân"
+      },
+      "technical": {
+        "id": null,
+        "size": "4850 x 1825 x 1470",
+        "selfWeight": 1480,
+        "maxPeople": 4,
+        "length": 2775,
+        "containerSize": null,
+        "maxContainerWeight": null,
+        "maxWeight": "2000",
+        "towingMass": null
+      },
+      "registrations": [
+        {
+          "id": null,
+          "gcn": "327A-32238",
+          "registryDate": "2019-10-19",
+          "expiredDate": "2020-04-19",
+          "registryCenter": "2903S"
+        },
+        {
+          "id": null,
+          "gcn": "327A-32939",
+          "registryDate": "2019-10-19",
+          "expiredDate": "2020-04-19",
+          "registryCenter": "2903S"
+        }
+      ],
+      "personal": {
+        "id": null,
+        "personalId": "038302892102",
+        "name": "Đỗ Hoàng Anh",
+        "registrationPlace": "Cục trưởng cục cảnh sát",
+        "registrationDate": "2020-02-13",
+        "dob": "1998-02-18",
+        "gender": "Nam",
+        "address": "Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội",
+        "phone": "0987633772",
+        "type": "Cá nhân"
+      },
+      "company": null
     },
-    "GCN": "1946345",
-    "registryDate": "21/12/2020",
-    "expiredDate": "21/12/2023",
-    "registryCenter": "2903S"
-  }
-]
+    {
+      "car": {
+        "id": "2",
+        "licensePlate": "36D-27328",
+        "carId": "300000",
+        "registrationDate": "2018-01-12",
+        "registrationPlace": "Thanh Hóa",
+        "brand": "Honda",
+        "model": "Honda Brio",
+        "patch": "Brio RS",
+        "color": "Trắng",
+        "frameNumber": "MFJHNB4V7LY000123",
+        "engineNumber": "L13B2031567",
+        "purpose": "Kinh doanh chở khách"
+      },
+      "technical": {
+        "id": null,
+        "size": "3801 x 1682 x 1487",
+        "selfWeight": 972,
+        "maxPeople": 2405,
+        "length": 4,
+        "containerSize": null,
+        "maxContainerWeight": null,
+        "maxWeight": "1347",
+        "towingMass": null
+      },
+      "registrations": [
+        {
+          "id": null,
+          "gcn": "327A-32987",
+          "registryDate": "2019-10-19",
+          "expiredDate": "2020-04-19",
+          "registryCenter": "3003S"
+        }
+      ],
+      "personal": null,
+      "company": {
+        "id": null,
+        "companyId": "0105148109",
+        "name": "CÔNG TY CỔ PHẦN VIN GLOBAL ",
+        "representative": "DƯƠNG VĂN DŨNG",
+        "phone": "0972285058",
+        "address": "Đội 8, Thị Trấn Liên Quan, Huyện Thạch Thất, Thành phố Hà Nội, Việt Nam",
+        "type": "Cơ quan"
+      }
+    }
+  ]
+}
