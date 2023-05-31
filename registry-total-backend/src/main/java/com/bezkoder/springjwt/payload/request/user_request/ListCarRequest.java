@@ -9,5 +9,4 @@ public class ListCarRequest {
     @NotBlank
     private String licensePlate;
 
-
 }

@@ -27,15 +27,19 @@ public class Registrations extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date expiredDate;
 
+    @Column(name = "registry_center", nullable = false)
+    private String registryCenter;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     @JoinColumn(name = "registry_car_id", nullable = false)
     private Car registryCar;
 
-    public Registrations(String gcn, Date registryDate, Date expiredDate) {
+    public Registrations(String gcn, Date registryDate, Date expiredDate, String registryCenter) {
         this.gcn = gcn;
         this.registryDate = registryDate;
         this.expiredDate = expiredDate;
+        this.registryCenter = registryCenter;
     }
 }
 

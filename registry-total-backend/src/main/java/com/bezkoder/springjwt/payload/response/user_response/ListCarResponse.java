@@ -64,7 +64,8 @@ public class ListCarResponse {
             this.registrations.add(new Registrations(
                     registration.getGcn(),
                     registration.getRegistryDate(),
-                    registration.getExpiredDate()
+                    registration.getExpiredDate(),
+                    registration.getRegistryCenter()
             ));
         }
 

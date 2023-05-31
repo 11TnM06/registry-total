@@ -1,73 +1,79 @@
 package com.bezkoder.springjwt.payload.request.user_request;
 
+import com.bezkoder.springjwt.models.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Data
 public class AddCarRequest {
-    @NotBlank
-    private String licensePlate;
+    @NotNull
+    @JsonProperty("car")
+    Car car;
 
-    @NotBlank
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date registrationDate;
+    @NotNull
+    @JsonProperty("technical")
+    TechnicalData technical;
 
-    @NotBlank
-    private String registrationPlace;
+    @JsonProperty("personal")
+    Personal personal;
 
-    @NotBlank
-    private String brand;
+    @JsonProperty("company")
+    Company company;
 
-    @NotBlank
-    private String model;
+    public AddCarRequest() {
+    }
+    public AddCarRequest(Car car) {
+        this.car = new Car(
+                car.getLicensePlate(),
+                car.getCarId(),
+                car.getRegistrationDate(),
+                car.getRegistrationPlace(),
+                car.getBrand(),
+                car.getModel(),
+                car.getPatch(),
+                car.getColor(),
+                car.getFrameNumber(),
+                car.getEngineNumber(),
+                car.getPurpose()
+        );
 
-    @NotBlank
-    private String type;
+        if (car.getCompany() != null)
+            this.company = new Company(
+                    car.getCompany().getCompanyId(),
+                    car.getCompany().getName(),
+                    car.getCompany().getRepresentative(),
+                    car.getCompany().getPhone(),
+                    car.getCompany().getAddress()
+            );
+        if (car.getPersonal() != null)
+            this.personal = new Personal(
+                    car.getPersonal().getPersonalId(),
+                    car.getPersonal().getName(),
+                    car.getPersonal().getRegistrationPlace(),
+                    car.getPersonal().getRegistrationDate(),
+                    car.getPersonal().getDob(),
+                    car.getPersonal().getGender(),
+                    car.getPersonal().getAddress(),
+                    car.getPersonal().getPhone()
+            );
 
-    @NotBlank
-    private String color;
-
-    @NotBlank
-    private String frameNumber;
-
-    @NotBlank
-    private String engineNumber;
-
-    @NotBlank
-    private String purpose;
-
-    @NotBlank
-    private String personalId;
-
-    @NotBlank
-    private String companyId;
-
-    @NotBlank
-    private String technicalId;
-
-    @NotBlank
-    private String registrationsId;
-
-    public AddCarRequest(String licensePlate, Date registrationDate, String registrationPlace,
-                         String brand, String model, String type, String color, String frameNumber,
-                         String engineNumber, String purpose, String personalId, String companyId, String technicalId) {
-        this.licensePlate = licensePlate;
-        this.registrationDate = registrationDate;
-        this.registrationPlace = registrationPlace;
-        this.brand = brand;
-        this.model = model;
-        this.type = type;
-        this.color = color;
-        this.frameNumber = frameNumber;
-        this.engineNumber = engineNumber;
-        this.purpose = purpose;
-        this.personalId = personalId;
-        this.companyId = companyId;
-        this.technicalId = technicalId;
+        this.technical = new TechnicalData(
+                car.getTechnical().getSize(),
+                car.getTechnical().getSelfWeight(),
+                car.getTechnical().getMaxPeople(),
+                car.getTechnical().getLength(),
+                car.getTechnical().getContainerSize(),
+                car.getTechnical().getMaxContainerWeight(),
+                car.getTechnical().getMaxWeight(),
+                car.getTechnical().getTowingMass()
+        );
     }
 
 }

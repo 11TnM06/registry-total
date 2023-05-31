@@ -29,17 +29,17 @@ public class AdminListController {
         return adminListService.getAllCars();
     }
 
-    @PostMapping("/owner")
+    @GetMapping("/owner")
     public ResponseEntity<?> getOwner(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getOwner(listCarRequest);
     }
 
-    @PostMapping("/technical")
+    @GetMapping("/technical")
     public ResponseEntity<?> getTechnicalData(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getTechnicalData(listCarRequest);
     }
 
-    @PostMapping("/registration")
+    @GetMapping("/registration")
     public ResponseEntity<?> getRegistrations(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getRegistrations(listCarRequest);
     }

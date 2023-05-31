@@ -16,7 +16,7 @@ public enum ResponseStatusEnum {
   REGISTERED_COMPANY_NAME("E-006", "Company name is already registered"),
   EXISTED_CATEGORY("E-007", "Category is already existed"),
   NOT_MATCHING_PRODUCT_FOUND("E-008", "No matching products found"),
-  ADD_CAR("E-009", "Car is already add");
+  CAR_EXIST("E-009", "Car is already existed");
   private final String code;
   private final String message;
 

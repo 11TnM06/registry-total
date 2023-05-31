@@ -146,6 +146,7 @@ CREATE TABLE registry_information
     gcn             VARCHAR(20)           NOT NULL,
     registry_date   DATE                  NOT NULL,
     expired_date    DATE                  NOT NULL,
+    registry_center  VARCHAR(100)          NOT NULL,
     registry_car_id BIGINT                NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (gcn),
@@ -157,12 +158,12 @@ CREATE TABLE registry_information
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES registry_information WRITE;
-INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
-VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', 1);
-INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
-VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', 2);
-INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_car_id)
-VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', 1);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center,  registry_car_id)
+VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 1);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
+VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3003S', 2);
+INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
+VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2903S', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 

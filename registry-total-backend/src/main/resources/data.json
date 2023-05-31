@@ -17,8 +17,57 @@
 
   {
     "licensePlate": "29A-12508"
+  },
+  {
+    "car": {
+      "licensePlate": "29A-12508",
+      "carId": "288239",
+      "registrationDate": "2020-12-20",
+      "registrationPlace": "Hà Nội",
+      "brand": "Toyota",
+      "model": "Toyota Camry",
+      "patch": "Camry 2.0E",
+      "color": "Đỏ",
+      "frameNumber": "JTNBF3EK70J007654",
+      "engineNumber": "2AZFE315728",
+      "purpose": "Đi lại cá nhân"
+    },
+    "technical": {
+      "size": "4850 x 1825 x 1470",
+      "selfWeight": 1480,
+      "maxPeople": 4,
+      "length": 2775,
+      "containerSize": null,
+      "maxContainerWeight": null,
+      "maxWeight": "2000",
+      "towingMass": null
+    },
+    "registrations": [
+      {
+        "gcn": "327A-32238",
+        "registryDate": "2019-10-19",
+        "expiredDate": "2020-04-19"
+      },
+      {
+        "id": null,
+        "gcn": "327A-32939",
+        "registryDate": "2019-10-19",
+        "expiredDate": "2020-04-19"
+      }
+    ],
+    "personal": {
+      "personalId": "038302892102",
+      "name": "Đỗ Hoàng Anh",
+      "registrationPlace": "Cục trưởng cục cảnh sát",
+      "registrationDate": "2020-02-13",
+      "dob": "1998-02-18",
+      "gender": "Nam",
+      "address": "Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội",
+      "phone": "0987633772",
+      "type": "Cá nhân"
+    },
+    "company": null
   }
-
 ]
 
 
