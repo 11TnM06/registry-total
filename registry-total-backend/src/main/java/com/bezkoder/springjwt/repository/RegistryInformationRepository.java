@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface RegistryInformationRepository extends JpaRepository<Registrations, Long> {
     List<Registrations> findAll();
-
-
+    Boolean existsByGcn(String gcn);
 
 
 }

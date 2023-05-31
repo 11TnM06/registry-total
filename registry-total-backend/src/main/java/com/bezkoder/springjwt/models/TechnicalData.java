@@ -21,13 +21,13 @@ public class TechnicalData extends BaseEntity {
     private String size;
 
     @Column(name = "self_weight", nullable = false)
-    private Integer selfWeight;
+    private String selfWeight;
 
     @Column(name = "max_people", nullable = false)
-    private Integer maxPeople;
+    private String maxPeople;
 
     @Column(name = "length", nullable = false)
-    private Integer length;
+    private String length;
 
     @Column(name = "container_size")
     private String containerSize;
@@ -45,7 +45,7 @@ public class TechnicalData extends BaseEntity {
     @JsonIgnore
     private Car car;
 
-    public TechnicalData(String size, Integer selfWeight, Integer maxPeople, Integer length, String containerSize, String maxContainerWeight, String maxWeight, String towingMass) {
+    public TechnicalData(String size, String selfWeight, String maxPeople, String length, String containerSize, String maxContainerWeight, String maxWeight, String towingMass) {
         this.size = size;
         this.selfWeight = selfWeight;
         this.maxPeople = maxPeople;
