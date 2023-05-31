@@ -54,8 +54,6 @@ public class AdminUploadServiceImplement implements AdminUploadService {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
         }
 
-        technicalRepository.save(technicalData);
-        car.setTechnical(technicalData);
 
         if (company != null) {
             if (companyRepository.existsByCompanyId(company.getCompanyId())) {
@@ -76,17 +74,11 @@ public class AdminUploadServiceImplement implements AdminUploadService {
             car.setPersonal(personal);
         }
 
+        technicalRepository.save(technicalData);
+        car.setTechnical(technicalData);
+
         carRepository.save(car);
 
-
-//        carRepository.save(addCarRequest.getCar());
-//        technicalRepository.save(addCarRequest.getTechnical());
-//        if (addCarRequest.getPersonal() != null) {
-//            personalRepository.save(addCarRequest.getPersonal());
-//        }
-//        if (addCarRequest.getCompany() != null) {
-//            companyRepository.save(addCarRequest.getCompany());
-//        }
         return ResponseFactory.success("add car successfully!");
     }
 
