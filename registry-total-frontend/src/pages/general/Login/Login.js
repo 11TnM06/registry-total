@@ -32,7 +32,7 @@ function Login() {
   };
 
   const onLogin = () => {
-    UseFetch("/backend/auth/login", "POST", loginInfo).then((data) => {
+    UseFetch("/api/auth/login", "POST", loginInfo).then((data) => {
       if (data.status.code === "SUCCESS") {
         UseAuth.set(data.data.token);
         window.location.href = "/";
