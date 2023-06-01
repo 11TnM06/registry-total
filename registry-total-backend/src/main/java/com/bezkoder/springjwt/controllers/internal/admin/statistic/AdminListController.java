@@ -50,4 +50,9 @@ public class AdminListController {
     public ResponseEntity<?> getAllRegisteredCars(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return adminListService.getAllRegisteredCars(listRegisteredCarRequest);
     }
+
+    @GetMapping("/all/expired")
+    public ResponseEntity<?> getAllExpiredCars(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
+        return adminListService.getAllExpiredCars(listRegisteredCarRequest);
+    }
 }

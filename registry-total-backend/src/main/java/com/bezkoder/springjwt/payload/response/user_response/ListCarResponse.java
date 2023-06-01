@@ -69,9 +69,6 @@ public class ListCarResponse {
                     registration.getRegistryCenter()
             ));
         }
-
-
-
     }
 
 }

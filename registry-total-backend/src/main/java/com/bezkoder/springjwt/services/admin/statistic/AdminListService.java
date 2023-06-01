@@ -13,4 +13,6 @@ public interface AdminListService {
     ResponseEntity<?> getRegistrations(ListCarRequest listCarRequest);
 
     ResponseEntity<?> getAllRegisteredCars(ListRegisteredCarRequest listRegisteredCarRequest);
+
+    ResponseEntity<?> getAllExpiredCars(ListRegisteredCarRequest listRegisteredCarRequest);
 }

@@ -58,4 +58,28 @@ public class Utils {
 
         return cars;
     }
+
+    public static List<Car> ListExpiredCarUtils (Car car, Date date, String timeType, String time, String year, String location, String registryLocation) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        List<Car> cars = new ArrayList<>();
+        int registryYear = cal.get(Calendar.YEAR);
+        if (timeType.equals("Tháng")) {
+            int month = cal.get(Calendar.MONTH) + 1;
+
+            if (month == Integer.parseInt(time) && registryYear == Integer.parseInt(year) ) {
+                if (registryLocation != null) {
+                    if (registryLocation.equals(location)) {
+                        cars.add(car);
+                    }
+                }
+                else {
+                    cars.add(car);
+                }
+            }
+
+        }
+
+        return cars;
+    }
 }

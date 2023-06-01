@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static com.bezkoder.springjwt.utils.Utils.ListExpiredCarUtils;
 import static com.bezkoder.springjwt.utils.Utils.ListRegisteredCarUtils;
 
 @Service
@@ -133,7 +134,53 @@ public class AdminListServiceImplement implements AdminListService {
         return ResponseFactory.success(listCarResponse);
     }
 
+    public ResponseEntity<?> getAllExpiredCars(ListRegisteredCarRequest listRegisteredCarRequest) {
+        String locationType = listRegisteredCarRequest.getLocationType();
+        String timeType = listRegisteredCarRequest.getTimeType();
+        String time = listRegisteredCarRequest.getTime();
+        String location = listRegisteredCarRequest.getLocation();
+        String year = listRegisteredCarRequest.getYear();
 
+        if (carRepository.findAll().isEmpty()) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
+        }
+        List<ListCarResponse> listCarResponse = new ArrayList<>();
+        List<Car> cars = new ArrayList<>();
+        List<Car> tmp_car = carRepository.findAll();
+
+
+        for (Car car : tmp_car) {
+            List<Registration> registrations = car.getRegistrations();
+            for (Registration registration : registrations) {
+                if (registration == null) {
+                    continue;
+                }
+                Date date = registration.getExpiredDate();
+                if (locationType.equals("Khu vực")) {
+                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, car.getRegistrationPlace());
+                }
+                else if (locationType.equals("Trung tâm")) {
+                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter());
+                }
+                else {
+                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, location);
+                }
+
+            }
+        }
+
+        int expiredDate = cars.size();
+        int firstRegistration = 0;
+        for (Car car : cars) {
+            listCarResponse.add(new ListCarResponse(car));
+            if (car.getRegistrations() == null) {
+                firstRegistration++;
+            }
+        }
+
+        ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
+        return ResponseFactory.success(listExpiredCarResponse);
+    }
 
 }
 
