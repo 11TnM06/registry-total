@@ -1,10 +1,9 @@
 package com.bezkoder.springjwt.repository;
 
 import com.bezkoder.springjwt.models.Car;
-import com.bezkoder.springjwt.models.Registrations;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 

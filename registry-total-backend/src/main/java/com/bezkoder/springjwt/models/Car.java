@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -81,7 +80,7 @@ public class Car extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "registryCar", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Registrations> registrations;
+    private List<Registration> registrations;
 
     public Car(String licensePlate, String carId, Date registrationDate, String registrationPlace, String brand, String model, String patch, String color, String frameNumber, String engineNumber, String purpose) {
         this.licensePlate = licensePlate;

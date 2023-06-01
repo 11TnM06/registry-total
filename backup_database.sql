@@ -119,7 +119,6 @@ CREATE TABLE car
     CONSTRAINT car_fk_1 FOREIGN KEY (company_id) REFERENCES company (id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT car_fk_2 FOREIGN KEY (technical_id) REFERENCES technical_information (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 12
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
@@ -159,11 +158,11 @@ CREATE TABLE registry_information
 
 LOCK TABLES registry_information WRITE;
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
-VALUES (1, '327A-32238', '2019-10-19', '2020-04-19', '2903S', 1);
+VALUES (1, '327A-32238', '2019-10-19', '2021-10-19', '2903S', 1);
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
-VALUES (2, '327A-32987', '2019-10-19', '2020-04-19', '3003S', 2);
+VALUES (2, '327A-32987', '2020-5-19', '2022-05-19', '3003S', 2);
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
-VALUES (3, '327A-32939', '2019-10-19', '2020-04-19', '2903S', 1);
+VALUES (3, '327A-32939', '2021-1-19', '2023-01-19', '2903S', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 

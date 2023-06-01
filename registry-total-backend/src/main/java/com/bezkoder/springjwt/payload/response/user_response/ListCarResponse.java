@@ -11,7 +11,7 @@ import java.util.List;
 public class ListCarResponse {
     private Car car;
     private TechnicalData technical;
-    private List<Registrations> registrations = new ArrayList<>();
+    private List<Registration> registrations = new ArrayList<>();
     private Personal personal;
     private Company company;
     public ListCarResponse(Car car) {
@@ -61,8 +61,8 @@ public class ListCarResponse {
                 car.getTechnical().getTowingMass()
         );
 
-       for (Registrations registration : car.getRegistrations()) {
-            this.registrations.add(new Registrations(
+       for (Registration registration : car.getRegistrations()) {
+            this.registrations.add(new Registration(
                     registration.getGcn(),
                     registration.getRegistryDate(),
                     registration.getExpiredDate(),

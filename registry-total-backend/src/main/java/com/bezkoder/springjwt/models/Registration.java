@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "registry_information")
-public class Registrations extends BaseEntity {
+public class Registration extends BaseEntity {
     @Column(name = "gcn", nullable = false, unique = true)
     private String gcn;
 
@@ -35,7 +35,7 @@ public class Registrations extends BaseEntity {
     @JoinColumn(name = "registry_car_id", nullable = false)
     private Car registryCar;
 
-    public Registrations(String gcn, Date registryDate, Date expiredDate, String registryCenter) {
+    public Registration(String gcn, Date registryDate, Date expiredDate, String registryCenter) {
         this.gcn = gcn;
         this.registryDate = registryDate;
         this.expiredDate = expiredDate;

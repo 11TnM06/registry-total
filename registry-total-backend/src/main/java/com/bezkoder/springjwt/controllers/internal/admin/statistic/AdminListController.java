@@ -1,6 +1,7 @@
 package com.bezkoder.springjwt.controllers.internal.admin.statistic;
 
 import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
+import com.bezkoder.springjwt.payload.request.user_request.ListRegisteredCarRequest;
 import com.bezkoder.springjwt.services.admin.statistic.AdminListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin(value = "*")
 @RestController
@@ -42,5 +44,10 @@ public class AdminListController {
     @GetMapping("/registration")
     public ResponseEntity<?> getRegistrations(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getRegistrations(listCarRequest);
+    }
+
+    @GetMapping("/all/registered")
+    public ResponseEntity<?> getAllRegisteredCars(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
+        return adminListService.getAllRegisteredCars(listRegisteredCarRequest);
     }
 }
