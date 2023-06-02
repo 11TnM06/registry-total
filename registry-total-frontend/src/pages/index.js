@@ -7,7 +7,6 @@ import { Product } from "./general/Product";
 import { Welcome } from "./general/Welcome/Welcome";
 import { Error404 } from "./general/Error404/Error404";
 
-import { User } from "./admin/User";
 import { Category } from "./admin/Category";
 import { StatisticProduct as AdminStatisticProduct } from "./admin/StatisticProduct/StatisticProduct";
 
@@ -34,9 +33,33 @@ import { SendToAgency as WarrantySendToAgency } from "./warranty/SendToAgency/Se
 import { StatisticProduct as WarrantyStatisticProduct } from "./warranty/StatisticProduct/StatisticProduct";
 
 export {
-    Login, Logout, ForgotPassword, ResetPassword, Product, Welcome, ChangePassword, Error404,
-    User, Category, AdminStatisticProduct,
-    SendToAgency, AddProduct, FactoryGetFromWarranty, FactorySaleAnalysis, ErrorAnalysis, FactoryStatisticProduct,
-    GetFromFactory, SaleProduct, GetFromCustomer, GetFromWarranty, NotifyErrorProduct, RecallProduct, SaleAnalysis, UnsoldProduct, AgencyStatisticProduct,
-    GetFromAgency, WarrantySendToAgency, SendToFactory, WarrantyStatisticProduct
+  Login,
+  Logout,
+  ForgotPassword,
+  ResetPassword,
+  Product,
+  Welcome,
+  ChangePassword,
+  Error404,
+  Category,
+  AdminStatisticProduct,
+  SendToAgency,
+  AddProduct,
+  FactoryGetFromWarranty,
+  FactorySaleAnalysis,
+  ErrorAnalysis,
+  FactoryStatisticProduct,
+  GetFromFactory,
+  SaleProduct,
+  GetFromCustomer,
+  GetFromWarranty,
+  NotifyErrorProduct,
+  RecallProduct,
+  SaleAnalysis,
+  UnsoldProduct,
+  AgencyStatisticProduct,
+  GetFromAgency,
+  WarrantySendToAgency,
+  SendToFactory,
+  WarrantyStatisticProduct,
 };

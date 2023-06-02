@@ -5,20 +5,21 @@ import "./style_icon.css";
  * @description: Table Icon custom component
  */
 function TableIcon(props, icon) {
-  //   const btn_ref = React.useRef(null);
+  const btn_ref = React.useRef(null);
 
-  //   React.useEffect(() => {
-  //     var btn = btn_ref.current;
-  //     var label = btn.children[1].innerHTML;
-  //     if (label === "") {
-  //       btn_ref.current.classList.add("icon-only");
-  //       btn_ref.current.removeChild(btn.children[1]);
-  //     }
-  //   }, []);
+  React.useEffect(() => {
+    var btn = btn_ref.current;
+    if (btn.children[1].innerHTML) {
+      var label = btn.children[1].innerHTML;
+      if (label == "") {
+        btn_ref.current.classList.add("icon-only");
+        btn_ref.current.removeChild(btn.children[1]);
+      }
+    }
+  }, []);
 
   return (
-    // <button className="icon-btn" ref={btn_ref}>
-    <button className="icon-btn">
+    <button className="icon-btn" ref={btn_ref}>
       <svg
         className="icon"
         focusable="false"
@@ -27,7 +28,7 @@ function TableIcon(props, icon) {
       >
         {icon}
       </svg>
-      {/* <div className="icon-label">{props.label}</div> */}
+      <div className="icon-label">{props.label}</div>
     </button>
   );
 }

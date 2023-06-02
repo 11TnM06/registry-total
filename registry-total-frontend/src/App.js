@@ -9,7 +9,8 @@ import {
 } from "./pages";
 import { Layout } from "./layouts/Layout";
 import { LoginLayout } from "./layouts/LoginLayout";
-import RegisteredCar from "./pages/register/RegisteredCar";
+import RegisteredCar from "./pages/admin/RegisteredCar";
+import { UserList } from "./pages/admin/UserList";
 
 function App() {
   const routes = useRoutes([
@@ -29,7 +30,7 @@ function App() {
         },
         {
           path: "add-center",
-          element: <h1>add center</h1>,
+          element: <UserList />,
         },
         {
           path: "inspected-car",

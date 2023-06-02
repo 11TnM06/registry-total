@@ -1,7 +1,7 @@
 import { UserList } from "./UserList";
 
 const User = {
-    UserList,
-}
+  UserList,
+};
 
-export { User }
+// export { User }

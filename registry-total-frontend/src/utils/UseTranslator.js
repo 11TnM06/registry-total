@@ -20,8 +20,8 @@ const key = {
   technical: "Thông số kỹ thuật",
   username: "Tên đăng nhập",
   email: "Email",
-  address: "Địa chỉ",
-  phone: "Số điện thoại",
+  name: "Tên",
+  role: "Vai trò",
   option: "Tùy chọn",
 };
 const UseTranslator = {};
