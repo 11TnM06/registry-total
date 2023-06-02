@@ -12,15 +12,21 @@ import com.bezkoder.springjwt.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    private final UserRepository userRepository;
     @Autowired
-    UserRepository userRepository;
+    public UserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
-
-        return UserDetailsImpl.build(user);
+        User applicationUser = userRepository.findByUsername(username);
+        if (applicationUser == null) {
+            throw new UsernameNotFoundException("User not found with " + username);
+        }
+        return UserDetailsImpl.build(applicationUser);
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findAll();
-    Optional<Car> findByLicensePlate(String licensePlate);
+    Car findByLicensePlate(String licensePlate);
 
     Boolean existsByLicensePlate(String licensePlate);
 

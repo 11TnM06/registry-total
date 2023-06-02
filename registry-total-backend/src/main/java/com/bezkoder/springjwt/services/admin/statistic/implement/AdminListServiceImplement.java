@@ -55,7 +55,7 @@ public class AdminListServiceImplement implements AdminListService {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
         }
 
-        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate());
 
         if (car.getPersonal() == null) {
             ListCompanyResponse listCompanyResponse = new ListCompanyResponse(car.getCompany());
@@ -74,7 +74,7 @@ public class AdminListServiceImplement implements AdminListService {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
         }
 
-        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate());
         TechnicalData technical = car.getTechnical();
         ListTechnicalResponse listTechnicalResponse = new ListTechnicalResponse(technical);
 
@@ -86,7 +86,7 @@ public class AdminListServiceImplement implements AdminListService {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
         }
 
-        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate()).orElseThrow(() -> new RuntimeException("Error: Car is not found."));
+        Car car = carRepository.findByLicensePlate(listCarRequest.getLicensePlate());
 
         List<Registration> registrations = car.getRegistrations();
 
@@ -116,13 +116,19 @@ public class AdminListServiceImplement implements AdminListService {
                 }
                 Date date = registration.getRegistryDate();
                 if (locationType.equals("Khu vực")) {
-                    cars = ListRegisteredCarUtils(car, date, timeType, time, year, location, car.getRegistrationPlace());
+                    if (ListRegisteredCarUtils(car, date, timeType, time, year, location, car.getRegistrationPlace())) {
+                        cars.add(car);
+                    }
                 }
                 else if (locationType.equals("Trung tâm")) {
-                    cars = ListRegisteredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter());
+                    if(ListRegisteredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter())) {
+                        cars.add(car);
+                    }
                 }
                 else {
-                    cars = ListRegisteredCarUtils(car, date, timeType, time, year, location, location);
+                    if (ListRegisteredCarUtils(car, date, timeType, time, year, location, location)) {
+                        cars.add(car);
+                    }
                 }
 
             }
@@ -157,13 +163,19 @@ public class AdminListServiceImplement implements AdminListService {
                 }
                 Date date = registration.getExpiredDate();
                 if (locationType.equals("Khu vực")) {
-                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, car.getRegistrationPlace());
+                    if (ListExpiredCarUtils(car, date, timeType, time, year, location, car.getRegistrationPlace())) {
+                        cars.add(car);
+                    }
                 }
                 else if (locationType.equals("Trung tâm")) {
-                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter());
+                    if(ListExpiredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter())) {
+                        cars.add(car);
+                    }
                 }
                 else {
-                    cars = ListExpiredCarUtils(car, date, timeType, time, year, location, location);
+                    if (ListExpiredCarUtils(car, date, timeType, time, year, location, location)) {
+                        cars.add(car);
+                    }
                 }
 
             }
@@ -181,6 +193,8 @@ public class AdminListServiceImplement implements AdminListService {
         ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
         return ResponseFactory.success(listExpiredCarResponse);
     }
+
+
 
 }
 

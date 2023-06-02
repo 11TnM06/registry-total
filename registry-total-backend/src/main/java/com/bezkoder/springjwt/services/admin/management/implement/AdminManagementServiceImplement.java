@@ -81,7 +81,7 @@ public class AdminManagementServiceImplement implements AdminManagementService {
 
         user.setRoles(roles);
         userRepository.save(user);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseFactory.success("User registered successfully!");
     }
 
     public ResponseEntity<?> getAllAccounts() {

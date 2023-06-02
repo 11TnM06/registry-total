@@ -74,6 +74,14 @@
     "location": "Hà Nội",
     "timeType": "Tháng",
     "time": "1"
+  },
+
+  {
+    "licensePlace": "29A-12508",
+    "registryDate": "03/06/2023",
+    "expiredDate": "03/06/2025",
+    "gcn": "39A-B12345"
+
   }
 ]
 

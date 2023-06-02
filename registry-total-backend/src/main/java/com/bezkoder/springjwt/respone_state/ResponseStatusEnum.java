@@ -6,20 +6,20 @@ import lombok.Getter;
 public enum ResponseStatusEnum {
 
     SUCCESS("SUCCESS", "Request successfully"),
-    UNKNOWN_ERROR("E-000", "Can not specify error"),
-    NOT_ENOUGH_PARAM("E-001", "Not enough param in request"),
+    UNKNOWN_ERROR("E-000", "Lỗi không xác định"),
+    NOT_ENOUGH_PARAM("E-001", "Lỗi không đủ tham số đầu vào"),
     INVALID_REQUEST_PARAM("E-002",
-            "Invalid format param in request"),
-    WRONG_INFORMATION("E-003", "Something went wrong"),
-    REGISTERED_USERNAME("E-004", "Username is already registered"),
-    REGISTERED_EMAIL("E-005", "Email is already registered"),
-    REGISTERED_COMPANY_NAME("E-006", "Company name is already registered"),
-    EXISTED_CATEGORY("E-007", "Category is already existed"),
-    NOT_MATCHING_PRODUCT_FOUND("E-008", "No matching products found"),
-    EXISTED_CAR("E-009", "Car is already existed"),
-    EXISTED_PERSONAL("E-010", "Personal is already existed"),
-    EXISTED_COMPANY("E-011", "Company is already existed"),
-    EXISTED_REGISTERED("E-013", "Registry information is already existed");
+            "Lỗi tham số đầu vào không hợp lệ"),
+    WRONG_INFORMATION("E-003", "Lỗi thông tin không chính xác"),
+    REGISTERED_USERNAME("E-004", "Username đã tồn tại"),
+    REGISTERED_EMAIL("E-005", "Email đã tồn tại"),
+    REGISTERED_COMPANY_NAME("E-006", "Tên công ty đã tồn tại"),
+    NOT_MATCHING_PRODUCT_FOUND("E-008", "Không tìm thấy sản phẩm phù hợp"),
+    EXISTED_CAR("E-009", "Xe đã tồn tại"),
+    EXISTED_PERSONAL("E-010", "Cá nhân đã tồn tại"),
+    EXISTED_COMPANY("E-011", "Công ty đã tồn tại"),
+    EXISTED_REGISTERED("E-013", "Thông tin đăng kiểm đã tồn tại"),
+    NOT_EXPIRED_REGISTERED("E-014", "Thời gian đăng kiểm trước lần đăng kiểm gần nhất");
 
     private final String code;
     private final String message;

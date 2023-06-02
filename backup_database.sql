@@ -191,11 +191,11 @@ INSERT INTO users (id, email, name, password, username)
 VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326',
         'admin');
 INSERT INTO users (id, email, name, password, username)
-VALUES (2, '1000S@gmail.com', 'Trung Tâm Đăng Kiểm 1000S',
-        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '1000S');
+VALUES (2, '2903S@gmail.com', 'Trung Tâm Đăng Kiểm 2903S',
+        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '2903S');
 INSERT INTO users (id, email, name, password, username)
-VALUES (3, '32000S@gmail.com', 'Trung Tâm Đăng Kiểm 32000S',
-        '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '32000S');
+VALUES (3, '3003S@gmail.com', 'Trung Tâm Đăng Kiểm 3003S',
+        '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '3003S');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS roles;
