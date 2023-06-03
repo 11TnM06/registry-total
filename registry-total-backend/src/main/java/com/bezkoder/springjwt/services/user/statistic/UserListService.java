@@ -7,4 +7,6 @@ public interface UserListService {
     ResponseEntity<?> getAllRegisteredCarsInCenter(ListRegisteredCarRequest listRegisteredCarRequest);
     ResponseEntity<?> getAllExpiredCarsInCenter(ListRegisteredCarRequest listRegisteredCarRequest);
 
+    ResponseEntity<?> getAll();
+
 }

@@ -9,10 +9,6 @@ import javax.validation.constraints.*;
 @Data
 public class UpdateAccountRequest {
     @NotBlank
-    @Pattern(message = "Invalid username", regexp = "^(?=[a-zA-Z0-9._]{4,20}$)(?!.*[_.]{2})[^_.].*[^_.]$")
-    private String username;
-
-    @NotBlank
     @Pattern(message = "Invalid registry center", regexp = "^[0-9a-zA-Z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀẾỂưạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý]+$")
     private String name;
 
@@ -24,6 +20,10 @@ public class UpdateAccountRequest {
     @NotBlank
     @Pattern(message = "Invalid password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
     private String password;
+
+    @NotBlank
+    @Pattern(message = "Invalid retype password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
+    private String retypePassword;
 
 
 }

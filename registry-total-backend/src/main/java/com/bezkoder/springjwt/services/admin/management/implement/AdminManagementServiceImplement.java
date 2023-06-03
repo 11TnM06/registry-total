@@ -118,18 +118,17 @@ public class AdminManagementServiceImplement implements AdminManagementService {
 
     public ResponseEntity<?> updateAccount(String id, UpdateAccountRequest updateAccountRequest) {
         User user = userRepository.findById(id);
+
         if (user == null) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
         }
 
-        if (userRepository.existsByEmail(updateAccountRequest.getEmail())) {
-            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+        if (!updateAccountRequest.getRetypePassword().equals(updateAccountRequest.getPassword())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_RETYPE_PASSWORD);
         }
 
-        if (!user.getUsername().equals(updateAccountRequest.getUsername())) {
-            if (userRepository.findByUsername(updateAccountRequest.getUsername()) != null) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
-            }
+        if (userRepository.existsByEmail(updateAccountRequest.getEmail())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
         }
 
         if (!user.getEmail().equals(updateAccountRequest.getEmail())) {
@@ -144,12 +143,11 @@ public class AdminManagementServiceImplement implements AdminManagementService {
             }
         }
 
-        user.setUsername(updateAccountRequest.getUsername());
         user.setEmail(updateAccountRequest.getEmail());
         user.setName(updateAccountRequest.getName());
         user.setPassword(encoder.encode(updateAccountRequest.getPassword()));
         userRepository.save(user);
-        return ResponseFactory.success("Update account successfully!");
+        return ResponseFactory.success("Cập nhật thông tin tài khoản thành công!");
     }
 
 

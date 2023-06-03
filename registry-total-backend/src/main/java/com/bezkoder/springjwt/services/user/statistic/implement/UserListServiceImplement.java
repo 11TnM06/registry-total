@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.services.user.statistic.implement;
 import com.bezkoder.springjwt.models.Car;
 import com.bezkoder.springjwt.models.Registration;
 import com.bezkoder.springjwt.models.User;
+import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
 import com.bezkoder.springjwt.payload.request.user_request.ListRegisteredCarRequest;
 import com.bezkoder.springjwt.payload.response.user_response.ListCarResponse;
 import com.bezkoder.springjwt.payload.response.user_response.ListExpiredCarResponse;
@@ -106,6 +107,27 @@ public class UserListServiceImplement implements UserListService {
 
         ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
         return ResponseFactory.success(listExpiredCarResponse);
+    }
+
+    public ResponseEntity<?> getAll() {
+        User user = currentUser(userRepository);
+        List<Car> cars = carRepository.findAll();
+
+        List<ListCarResponse> listCarResponses = new ArrayList<>();
+
+        for (Car car : cars) {
+            for (Registration registration : car.getRegistrations()) {
+                if (registration == null) {
+                    continue;
+                }
+                if (registration.getRegistryCenter().equals(user.getUsername())) {
+                    listCarResponses.add(new ListCarResponse(car, user.getUsername()));
+                    break;
+                }
+            }
+        }
+
+        return ResponseFactory.success(listCarResponses);
     }
 
 

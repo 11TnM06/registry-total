@@ -29,4 +29,10 @@ public class UserListController {
     public ResponseEntity<?> getAllExpiredCarsInCenter(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return userListService.getAllExpiredCarsInCenter(listRegisteredCarRequest);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAll() {
+        return userListService.getAll();
+    }
+
 }
