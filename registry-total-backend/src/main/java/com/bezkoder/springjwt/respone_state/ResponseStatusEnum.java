@@ -19,7 +19,8 @@ public enum ResponseStatusEnum {
     EXISTED_PERSONAL("E-010", "Cá nhân đã tồn tại"),
     EXISTED_COMPANY("E-011", "Công ty đã tồn tại"),
     EXISTED_REGISTERED("E-013", "Thông tin đăng kiểm đã tồn tại"),
-    NOT_EXPIRED_REGISTERED("E-014", "Thời gian đăng kiểm trước lần đăng kiểm gần nhất");
+    NOT_EXPIRED_REGISTERED("E-014", "Thời gian đăng kiểm trước lần đăng kiểm gần nhất"),
+    NOT_MATCHING_RETYPE_PASSWORD("E-015", "Mật khẩu nhập lại không khớp");
 
     private final String code;
     private final String message;

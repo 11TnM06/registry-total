@@ -3,6 +3,7 @@ package com.bezkoder.springjwt.services.admin.management.implement;
 import com.bezkoder.springjwt.models.*;
 //import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
 import com.bezkoder.springjwt.payload.request.user_request.CreateAccountRequest;
+import com.bezkoder.springjwt.payload.request.user_request.UpdateAccountRequest;
 import com.bezkoder.springjwt.payload.response.user_response.MessageResponse;
 import com.bezkoder.springjwt.repository.RoleRepository;
 import com.bezkoder.springjwt.repository.UserRepository;
@@ -42,6 +43,11 @@ public class AdminManagementServiceImplement implements AdminManagementService {
     }
 
     public ResponseEntity<?> signupAccount(@Valid @RequestBody CreateAccountRequest createAccountRequest) {
+
+        if (!createAccountRequest.getRetypePassword().equals(createAccountRequest.getPassword())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_RETYPE_PASSWORD);
+        }
+
         if (userRepository.existsByUsername(createAccountRequest.getUsername())) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
         }
@@ -49,6 +55,7 @@ public class AdminManagementServiceImplement implements AdminManagementService {
         if (userRepository.existsByEmail(createAccountRequest.getEmail())) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
         }
+
 
         // Create new user's account
         User user = new User(createAccountRequest.getUsername(),
@@ -93,15 +100,56 @@ public class AdminManagementServiceImplement implements AdminManagementService {
     }
 
     public ResponseEntity<?> deleteAccount(String id) {
-        if (!userRepository.existsById(Long.valueOf(id))) {
+        User user = userRepository.findById(id);
+        if (user == null) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
         }
-        if (userRepository.findById(Long.valueOf(id)).get().getRoles().contains(roleRepository.findByName(ERole.ROLE_ADMIN).get())) {
+        if (user.getRoles().contains(ERole.ROLE_ADMIN)) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.WRONG_INFORMATION);
         }
 
-        userRepository.deleteById(Long.valueOf(id));
+        if (userRepository.existsById(id)) {
+            System.out.println("Username: " + userRepository.findById(id).getUsername() + " is deleted");
+        }
+
+        userRepository.deleteById(id);
         return ResponseFactory.success("Delete account successfully!");
+    }
+
+    public ResponseEntity<?> updateAccount(String id, UpdateAccountRequest updateAccountRequest) {
+        User user = userRepository.findById(id);
+        if (user == null) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
+        }
+
+        if (userRepository.existsByEmail(updateAccountRequest.getEmail())) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+        }
+
+        if (!user.getUsername().equals(updateAccountRequest.getUsername())) {
+            if (userRepository.findByUsername(updateAccountRequest.getUsername()) != null) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
+            }
+        }
+
+        if (!user.getEmail().equals(updateAccountRequest.getEmail())) {
+            if (userRepository.findByEmail(updateAccountRequest.getEmail()) != null) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+            }
+        }
+
+        if (!user.getName().equals(updateAccountRequest.getName())) {
+            if (userRepository.findByName(updateAccountRequest.getName()) != null) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_COMPANY_NAME);
+            }
+        }
+
+        user.setUsername(updateAccountRequest.getUsername());
+        user.setEmail(updateAccountRequest.getEmail());
+        user.setName(updateAccountRequest.getName());
+        user.setPassword(encoder.encode(updateAccountRequest.getPassword()));
+        userRepository.save(user);
+        return ResponseFactory.success("Update account successfully!");
     }
 
 
