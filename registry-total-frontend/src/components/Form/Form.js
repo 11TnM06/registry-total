@@ -10,7 +10,7 @@ function Form(props) {
   return (
     <form
       className={"form " + (props.noContainer ? "" : "form-container")}
-      style={{ width: props.width }}
+      style={{ width: props.width, maxWidth: props.maxWidth }}
     >
       {props.children}
     </form>

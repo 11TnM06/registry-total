@@ -19,7 +19,7 @@ function UserList() {
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [retypePassword, setRetypePassword] = React.useState("");
   const [role, setRole] = React.useState("admin");
   const [name, setName] = React.useState("");
   const [error, setError] = React.useState("");
@@ -34,7 +34,7 @@ function UserList() {
       UseValidation.email(email).state &&
       UseValidation.password(password).state &&
       UseValidation.name(name).state &&
-      validRetypePassword(confirmPassword).state
+      validRetypePassword(retypePassword).state
     );
   };
 
@@ -42,13 +42,19 @@ function UserList() {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
         var _res = res.data.map((item, count) => {
-          console.log(item);
+          var fetchRole;
+          if (item.roles[0].name == "ROLE_ADMIN") {
+            fetchRole = "admin";
+          } else {
+            fetchRole = "user";
+          }
+
           var _item = {
             id: count,
             username: item.username,
             email: item.email,
             name: item.name,
-            role: item.roles[0].name,
+            role: fetchRole,
           };
           return _item;
         });
@@ -64,6 +70,7 @@ function UserList() {
       username: username,
       email: email,
       password: password,
+      retypePassword: retypePassword,
       name: name,
       role: [role],
     }).then((res) => {
@@ -72,8 +79,8 @@ function UserList() {
           id: (parseInt(data[data.length - 1].id) + 1).toString(),
           username: username,
           email: email,
-          role: role,
           name: name,
+          role: role,
         };
         setData((prev) => {
           prev.push(newRow);
@@ -85,20 +92,20 @@ function UserList() {
       } else {
         setError(res.status.message);
       }
-
-      //   } else if (res.status.code === "E-004") {
-      //     setError("Username đã được đăng ký");
-      //   } else if (res.status.code === "E-005") {
-      //     setError("Email đã được đăng ký");
-      //   } else if (res.status.code === "E-006") {
-      //     setError("Tên công ty đã được đăng ký");
-      //   } else {
-      //     setError("Lỗi không xác định");
-      //   }
     });
   };
 
   const onEditRow = () => {
+    var item = {
+      username: username,
+      email: email,
+      name: name,
+      password: password,
+      retypePassword: retypePassword,
+      role: [role],
+    };
+    console.log(item);
+    console.log({ userId });
     // UseFetch(`/api/admin/user/update/${userId}`, "PUT", {
     //   username: username,
     //   email: email,
@@ -141,16 +148,26 @@ function UserList() {
   };
 
   const onDeleteRow = (row) => {
-    // console.log(row);
+    // UseFetch(`/api/admin/user/delete/${row.id + 1}`, "DELETE", null).then(
+    //   (res) => {
+    //     if (res.status.code === "SUCCESS") {
+    //       console.log("Xóa thành công");
+    //     } else {
+    //       console.log(res.status.message);
+    //     }
+    //   }
+    // );
   };
 
   const onFetchEditRow = (row, i) => {
-    // setId(i);
-    // setUserId(row.id);
-    // setUsername(row.username);
-    // setEmail(row.email);
-    // setName(row.name);
-    // setRole(row.role);
+    setId(i);
+    setUserId(row.id);
+    setUsername(row.username);
+    setEmail(row.email);
+    setName(row.name);
+    setRole(row.role);
+    setPassword("");
+    setRetypePassword("");
   };
 
   const onReset = () => {
@@ -158,7 +175,7 @@ function UserList() {
     setUsername("");
     setEmail("");
     setPassword("");
-    setConfirmPassword("");
+    setRetypePassword("");
     setName("");
     setRole("admin");
     setError("");
@@ -197,8 +214,8 @@ function UserList() {
                 label="Nhập lại mật khẩu"
                 type="password"
                 reference={[
-                  confirmPassword,
-                  setConfirmPassword,
+                  retypePassword,
+                  setRetypePassword,
                   validRetypePassword,
                 ]}
               />
@@ -222,8 +239,8 @@ function UserList() {
         }
         onDelete={onDeleteRow}
         editRow={
-          <Form noContainer>
-            <Form.Title content="Sửa thông tin người dùng" />
+          <Form noContainer maxWidth="500px">
+            <Form.Title content="Sửa thông tin tài khoản" />
             <Form.Split>
               <Form.Input label="Stt." type="text" reference={[id]} disabled />
               <Form.Input
@@ -234,21 +251,41 @@ function UserList() {
             </Form.Split>
             <Form.Split>
               <Form.Input
+                label="Mật khẩu mới"
+                type="password"
+                reference={[password, setPassword, UseValidation.password]}
+              />
+              <Form.Input
+                label="Nhập lại mật khẩu"
+                type="password"
+                reference={[
+                  retypePassword,
+                  setRetypePassword,
+                  validRetypePassword,
+                ]}
+              />
+            </Form.Split>
+            <Form.Split>
+              <Form.Input
                 label="Email"
                 type="text"
                 reference={[email, setEmail, UseValidation.email]}
               />
               <Form.Input label="Tên" type="text" reference={[name, setName]} />
             </Form.Split>
-            <Form.Split>
-              <Option title="Chức vụ" value={role} onChange={setRole}>
-                <Option.Item value="admin" />
-                <Option.Item value="user" />
-              </Option>
-            </Form.Split>
+            <Form.Input
+              label="Vai trò"
+              type="text"
+              reference={[role, setRole]}
+              disabled
+            />
 
             <Form.Error enabled={error !== ""} content={error} />
-            <Form.Submit content="Cập nhật" onClick={onEditRow} />
+            <Form.Submit
+              content="Cập nhật"
+              validation={onValidUser}
+              onClick={onEditRow}
+            />
           </Form>
         }
         onFetchEditRow={onFetchEditRow}
