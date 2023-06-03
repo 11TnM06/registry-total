@@ -101,6 +101,7 @@ public class AdminManagementServiceImplement implements AdminManagementService {
 
     public ResponseEntity<?> deleteAccount(String id) {
         User user = userRepository.findById(id);
+        System.out.println("Username: " + user.getUsername());
         if (user == null) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.NOT_MATCHING_PRODUCT_FOUND);
         }
@@ -113,6 +114,7 @@ public class AdminManagementServiceImplement implements AdminManagementService {
         }
 
         userRepository.deleteById(id);
+
         return ResponseFactory.success("Delete account successfully!");
     }
 

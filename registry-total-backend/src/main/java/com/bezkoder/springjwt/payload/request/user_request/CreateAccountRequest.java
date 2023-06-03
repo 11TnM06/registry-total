@@ -31,6 +31,4 @@ public class CreateAccountRequest {
     @Pattern(message = "Invalid retype password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
     private String retypePassword;
 
-
-
 }
