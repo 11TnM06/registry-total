@@ -48,14 +48,14 @@ function UserList() {
           } else {
             fetchRole = "user";
           }
-
           var _item = {
-            id: count,
+            id: item.id,
             username: item.username,
             email: item.email,
             name: item.name,
             role: fetchRole,
           };
+
           return _item;
         });
 
@@ -104,59 +104,50 @@ function UserList() {
       retypePassword: retypePassword,
       role: [role],
     };
-    console.log(item);
-    console.log({ userId });
-    // UseFetch(`/api/admin/user/update/${userId}`, "PUT", {
-    //   username: username,
-    //   email: email,
-    //   name: name,
-    //   role_id: rolePos[role].toString(),
-    // }).then((res) => {
-    //   if (res.status.code === "SUCCESS") {
-    //     setData((prev) => {
-    //       prev[id] = {
-    //         id: userId,
-    //         username: username,
-    //         email: email,
-    //         role: role,
-    //         name: name,
-    //       };
-    //       return prev;
-    //     });
-    //     onReset();
-    //     ref.current.updateTable(
-    //       {
-    //         id: userId,
-    //         username: username,
-    //         email: email,
-    //         role: role,
-    //         name: name,
-    //       },
-    //       "edit"
-    //     );
-    //     ref.current.forceEditRowClose();
-    //   } else if (res.status.code === "E-004") {
-    //     setError("Username đã được đăng ký");
-    //   } else if (res.status.code === "E-005") {
-    //     setError("Email đã được đăng ký");
-    //   } else if (res.status.code === "E-006") {
-    //     setError("Tên công ty đã được đăng ký");
-    //   } else {
-    //     setError("Lỗi không xác định");
-    //   }
-    // });
+    UseFetch(`/api/admin/user/update/${userId}`, "PUT", item).then((res) => {
+      if (res.status.code === "SUCCESS") {
+        setData((prev) => {
+          prev[id] = {
+            id: userId,
+            username: username,
+            email: email,
+            role: role,
+            name: name,
+          };
+          return prev;
+        });
+        onReset();
+        ref.current.updateTable(
+          {
+            id: userId,
+            username: username,
+            email: email,
+            role: role,
+            name: name,
+          },
+          "edit"
+        );
+        ref.current.forceEditRowClose();
+      } else {
+        setError(res.status.message);
+      }
+    });
   };
 
   const onDeleteRow = (row) => {
-    // UseFetch(`/api/admin/user/delete/${row.id + 1}`, "DELETE", null).then(
-    //   (res) => {
-    //     if (res.status.code === "SUCCESS") {
-    //       console.log("Xóa thành công");
-    //     } else {
-    //       console.log(res.status.message);
-    //     }
-    //   }
-    // );
+    UseFetch(`/api/admin/user/delete/${row.id}`, "DELETE", null).then((res) => {
+      if (res.status.code === "SUCCESS") {
+        ref.current.updateTable(
+          {
+            id: userId,
+          },
+          "delete"
+        );
+        console.log("Xóa thành công");
+      } else {
+        console.log(res.status.message);
+      }
+    });
   };
 
   const onFetchEditRow = (row, i) => {
@@ -243,6 +234,13 @@ function UserList() {
             <Form.Title content="Sửa thông tin tài khoản" />
             <Form.Split>
               <Form.Input label="Stt." type="text" reference={[id]} disabled />
+              <Form.Input
+                label="ID"
+                type="text"
+                reference={[userId]}
+                disabled
+              />
+
               <Form.Input
                 label="Tên đăng nhập"
                 type="text"

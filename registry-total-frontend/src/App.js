@@ -11,6 +11,7 @@ import { Layout } from "./layouts/Layout";
 import { LoginLayout } from "./layouts/LoginLayout";
 import RegisteredCar from "./pages/admin/RegisteredCar";
 import { UserList } from "./pages/admin/UserList";
+import AddCerti from "./pages/center/AddCerti";
 
 function App() {
   const routes = useRoutes([
@@ -52,7 +53,7 @@ function App() {
         ></Layout>
       ),
       children: [
-        { path: "add-certi", element: <h1>registered-car-1</h1> },
+        { path: "add-certi", element: <AddCerti /> },
         { path: "inspected-car", element: <h1>inspected-car</h1> },
         { path: "expired-car", element: <h1>add center</h1> },
       ],
