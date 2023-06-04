@@ -45,7 +45,7 @@ function AddCerti() {
     console.log(item);
     UseFetch("/api/user/upload/registration", "POST", item).then((res) => {
       if (res.status.code === "SUCCESS") {
-        console.log("add certi successfully");
+        alert("Certificate added successfully!");
         onReset();
       } else {
         setError(res.status.message);
