@@ -16,4 +16,5 @@ public interface AdminManagementService {
     ResponseEntity<?> deleteAccount(String id);
     ResponseEntity<?> updateAccount(String id, UpdateAccountRequest updateAccountRequest);
 
+
 }

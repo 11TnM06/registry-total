@@ -37,5 +37,10 @@ public class AdminUploadController {
         return adminUploadService.uploadCars(file);
     }
 
+    @PostMapping("/users")
+    public ResponseEntity<?> uploadUsers(@Valid @RequestBody @RequestParam("file") MultipartFile file ) {
+        return adminUploadService.uploadUsers(file);
+    }
+
 
 }

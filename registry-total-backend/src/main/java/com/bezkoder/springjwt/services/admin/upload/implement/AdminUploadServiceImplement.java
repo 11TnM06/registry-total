@@ -1,22 +1,15 @@
 package com.bezkoder.springjwt.services.admin.upload.implement;
 
-import com.bezkoder.springjwt.models.Car;
-import com.bezkoder.springjwt.models.Company;
-import com.bezkoder.springjwt.models.Personal;
-import com.bezkoder.springjwt.models.TechnicalData;
+import com.bezkoder.springjwt.models.*;
 import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
 import com.bezkoder.springjwt.payload.response.user_response.ListCarResponse;
 import com.bezkoder.springjwt.payload.response.user_response.ListCompanyResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListPersonalResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListTechnicalResponse;
-import com.bezkoder.springjwt.repository.CarRepository;
-import com.bezkoder.springjwt.repository.CompanyRepository;
-import com.bezkoder.springjwt.repository.PersonalRepository;
-import com.bezkoder.springjwt.repository.TechnicalRepository;
+
+import com.bezkoder.springjwt.repository.*;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
 import com.bezkoder.springjwt.services.admin.upload.AdminUploadService;
-import org.apache.poi.ss.usermodel.*;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 import static com.bezkoder.springjwt.utils.Utils.*;
 
@@ -43,14 +30,20 @@ public class AdminUploadServiceImplement implements AdminUploadService {
     private final TechnicalRepository technicalRepository;
     private final PersonalRepository personalRepository;
     private final CompanyRepository companyRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+
 
     @Autowired
     public AdminUploadServiceImplement(CarRepository carRepository, TechnicalRepository technicalRepository,
-                                       PersonalRepository personalRepository, CompanyRepository companyRepository) {
+                                       PersonalRepository personalRepository, CompanyRepository companyRepository,
+                                        UserRepository userRepository, RoleRepository roleRepository) {
         this.carRepository = carRepository;
         this.technicalRepository = technicalRepository;
         this.personalRepository = personalRepository;
         this.companyRepository = companyRepository;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public ResponseEntity<?> uploadCar(AddCarRequest addCarRequest) {
@@ -183,7 +176,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
             if (car.getPersonal() != null) {
                 personalRepository.save(car.getPersonal());
             }
-            if(car.getCompany() != null ) {
+            if (car.getCompany() != null) {
                 companyRepository.save(car.getCompany());
             }
 
@@ -191,6 +184,44 @@ public class AdminUploadServiceImplement implements AdminUploadService {
             carRepository.save(car);
         }
         return ResponseFactory.success("Thêm danh sách xe thành công!");
+    }
+
+    public ResponseEntity<?> uploadUsers(MultipartFile name) {
+        if (name.isEmpty()) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.FILE_IS_EMPTY);
+        }
+        List<User> listUser = new ArrayList<>();
+        try {
+
+            // Reading file from local directory
+            FileInputStream file = new FileInputStream(
+                    new File("./src/main/resources/Web_Data_final.xlsx"));
+
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFSheet sheet = workbook.getSheetAt(5);
+            listUser = InitMultipleUsers(sheet);
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (User user : listUser) {
+            if (user == null) continue;
+            if (userRepository.existsByUsername(user.getUsername())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_USERNAME);
+            }
+            if (userRepository.existsByEmail(user.getEmail())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.REGISTERED_EMAIL);
+            }
+
+            Set<Role> roles = new HashSet<>();
+            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            roles.add(userRole);
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
+        return ResponseFactory.success("Thêm danh sách người dùng thành công!");
     }
 
 

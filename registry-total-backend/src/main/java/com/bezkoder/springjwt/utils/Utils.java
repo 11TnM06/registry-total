@@ -1,21 +1,14 @@
 package com.bezkoder.springjwt.utils;
 
 import com.bezkoder.springjwt.models.*;
-import com.bezkoder.springjwt.payload.response.user_response.ListCarResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListTechnicalResponse;
 import com.bezkoder.springjwt.repository.UserRepository;
-import org.apache.poi.ss.formula.functions.T;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.hibernate.mapping.Set;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Utils {
     public static boolean ListRegisteredCarUtils(Car car, Date date, String timeType, String time, String year, String location, String registryLocation) {
@@ -382,45 +375,45 @@ public class Utils {
         return listCar;
     }
 
-//    public static List<User> InitMultipleUsers(XSSFSheet sheet) {
-//        List<User> users = new ArrayList<>();
-//        for (int row = 1; row < sheet.getLastRowNum(); row++) {
-//            User user = new User();
-//            for (int cell = 1; cell < sheet.getRow(row).getLastCellNum(); cell++) {
-//                String cellValue = getCellValueAsString(sheet.getRow(row).getCell(cell));
-//                switch (cell) {
-//                    case 1:
-//                        if (!cellValue.isEmpty())
-//                            user.setUsername(cellValue);
-//                        break;
-//                    case 2:
-//                        if (!cellValue.isEmpty())
-//                            user.setName(cellValue);
-//                        break;
-//                    case 3:
-//                        if (!cellValue.isEmpty())
-//                            user.setEmail(cellValue);
-//                        break;
-//                    case 4:
-//                        if (!cellValue.isEmpty()) {
-//                            user.setPassword(cellValue);
-//                        }
-//                        break;
-//                    case 5:
-//                        if (!cellValue.isEmpty())
-//                            Set<String> roles;
-//
-//
-//                        break;
-//
-//                }
-//            }
-//            if (user.getName() != null && user.getCompanyId() != null && user.getAddress() != null
-//                    && user.getRepresentative() != null && user.getPhone() != null)
-//                users.add(user);
-//        }
-//        return users;
-//    }
+    public static List<User> InitMultipleUsers(XSSFSheet sheet) {
+        List<User> users = new ArrayList<>();
+        for (int row = 1; row < sheet.getLastRowNum(); row++) {
+            User user = new User();
+            for (int cell = 1; cell < sheet.getRow(row).getLastCellNum(); cell++) {
+                String cellValue = getCellValueAsString(sheet.getRow(row).getCell(cell));
+                switch (cell) {
+                    case 1:
+                        if (!cellValue.isEmpty())
+                            user.setUsername(cellValue);
+                        break;
+                    case 2:
+                        if (!cellValue.isEmpty())
+                            user.setName(cellValue);
+                        break;
+                    case 3:
+                        if (!cellValue.isEmpty())
+                            user.setEmail(cellValue);
+                        break;
+                    case 4:
+                        if (!cellValue.isEmpty()) {
+                            user.setPassword(cellValue);
+                        }
+                        break;
+                    case 5:
+                        if (!cellValue.isEmpty()) {
+                           user.setLocation(cellValue);
+                        }
+
+                        break;
+
+                }
+            }
+            if (user.getName() != null && user.getUsername() != null && user.getEmail() != null
+                    && user.getPassword() != null && user.getLocation() != null)
+                users.add(user);
+        }
+        return users;
+    }
 
 
     private static String getCellValueAsString(Cell cell) {
