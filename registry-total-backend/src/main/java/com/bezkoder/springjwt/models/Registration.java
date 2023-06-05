@@ -1,6 +1,8 @@
 package com.bezkoder.springjwt.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +42,18 @@ public class Registration extends BaseEntity {
         this.registryDate = registryDate;
         this.expiredDate = expiredDate;
         this.registryCenter = registryCenter;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "GMT+7")
+    @JsonDeserialize(as = java.sql.Date.class)
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "GMT+7")
+    @JsonDeserialize(as = java.sql.Date.class)
+    public void setRegistryDate(Date registryDate) {
+        this.registryDate = registryDate;
     }
 }
 

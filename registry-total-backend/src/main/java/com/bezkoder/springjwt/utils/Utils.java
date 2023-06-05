@@ -1,6 +1,7 @@
 package com.bezkoder.springjwt.utils;
 
 import com.bezkoder.springjwt.models.*;
+import com.bezkoder.springjwt.repository.CarRepository;
 import com.bezkoder.springjwt.repository.UserRepository;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -413,6 +414,49 @@ public class Utils {
                 users.add(user);
         }
         return users;
+    }
+
+    public static List<Registration> InitMultipleRegistrations(XSSFSheet sheet, CarRepository carRepository) {
+        List<Registration> registrations = new ArrayList<>();
+        for (int row = 1; row < sheet.getLastRowNum(); row++) {
+            Registration registration = new Registration();
+            for (int cell = 1; cell < sheet.getRow(row).getLastCellNum(); cell++) {
+                String cellValue = getCellValueAsString(sheet.getRow(row).getCell(cell));
+                switch (cell) {
+                    case 1:
+                        if (!cellValue.isEmpty()) {
+                            if (carRepository.findByLicensePlate(cellValue) != null) {
+                                registration.setRegistryCar(carRepository.findByLicensePlate(cellValue));
+                            }
+                        }
+
+                        break;
+                    case 2:
+                        if (!cellValue.isEmpty())
+                            registration.setGcn(cellValue);
+                        break;
+                    case 3:
+                        if (!cellValue.isEmpty()) {
+                            Date date = sheet.getRow(row).getCell(cell).getDateCellValue();
+                            registration.setRegistryDate(date);
+                        }
+
+                        break;
+                    case 4:
+                        if (!cellValue.isEmpty()) {
+                            Date date = sheet.getRow(row).getCell(cell).getDateCellValue();
+                            registration.setExpiredDate(date);
+                        }
+                        break;
+                }
+            }
+            if (registration.getGcn() != null && registration.getRegistryDate() != null
+                    && registration.getExpiredDate() != null
+                    && registration.getRegistryCar() != null) {
+                registrations.add(registration);
+            }
+        }
+        return registrations;
     }
 
 

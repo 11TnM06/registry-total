@@ -15,6 +15,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,17 +34,20 @@ public class AdminUploadServiceImplement implements AdminUploadService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
+    private final PasswordEncoder encoder;
+
 
     @Autowired
     public AdminUploadServiceImplement(CarRepository carRepository, TechnicalRepository technicalRepository,
                                        PersonalRepository personalRepository, CompanyRepository companyRepository,
-                                        UserRepository userRepository, RoleRepository roleRepository) {
+                                        UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
         this.carRepository = carRepository;
         this.technicalRepository = technicalRepository;
         this.personalRepository = personalRepository;
         this.companyRepository = companyRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.encoder = encoder;
     }
 
     public ResponseEntity<?> uploadCar(AddCarRequest addCarRequest) {
@@ -219,6 +223,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             roles.add(userRole);
             user.setRoles(roles);
+            user.setPassword(encoder.encode(user.getPassword()));
             userRepository.save(user);
         }
         return ResponseFactory.success("Thêm danh sách người dùng thành công!");

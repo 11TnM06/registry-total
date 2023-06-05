@@ -86,7 +86,7 @@ public class UserListServiceImplement implements UserListService {
                 if (registration == null) {
                     continue;
                 }
-                Date date = registration.getRegistryDate();
+                Date date = registration.getExpiredDate();
                 if (ListExpiredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter())) {
                     cars.add(car);
                 }
@@ -100,7 +100,7 @@ public class UserListServiceImplement implements UserListService {
         int firstRegistration = 0;
         for (Car car : cars) {
             listCarResponse.add(new ListCarResponse(car));
-            if (car.getRegistrations() == null) {
+            if (car.getRegistrations() == null && car.getRegistrationPlace().equals(location)) {
                 firstRegistration++;
             }
         }

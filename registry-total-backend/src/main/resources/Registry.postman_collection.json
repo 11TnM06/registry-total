@@ -1,0 +1,1854 @@
+{
+	"info": {
+		"_postman_id": "dab8226b-6d9f-45ba-9b5f-8f137f24d05d",
+		"name": "Registry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27322115"
+	},
+	"item": [
+		{
+			"name": "Login Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"3003S\",\r\n    \"password\": \"aA345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 29 May 2023 12:39:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTM2Mzk0NCwiZXhwIjoxNjg1NDUwMzQ0fQ.3y8hSqReCXYz2li46WdG3OZkvvYqlA0g4gr9OPEeAyv0CUJ3NjG38O5WbmhORspmN9TY9IZG04fRncvfs9n8kg\",\n        \"type\": \"Bearer\",\n        \"id\": \"1\",\n        \"username\": \"admin\",\n        \"email\": \"admin@bezkoder.com\",\n        \"name\": \"Registry System Admin\",\n        \"roles\": [\n            \"ROLE_ADMIN\"\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Cars Information",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTM2Mzk0NCwiZXhwIjoxNjg1NDUwMzQ0fQ.3y8hSqReCXYz2li46WdG3OZkvvYqlA0g4gr9OPEeAyv0CUJ3NjG38O5WbmhORspmN9TY9IZG04fRncvfs9n8kg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/admin/list/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"list",
+						"cars"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Cars Information",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"cars"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 29 May 2023 12:41:08 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"licensePlate\": \"29A-12508\",\n            \"car_id\": \"288239\",\n            \"registrationDate\": \"2020-12-19T17:00:00.000+00:00\",\n            \"registrationPlace\": \"Hà Nội\",\n            \"brand\": \"Toyota\",\n            \"model\": \"S13\",\n            \"type\": \"Ô tô con\",\n            \"color\": \"Đỏ\",\n            \"frameNumber\": \"KABM586MAHS87\",\n            \"engineNumber\": \"GHE965151550\",\n            \"purpose\": \"Dịch vụ chở khách\"\n        },\n        {\n            \"id\": \"2\",\n            \"licensePlate\": \"36D-27328\",\n            \"car_id\": \"300000\",\n            \"registrationDate\": \"2018-01-11T17:00:00.000+00:00\",\n            \"registrationPlace\": \"Thanh Hóa\",\n            \"brand\": \"Honda\",\n            \"model\": \"H3000\",\n            \"type\": \"Ô tô tải\",\n            \"color\": \"Trắng\",\n            \"frameNumber\": \"MHAN838HNGG82\",\n            \"engineNumber\": \"NAG923323228\",\n            \"purpose\": \"Đi lại cá nhân\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get All Cars Information",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 31 May 2023 00:42:29 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"car\": {\n                \"id\": null,\n                \"licensePlate\": \"29A-12508\",\n                \"carId\": \"288239\",\n                \"registrationDate\": \"2020-12-20\",\n                \"registrationPlace\": \"Hà Nội\",\n                \"brand\": \"Toyota\",\n                \"model\": \"Toyota Camry\",\n                \"patch\": \"Camry 2.0E\",\n                \"color\": \"Đỏ\",\n                \"frameNumber\": \"JTNBF3EK70J007654\",\n                \"engineNumber\": \"2AZFE315728\",\n                \"purpose\": \"Đi lại cá nhân\"\n            },\n            \"technical\": {\n                \"id\": null,\n                \"size\": \"4850 x 1825 x 1470\",\n                \"selfWeight\": 1480,\n                \"maxPeople\": 4,\n                \"length\": 2775,\n                \"containerSize\": null,\n                \"maxContainerWeight\": null,\n                \"maxWeight\": \"2000\",\n                \"towingMass\": null\n            },\n            \"registrations\": [\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32238\",\n                    \"registryDate\": \"2019-10-19\",\n                    \"expiredDate\": \"2020-04-19\"\n                },\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32939\",\n                    \"registryDate\": \"2019-10-19\",\n                    \"expiredDate\": \"2020-04-19\"\n                }\n            ],\n            \"personal\": {\n                \"id\": null,\n                \"personalId\": \"038302892102\",\n                \"name\": \"Đỗ Hoàng Anh\",\n                \"registrationPlace\": \"Cục trưởng cục cảnh sát\",\n                \"registrationDate\": \"2020-02-13\",\n                \"dob\": \"1998-02-18\",\n                \"gender\": \"Nam\",\n                \"address\": \"Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội\",\n                \"phone\": \"0987633772\",\n                \"type\": \"Cá nhân\"\n            },\n            \"company\": null\n        },\n        {\n            \"car\": {\n                \"id\": null,\n                \"licensePlate\": \"36D-27328\",\n                \"carId\": \"300000\",\n                \"registrationDate\": \"2018-01-12\",\n                \"registrationPlace\": \"Thanh Hóa\",\n                \"brand\": \"Honda\",\n                \"model\": \"Honda Brio\",\n                \"patch\": \"Brio RS\",\n                \"color\": \"Trắng\",\n                \"frameNumber\": \"MFJHNB4V7LY000123\",\n                \"engineNumber\": \"L13B2031567\",\n                \"purpose\": \"Kinh doanh chở khách\"\n            },\n            \"technical\": {\n                \"id\": null,\n                \"size\": \"3801 x 1682 x 1487\",\n                \"selfWeight\": 972,\n                \"maxPeople\": 2405,\n                \"length\": 4,\n                \"containerSize\": null,\n                \"maxContainerWeight\": null,\n                \"maxWeight\": \"1347\",\n                \"towingMass\": null\n            },\n            \"registrations\": [\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32987\",\n                    \"registryDate\": \"2019-10-19\",\n                    \"expiredDate\": \"2020-04-19\"\n                }\n            ],\n            \"personal\": null,\n            \"company\": {\n                \"id\": null,\n                \"companyId\": \"0105148109\",\n                \"name\": \"CÔNG TY CỔ PHẦN VIN GLOBAL \",\n                \"representative\": \"DƯƠNG VĂN DŨNG\",\n                \"phone\": \"0972285058\",\n                \"address\": \"Đội 8, Thị Trấn Liên Quan, Huyện Thạch Thất, Thành phố Hà Nội, Việt Nam\",\n                \"type\": \"Cơ quan\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Technical Of A Car From License Plate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTQ4NjM5MywiZXhwIjoxNjg1NTcyNzkzfQ.iDXj-PmJLRZDMwsflinn3Vtymir0kxLu_u4XSUS_VpQs7Lrdill9W2tRVYXIIHK_cCkWK0oWV4L8ORLz1rIFzg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/list/technical",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"list",
+						"technical"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Technical Of A Car From License Plate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/technical",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"technical"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 29 May 2023 12:42:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": {\n        \"technical_id\": \"KABM586MAHS87\",\n        \"size\": \"4410x1700x1475 mm\",\n        \"self_weight\": 1058,\n        \"max_people\": 5,\n        \"axles_div_wheelbase\": \"2/2550\",\n        \"container_size\": null,\n        \"max_container_weight\": null,\n        \"max_weight\": \"1500\",\n        \"towing_mass\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Registrations of a Car From License Plate",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTU0ODQyNCwiZXhwIjoxNjg1NjM0ODI0fQ.5HwJzmd50mRhwbZIv63Z37s9HuudgV0Re7CrNvTPh0LXcZ5NX1whz3dZkdL7JclXOhsXbb6SmnXIYni8DIKYSQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/list/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"list",
+						"registration"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Registrations of a Car From License Plate",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"registration"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 29 May 2023 12:43:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"registryId\": \"327A-32238\",\n            \"registryDate\": \"2019-10-18T17:00:00.000+00:00\",\n            \"expiredDate\": \"2020-04-18T17:00:00.000+00:00\",\n            \"registryName\": \"2903S\"\n        },\n        {\n            \"id\": \"3\",\n            \"registryId\": \"327A-32239\",\n            \"registryDate\": \"2021-10-18T17:00:00.000+00:00\",\n            \"expiredDate\": \"2022-04-18T17:00:00.000+00:00\",\n            \"registryName\": \"2903S\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create new Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTc0MzkxOSwiZXhwIjoxNjg1ODMwMzE5fQ.xkUvjWBU0xomAXIQi2Jr8w76g7MPcE9sm1RbAdSxVIzxWOuIhVxdUqNpk6L5bdwCAN2L3PSP3AKQJt7d8w66eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"2000S\",\r\n    \"email\": \"2000S@gmail.com\",\r\n    \"password\": \"aA345678\",\r\n    \"name\": \"Trung Tâm Đăng Kiểm 2000S\",\r\n    \"retypePassword\": \"aA345678\",\r\n    \"role\": [\"user\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Accounts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "Get All Accounts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/admin/user/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"user",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 May 2023 23:43:55 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"id\": \"1\",\n            \"username\": \"admin\",\n            \"name\": \"Registry Admin System\",\n            \"email\": \"admin@gmail.com\",\n            \"password\": \"$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326\",\n            \"roles\": [\n                {\n                    \"id\": \"2\",\n                    \"name\": \"ROLE_ADMIN\"\n                }\n            ]\n        },\n        {\n            \"id\": \"2\",\n            \"username\": \"1000S\",\n            \"name\": \"Trung Tâm Đăng Kiểm 1000S\",\n            \"email\": \"1000S@gmail.com\",\n            \"password\": \"$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G\",\n            \"roles\": [\n                {\n                    \"id\": \"1\",\n                    \"name\": \"ROLE_USER\"\n                }\n            ]\n        },\n        {\n            \"id\": \"3\",\n            \"username\": \"32000S\",\n            \"name\": \"Trung Tâm Đăng Kiểm 32000S\",\n            \"email\": \"32000S@gmail.com\",\n            \"password\": \"$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW\",\n            \"roles\": [\n                {\n                    \"id\": \"1\",\n                    \"name\": \"ROLE_USER\"\n                }\n            ]\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Owner",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTQ4Nzc0MiwiZXhwIjoxNjg1NTc0MTQyfQ.WAFyMWv4mBtTxTLBu0bNNjPCG6laQHZLME5YT6xGJpLroY2gP9NxuIvyEsICtCfa7-W1F8Wf27Jc5I8iEzdcNQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/list/owner",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"list",
+						"owner"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n\"licensePlate\": \"29A-12508\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/owner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"owner"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 30 May 2023 23:43:09 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": {\n        \"owner\": {\n            \"id\": null,\n            \"personalId\": \"038302892102\",\n            \"name\": \"Đỗ Hoàng Anh\",\n            \"registrationPlace\": \"Cục trưởng cục cảnh sát\",\n            \"registrationDate\": \"2020-02-13\",\n            \"dob\": \"1998-02-18\",\n            \"gender\": \"Nam\",\n            \"address\": \"Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội\",\n            \"phone\": \"0987633772\",\n            \"type\": null\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Car",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTU0ODQyNCwiZXhwIjoxNjg1NjM0ODI0fQ.5HwJzmd50mRhwbZIv63Z37s9HuudgV0Re7CrNvTPh0LXcZ5NX1whz3dZkdL7JclXOhsXbb6SmnXIYni8DIKYSQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"car\": {\r\n        \"licensePlate\": \"29A-12669\",\r\n        \"carId\": \"288305\",\r\n        \"registrationDate\": \"2020-12-20\",\r\n        \"registrationPlace\": \"Hà Nội\",\r\n        \"brand\": \"Toyota\",\r\n        \"model\": \"Toyota Camry\",\r\n        \"patch\": \"Camry 2.0E\",\r\n        \"color\": \"Đỏ\",\r\n        \"frameNumber\": \"GTNBF3EK70J007654\",\r\n        \"engineNumber\": \"BAZFE315728\",\r\n        \"purpose\": \"Đi lại cá nhân\"\r\n    },\r\n    \"technical\": {\r\n        \"size\": \"4850 x 1825 x 1470\",\r\n        \"selfWeight\": 1480,\r\n        \"maxPeople\": 4,\r\n        \"length\": 2775,\r\n        \"containerSize\": null,\r\n        \"maxContainerWeight\": null,\r\n        \"maxWeight\": \"2000\",\r\n        \"towingMass\": null\r\n    },\r\n    \"personal\": {\r\n        \"personalId\": \"038302892902\",\r\n        \"name\": \"Đỗ Hoàng Anh\",\r\n        \"registrationPlace\": \"Cục trưởng cục cảnh sát\",\r\n        \"registrationDate\": \"2020-02-13\",\r\n        \"dob\": \"1998-02-18\",\r\n        \"gender\": \"Nam\",\r\n        \"address\": \"Phường Mỹ Đình, quận Nam Từ Liêm, Hà Nội\",\r\n        \"phone\": \"0987633772\",\r\n        \"type\": \"Cá nhân\"\r\n    },\r\n    \"company\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/upload/car",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"upload",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Registered Cars",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTY3MTIxNiwiZXhwIjoxNjg1NzU3NjE2fQ.HKLmwyRMLKyhg3l8h_IgsiF1JefVAXUu-3rJ6-VmpnerCrbrffPdh0V0lJNixSbA3SfpouQ8CrAWDSVlkfRmDw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locationType\": \"Khu vực\",\r\n    \"location\": \"Thanh Hóa\",\r\n    \"timeType\": \"Tháng\",\r\n    \"time\": \"5\",\r\n    \"year\": \"2020\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/list/all/registered",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"list",
+						"all",
+						"registered"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Khu vuc va Thang",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"locationType\": \"Khu vực\",\r\n    \"location\": \"Thanh Hóa\",\r\n    \"timeType\": \"Năm\",\r\n    \"time\": \"5\",\r\n    \"year\": \"2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/all/registered",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"all",
+								"registered"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 31 May 2023 22:28:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"car\": {\n                \"id\": \"2\",\n                \"licensePlate\": \"36D-27328\",\n                \"carId\": \"300000\",\n                \"registrationDate\": \"2018-01-12\",\n                \"registrationPlace\": \"Thanh Hóa\",\n                \"brand\": \"Honda\",\n                \"model\": \"Honda Brio\",\n                \"patch\": \"Brio RS\",\n                \"color\": \"Trắng\",\n                \"frameNumber\": \"MFJHNB4V7LY000123\",\n                \"engineNumber\": \"L13B2031567\",\n                \"purpose\": \"Kinh doanh chở khách\"\n            },\n            \"technical\": {\n                \"id\": null,\n                \"size\": \"3801 x 1682 x 1487\",\n                \"selfWeight\": \"972\",\n                \"maxPeople\": \"2405\",\n                \"length\": \"4\",\n                \"containerSize\": null,\n                \"maxContainerWeight\": null,\n                \"maxWeight\": \"1347\",\n                \"towingMass\": null\n            },\n            \"registrations\": [\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32987\",\n                    \"registryDate\": \"2019-10-19\",\n                    \"expiredDate\": \"2020-04-19\",\n                    \"registryCenter\": \"3003S\"\n                }\n            ],\n            \"personal\": null,\n            \"company\": {\n                \"id\": null,\n                \"companyId\": \"0105148109\",\n                \"name\": \"CÔNG TY CỔ PHẦN VIN GLOBAL \",\n                \"representative\": \"DƯƠNG VĂN DŨNG\",\n                \"phone\": \"0972285058\",\n                \"address\": \"Đội 8, Thị Trấn Liên Quan, Huyện Thạch Thất, Thành phố Hà Nội, Việt Nam\",\n                \"type\": \"Cơ quan\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "Khu vuc va Quy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"locationType\": \"Khu vực\",\r\n    \"location\": \"Thanh Hóa\",\r\n    \"timeType\": \"Quý\",\r\n    \"time\": 2,\r\n    \"year\": \"2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/all/registered",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"all",
+								"registered"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jun 2023 00:05:55 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"car\": {\n                \"id\": \"2\",\n                \"licensePlate\": \"36D-27328\",\n                \"carId\": \"300000\",\n                \"registrationDate\": \"2018-01-12\",\n                \"registrationPlace\": \"Thanh Hóa\",\n                \"brand\": \"Honda\",\n                \"model\": \"Honda Brio\",\n                \"patch\": \"Brio RS\",\n                \"color\": \"Trắng\",\n                \"frameNumber\": \"MFJHNB4V7LY000123\",\n                \"engineNumber\": \"L13B2031567\",\n                \"purpose\": \"Kinh doanh chở khách\"\n            },\n            \"technical\": {\n                \"id\": null,\n                \"size\": \"3801 x 1682 x 1487\",\n                \"selfWeight\": \"972\",\n                \"maxPeople\": \"2405\",\n                \"length\": \"4\",\n                \"containerSize\": null,\n                \"maxContainerWeight\": null,\n                \"maxWeight\": \"1347\",\n                \"towingMass\": null\n            },\n            \"registrations\": [\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32987\",\n                    \"registryDate\": \"2020-05-19\",\n                    \"expiredDate\": \"2022-05-19\",\n                    \"registryCenter\": \"3003S\"\n                }\n            ],\n            \"personal\": null,\n            \"company\": {\n                \"id\": null,\n                \"companyId\": \"0105148109\",\n                \"name\": \"CÔNG TY CỔ PHẦN VIN GLOBAL \",\n                \"representative\": \"DƯƠNG VĂN DŨNG\",\n                \"phone\": \"0972285058\",\n                \"address\": \"Đội 8, Thị Trấn Liên Quan, Huyện Thạch Thất, Thành phố Hà Nội, Việt Nam\",\n                \"type\": \"Cơ quan\"\n            }\n        }\n    ]\n}"
+				},
+				{
+					"name": "Khu vuc va Nam",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"locationType\": \"Khu vực\",\r\n    \"location\": \"Thanh Hóa\",\r\n    \"timeType\": \"Năm\",\r\n    \"time\": null,\r\n    \"year\": \"2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/list/all/registered",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"list",
+								"all",
+								"registered"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 01 Jun 2023 00:07:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": [\n        {\n            \"car\": {\n                \"id\": \"2\",\n                \"licensePlate\": \"36D-27328\",\n                \"carId\": \"300000\",\n                \"registrationDate\": \"2018-01-12\",\n                \"registrationPlace\": \"Thanh Hóa\",\n                \"brand\": \"Honda\",\n                \"model\": \"Honda Brio\",\n                \"patch\": \"Brio RS\",\n                \"color\": \"Trắng\",\n                \"frameNumber\": \"MFJHNB4V7LY000123\",\n                \"engineNumber\": \"L13B2031567\",\n                \"purpose\": \"Kinh doanh chở khách\"\n            },\n            \"technical\": {\n                \"id\": null,\n                \"size\": \"3801 x 1682 x 1487\",\n                \"selfWeight\": \"972\",\n                \"maxPeople\": \"2405\",\n                \"length\": \"4\",\n                \"containerSize\": null,\n                \"maxContainerWeight\": null,\n                \"maxWeight\": \"1347\",\n                \"towingMass\": null\n            },\n            \"registrations\": [\n                {\n                    \"id\": null,\n                    \"gcn\": \"327A-32987\",\n                    \"registryDate\": \"2020-05-19\",\n                    \"expiredDate\": \"2022-05-19\",\n                    \"registryCenter\": \"3003S\"\n                }\n            ],\n            \"personal\": null,\n            \"company\": {\n                \"id\": null,\n                \"companyId\": \"0105148109\",\n                \"name\": \"CÔNG TY CỔ PHẦN VIN GLOBAL \",\n                \"representative\": \"DƯƠNG VĂN DŨNG\",\n                \"phone\": \"0972285058\",\n                \"address\": \"Đội 8, Thị Trấn Liên Quan, Huyện Thạch Thất, Thành phố Hà Nội, Việt Nam\",\n                \"type\": \"Cơ quan\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Register Cars in Registry Center Account",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTA3RCIsImlhdCI6MTY4NTk5MDEzNSwiZXhwIjoxNjg2MDc2NTM1fQ._pteear8EmkriYv06N1cvluz1Wf8yfmeN5Uv-HjzjYPs6o8BEIHGjzFV18bZIrZPU9oOA9uxoU17ed1jhce5aA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"locationType\": null,\r\n    \"location\": null,\r\n    \"timeType\": \"Tháng\",\r\n    \"time\": \"2\",\r\n    \"year\": \"2021\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/list/all/registered",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"list",
+						"all",
+						"registered"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Registry in User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMDAzUyIsImlhdCI6MTY4NTgwOTU5MywiZXhwIjoxNjg1ODk1OTkzfQ.H6fCngMb4ckX2SjXBKdRKOHgug9Gf-2GvfM00ISgOL_RAiEnr8HFxMYwZIyNYrCvuBQ5MLDiOV1LDoiac6P2CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"licensePlate\": \"29A-12508\",\r\n    \"registryDate\": \"04/06/2026\",\r\n    \"expiredDate\": \"04/06/2028\",\r\n    \"gcn\": \"39A-B12376\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/upload/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"upload",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Request",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTc0MzkxOSwiZXhwIjoxNjg1ODMwMzE5fQ.xkUvjWBU0xomAXIQi2Jr8w76g7MPcE9sm1RbAdSxVIzxWOuIhVxdUqNpk6L5bdwCAN2L3PSP3AKQJt7d8w66eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/admin/user/delete/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"user",
+						"delete",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTc0MzkxOSwiZXhwIjoxNjg1ODMwMzE5fQ.xkUvjWBU0xomAXIQi2Jr8w76g7MPcE9sm1RbAdSxVIzxWOuIhVxdUqNpk6L5bdwCAN2L3PSP3AKQJt7d8w66eg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"5000S@gmail.com\",\r\n    \"password\": \"aA345678\",\r\n    \"name\": \"Trung Tâm Đăng Kiểm 1000S\",\r\n    \"retypePassword\": \"aA345678\",\r\n    \"role\": [\"user\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/user/update/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"user",
+						"update",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Cars in RegistryCenter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMDAzUyIsImlhdCI6MTY4NTgwOTU5MywiZXhwIjoxNjg1ODk1OTkzfQ.H6fCngMb4ckX2SjXBKdRKOHgug9Gf-2GvfM00ISgOL_RAiEnr8HFxMYwZIyNYrCvuBQ5MLDiOV1LDoiac6P2CA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/user/list/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"list",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Multiple cars from file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTk2NTExNywiZXhwIjoxNjg2MDUxNTE3fQ.3aizJ03DGSIPpZghqv72Bhy0Us3S_eCJwgweJUu-p3UWA62ypxgzy9JGeKzD00XfPrRQh7I0JbSp1EGKShmxGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"contentType": "multipart/form-data",
+							"type": "file",
+							"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/upload/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"upload",
+						"cars"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Upload Multiple cars from file",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"contentType": "multipart/form-data",
+									"type": "file",
+									"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/upload/cars",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"upload",
+								"cars"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Jun 2023 18:01:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": \"Thêm danh sách xe thành công!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Upload Multiple Users from file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTk2NTExNywiZXhwIjoxNjg2MDUxNTE3fQ.3aizJ03DGSIPpZghqv72Bhy0Us3S_eCJwgweJUu-p3UWA62ypxgzy9JGeKzD00XfPrRQh7I0JbSp1EGKShmxGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/admin/upload/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"admin",
+						"upload",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "New Request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/upload/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"upload",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Jun 2023 18:02:49 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": \"Thêm danh sách người dùng thành công!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Upload Multiple Registrations from file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyOTA3RCIsImlhdCI6MTY4NTk5MDEzNSwiZXhwIjoxNjg2MDc2NTM1fQ._pteear8EmkriYv06N1cvluz1Wf8yfmeN5Uv-HjzjYPs6o8BEIHGjzFV18bZIrZPU9oOA9uxoU17ed1jhce5aA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/upload/registrations",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"upload",
+						"registrations"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Upload Multiple Registrations from file",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/UET/Web/registry-total/registry-total-backend/src/main/resources/Web_Data_Final.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/upload/registrations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"upload",
+								"registrations"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 05 Jun 2023 18:48:50 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": \"Thêm thông tin đăng kiểm thành công!\"\n}"
+				}
+			]
+		}
+	]
+}

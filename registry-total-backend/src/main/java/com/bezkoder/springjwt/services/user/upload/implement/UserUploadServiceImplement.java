@@ -10,11 +10,16 @@ import com.bezkoder.springjwt.repository.UserRepository;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
 import com.bezkoder.springjwt.services.user.upload.UserUploadService;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -23,7 +28,7 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
-import static com.bezkoder.springjwt.utils.Utils.currentUser;
+import static com.bezkoder.springjwt.utils.Utils.*;
 
 @Service
 public class UserUploadServiceImplement implements UserUploadService {
@@ -96,5 +101,32 @@ public class UserUploadServiceImplement implements UserUploadService {
 
         registryInformationRepository.save(registration);
         return ResponseFactory.success("Thêm thông tin đăng kiểm thành công!");
+    }
+
+    public ResponseEntity<?> uploadRegistrations(MultipartFile name) {
+        if (name.isEmpty()) {
+            return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.FILE_IS_EMPTY);
+        }
+        List<Registration> listRegistration = new ArrayList<>();
+        try {
+            FileInputStream file = new FileInputStream(
+                    new File("./src/main/resources/Web_Data_final.xlsx"));
+
+            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            XSSFSheet sheet = workbook.getSheetAt(4);
+            listRegistration = InitMultipleRegistrations(sheet, carRepository);
+            file.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        User user = currentUser(userRepository);
+        for (Registration registration : listRegistration) {
+            System.out.println(registration.getRegistryCar().getLicensePlate());
+            registration.setRegistryCenter(user.getUsername());
+            registryInformationRepository.save(registration);
+        }
+        return ResponseFactory.success("Thêm thông tin đăng kiểm thành công!");
+
     }
 }
