@@ -14,7 +14,8 @@ public class ListCarResponse {
     private List<Registration> registrations = new ArrayList<>();
     private Personal personal;
     private Company company;
-    private String username;
+    //private String username;
+
     public ListCarResponse(Car car) {
         this.car = new Car(
                 car.getId(),
@@ -61,15 +62,17 @@ public class ListCarResponse {
                 car.getTechnical().getMaxWeight(),
                 car.getTechnical().getTowingMass()
         );
-
-       for (Registration registration : car.getRegistrations()) {
-            this.registrations.add(new Registration(
-                    registration.getGcn(),
-                    registration.getRegistryDate(),
-                    registration.getExpiredDate(),
-                    registration.getRegistryCenter()
-            ));
+        if (car.getRegistrations() != null) {
+            for (Registration registration : car.getRegistrations()) {
+                this.registrations.add(new Registration(
+                        registration.getGcn(),
+                        registration.getRegistryDate(),
+                        registration.getExpiredDate(),
+                        registration.getRegistryCenter()
+                ));
+            }
         }
+
     }
 
     public ListCarResponse(Car car, String username) {

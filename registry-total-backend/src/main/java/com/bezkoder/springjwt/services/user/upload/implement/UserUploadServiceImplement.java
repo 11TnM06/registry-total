@@ -67,7 +67,7 @@ public class UserUploadServiceImplement implements UserUploadService {
 
         Date expiredDateOfCar =  car.getRegistrations().get(0).getRegistryDate();
         //Convert string to date
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date registryDate = null;
         Date expiredDate = null;
         try {

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,9 +35,10 @@ public class Company extends BaseEntity {
 
     private String type;
 
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Collection<Car> cars;
+    private List<Car> cars;
 
     public Company (String companyId, String name, String representative, String phone, String address) {
         this.companyId = companyId;

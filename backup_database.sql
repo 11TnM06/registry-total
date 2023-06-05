@@ -175,6 +175,7 @@ CREATE TABLE users
     name              VARCHAR(50)           NOT NULL,
     password          VARCHAR(120)          NOT NULL,
     username          VARCHAR(50)           NOT NULL,
+    location          VARCHAR(50)           NOT NULL,
     created_time      DATETIME DEFAULT (now()),
     last_updated_time DATETIME DEFAULT (now()),
     PRIMARY KEY (id),
@@ -187,15 +188,15 @@ CREATE TABLE users
   COLLATE = utf8mb4_0900_ai_ci;
 
 LOCK TABLES users WRITE;
-INSERT INTO users (id, email, name, password, username)
+INSERT INTO users (id, email, name, password, username, location)
 VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326',
-        'admin');
-INSERT INTO users (id, email, name, password, username)
+        'admin', 'Cả nước');
+INSERT INTO users (id, email, name, password, username, location)
 VALUES (2, '2903S@gmail.com', 'Trung Tâm Đăng Kiểm 2903S',
-        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '2903S');
-INSERT INTO users (id, email, name, password, username)
+        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '2903S', 'Hà Nội');
+INSERT INTO users (id, email, name, password, username, location)
 VALUES (3, '3003S@gmail.com', 'Trung Tâm Đăng Kiểm 3003S',
-        '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '3003S');
+        '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '3003S', 'Thanh Hóa');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS roles;

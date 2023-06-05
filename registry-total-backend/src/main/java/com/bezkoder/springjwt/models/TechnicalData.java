@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -44,6 +45,7 @@ public class TechnicalData extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "technical")
     @JsonIgnore
     private Car car;
+
 
     public TechnicalData(String size, String selfWeight, String maxPeople, String length, String containerSize, String maxContainerWeight, String maxWeight, String towingMass) {
         this.size = size;

@@ -19,4 +19,7 @@ public class ListTechnicalResponse {
                 technical.getTowingMass()
         );
     }
+
+    public ListTechnicalResponse() {
+    }
 }

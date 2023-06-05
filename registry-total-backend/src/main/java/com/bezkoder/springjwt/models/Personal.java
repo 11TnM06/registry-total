@@ -1,8 +1,10 @@
 package com.bezkoder.springjwt.models;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -48,9 +51,10 @@ public class Personal extends BaseEntity {
 
     private String type;
 
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "personal", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Collection<Car> cars;
+    private List<Car> cars;
     public Personal(String personalId, String name, String registrationPlace, Date registrationDate,
                     Date dob, String gender, String address, String phone) {
         this.personalId = personalId;
@@ -62,6 +66,18 @@ public class Personal extends BaseEntity {
         this.address = address;
         this.phone = phone;
         this.type = "Cá nhân";
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "GMT+7")
+    @JsonDeserialize(as = java.sql.Date.class)
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING, timezone = "GMT+7")
+    @JsonDeserialize(as = java.sql.Date.class)
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
 

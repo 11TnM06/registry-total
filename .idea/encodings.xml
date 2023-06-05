@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/registry-total-backend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/registry-total-backend/src/main/java/com/bezkoder/springjwt/services/admin/upload/implement/AdminUploadServiceImplement.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/registry-total-backend/src/main/resources" charset="UTF-8" />
   </component>
 </project>

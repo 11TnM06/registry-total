@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -29,6 +30,11 @@ public class AdminUploadController {
     @PostMapping("/car")
     public ResponseEntity<?> uploadCar(@Valid @RequestBody AddCarRequest addCarRequest) {
         return adminUploadService.uploadCar(addCarRequest);
+    }
+
+    @PostMapping("/cars")
+    public ResponseEntity<?> uploadCars(@Valid @RequestBody @RequestParam("file") MultipartFile file ) {
+        return adminUploadService.uploadCars(file);
     }
 
 

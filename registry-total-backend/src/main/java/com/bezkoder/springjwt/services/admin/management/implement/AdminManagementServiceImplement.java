@@ -61,7 +61,8 @@ public class AdminManagementServiceImplement implements AdminManagementService {
         User user = new User(createAccountRequest.getUsername(),
                 createAccountRequest.getEmail(),
                 createAccountRequest.getName(),
-                encoder.encode(createAccountRequest.getPassword()));
+                encoder.encode(createAccountRequest.getPassword()),
+                createAccountRequest.getLocation());
 
         Set<String> strRoles = createAccountRequest.getRole();
         Set<Role> roles = new HashSet<>();
