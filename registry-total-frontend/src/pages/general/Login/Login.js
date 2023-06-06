@@ -35,7 +35,12 @@ function Login() {
     UseFetch("/api/auth/login", "POST", loginInfo).then((data) => {
       if (data.status.code === "SUCCESS") {
         UseAuth.set(data.data.token);
-        window.location.href = "/";
+        UseAuth.setInfo(data.data);
+        if (data.data.roles == "ROLE_ADMIN") {
+          window.location.href = "/register";
+        } else {
+          window.location.href = "/center";
+        }
       } else if (data.status.code === "E-003") {
         setError("Tên tài khoản hoặc mật khẩu không đúng");
       } else {
