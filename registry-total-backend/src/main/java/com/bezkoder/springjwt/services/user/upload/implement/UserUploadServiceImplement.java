@@ -100,14 +100,15 @@ public class UserUploadServiceImplement implements UserUploadService {
         return ResponseFactory.success("Thêm thông tin đăng kiểm thành công!");
     }
 
-    public ResponseEntity<?> uploadRegistrations(MultipartFile name) {
-        if (name.isEmpty()) {
+    public ResponseEntity<?> uploadRegistrations(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.FILE_IS_EMPTY);
         }
         List<Registration> listRegistration = new ArrayList<>();
+        String path = "./src/main/resources/file_data.xlsx";
+        File file_data = convertMultipartFileToFile(multipartFile, path);
         try {
-            FileInputStream file = new FileInputStream(
-                    new File("./src/main/resources/Web_Data_final.xlsx"));
+            FileInputStream file = new FileInputStream(file_data);
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheetAt(4);
@@ -119,9 +120,6 @@ public class UserUploadServiceImplement implements UserUploadService {
 
         User user = currentUser(userRepository);
         for (Registration registration : listRegistration) {
-            if (registryInformationRepository.existsByGcn(registration.getGcn())) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_REGISTERED);
-            }
             registration.setRegistryCenter(user.getUsername());
             registryInformationRepository.save(registration);
         }

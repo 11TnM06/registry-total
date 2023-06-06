@@ -9,6 +9,7 @@ import com.bezkoder.springjwt.repository.*;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
 import com.bezkoder.springjwt.services.admin.upload.AdminUploadService;
+import com.bezkoder.springjwt.utils.Utils;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -19,8 +20,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
+
+import java.io.*;
 import java.util.*;
 
 import static com.bezkoder.springjwt.utils.Utils.*;
@@ -40,7 +41,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
     @Autowired
     public AdminUploadServiceImplement(CarRepository carRepository, TechnicalRepository technicalRepository,
                                        PersonalRepository personalRepository, CompanyRepository companyRepository,
-                                        UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
+                                       UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
         this.carRepository = carRepository;
         this.technicalRepository = technicalRepository;
         this.personalRepository = personalRepository;
@@ -92,10 +93,15 @@ public class AdminUploadServiceImplement implements AdminUploadService {
         return ResponseFactory.success("add car successfully!");
     }
 
-    public ResponseEntity<?> uploadCars(MultipartFile name) {
-        if (name.isEmpty()) {
+    public ResponseEntity<?> uploadCars(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.FILE_IS_EMPTY);
         }
+
+
+        String path = "./src/main/resources/file_data.xlsx";
+        File file_data = convertMultipartFileToFile(multipartFile, path);
+
         List<TechnicalData> listTechnical = new ArrayList<>();
         List<Personal> listPersonal = new ArrayList<>();
         List<Car> listCar = new ArrayList<>();
@@ -106,9 +112,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
         try {
 
             // Reading file from local directory
-            FileInputStream file = new FileInputStream(
-                    new File("./src/main/resources/Web_Data_final.xlsx"));
-
+            FileInputStream file = new FileInputStream(file_data);
             XSSFWorkbook workbook = new XSSFWorkbook(file);
 
             for (int i = 0; i <= workbook.getNumberOfSheets() - 1; i++) {
@@ -176,34 +180,13 @@ public class AdminUploadServiceImplement implements AdminUploadService {
         }
 
         for (Car car : listCar) {
+
             if (car == null) continue;
 
-            if (carRepository.existsByLicensePlate(car.getLicensePlate())) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
-            }
-
-            if (carRepository.existsByCarId(car.getCarId())) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
-            }
-
-            if (carRepository.existsByEngineNumber(car.getEngineNumber())) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
-            }
-
-            if (carRepository.existsByFrameNumber(car.getFrameNumber())) {
-                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
-            }
-
             if (car.getPersonal() != null) {
-                if (personalRepository.existsByPersonalId(car.getPersonal().getPersonalId())) {
-                    return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_PERSONAL);
-                }
                 personalRepository.save(car.getPersonal());
             }
             if (car.getCompany() != null) {
-                if (companyRepository.existsByCompanyId(car.getCompany().getCompanyId())) {
-                    return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_COMPANY);
-                }
                 companyRepository.save(car.getCompany());
             }
 
@@ -213,16 +196,17 @@ public class AdminUploadServiceImplement implements AdminUploadService {
         return ResponseFactory.success("Thêm danh sách xe thành công!");
     }
 
-    public ResponseEntity<?> uploadUsers(MultipartFile name) {
-        if (name.isEmpty()) {
+    public ResponseEntity<?> uploadUsers(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()) {
             return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.FILE_IS_EMPTY);
         }
         List<User> listUser = new ArrayList<>();
+        String path = "./src/main/resources/file_data.xlsx";
+        File file_data = convertMultipartFileToFile(multipartFile, path);
         try {
 
             // Reading file from local directory
-            FileInputStream file = new FileInputStream(
-                    new File("./src/main/resources/Web_Data_final.xlsx"));
+            FileInputStream file = new FileInputStream(file_data);
 
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheetAt(5);
