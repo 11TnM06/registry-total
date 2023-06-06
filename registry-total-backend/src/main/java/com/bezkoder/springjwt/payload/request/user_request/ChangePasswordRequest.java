@@ -9,7 +9,6 @@ import javax.validation.constraints.Pattern;
 public class ChangePasswordRequest {
 
     @NotBlank
-    @Pattern(message = "Invalid old password", regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{7,20}$")
     private String oldPassword;
 
     @NotBlank
