@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.payload.request.user_request;
+package com.bezkoder.springjwt.payload.request.add_request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

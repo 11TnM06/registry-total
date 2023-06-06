@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"3003S\",\r\n    \"password\": \"aA345678\"\r\n}",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"aB345678\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -137,7 +137,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTM2Mzk0NCwiZXhwIjoxNjg1NDUwMzQ0fQ.3y8hSqReCXYz2li46WdG3OZkvvYqlA0g4gr9OPEeAyv0CUJ3NjG38O5WbmhORspmN9TY9IZG04fRncvfs9n8kg",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NTQ2MjQzMywiZXhwIjoxNjg1NTQ4ODMzfQ.z_pCpyf3Q-z1GVWwriF6ZrJQSDMyhe23pESS8gcVT3QPNXf7FeUHTatqJfku0RT5ucxSUkuhctW9PSGqaFENkQ",
 							"type": "string"
 						}
 					]
@@ -1847,6 +1847,147 @@
 					],
 					"cookie": [],
 					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": \"Thêm thông tin đăng kiểm thành công!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Expired Car in Center",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Change Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY4NjA0NDEwNiwiZXhwIjoxNjg2MTMwNTA2fQ.KPchQ_i3QQK3aTKur7Y67sWmsnRc1DFRBvf5JrC7oiT1N04DFnT29Wp0IIf8vrSpYm94pyw46E9f2qaIt9RYjQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"oldPassword\": \"Admin06\",\r\n    \"newPassword\": \"aB345678\",\r\n    \"retypePassword\": \"aB345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/user/change_password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"user",
+						"change_password"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Change Password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"Admin06\",\r\n    \"newPassword\": \"aB345678\",\r\n    \"retypePassword\": \"aB345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/change_password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"user",
+								"change_password"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 06 Jun 2023 09:36:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"code\": \"SUCCESS\",\n        \"message\": \"Request successfully\"\n    },\n    \"data\": \"Password has changed !\"\n}"
 				}
 			]
 		}

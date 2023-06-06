@@ -3,7 +3,7 @@ package com.bezkoder.springjwt.services.user.upload.implement;
 import com.bezkoder.springjwt.models.Car;
 import com.bezkoder.springjwt.models.Registration;
 import com.bezkoder.springjwt.models.User;
-import com.bezkoder.springjwt.payload.request.user_request.AddRegistrationRequest;
+import com.bezkoder.springjwt.payload.request.add_request.AddRegistrationRequest;
 import com.bezkoder.springjwt.repository.CarRepository;
 import com.bezkoder.springjwt.repository.RegistryInformationRepository;
 import com.bezkoder.springjwt.repository.UserRepository;
@@ -22,9 +22,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -122,7 +119,9 @@ public class UserUploadServiceImplement implements UserUploadService {
 
         User user = currentUser(userRepository);
         for (Registration registration : listRegistration) {
-            System.out.println(registration.getRegistryCar().getLicensePlate());
+            if (registryInformationRepository.existsByGcn(registration.getGcn())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_REGISTERED);
+            }
             registration.setRegistryCenter(user.getUsername());
             registryInformationRepository.save(registration);
         }

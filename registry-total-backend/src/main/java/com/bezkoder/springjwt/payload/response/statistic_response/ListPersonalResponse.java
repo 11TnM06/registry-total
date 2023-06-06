@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.payload.response.user_response;
+package com.bezkoder.springjwt.payload.response.statistic_response;
 
 import com.bezkoder.springjwt.models.Personal;
 import com.fasterxml.jackson.annotation.JsonFormat;

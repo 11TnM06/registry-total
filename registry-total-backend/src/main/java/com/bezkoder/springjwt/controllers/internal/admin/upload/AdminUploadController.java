@@ -1,8 +1,6 @@
 package com.bezkoder.springjwt.controllers.internal.admin.upload;
 
-import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
-import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
-import com.bezkoder.springjwt.services.admin.statistic.AdminListService;
+import com.bezkoder.springjwt.payload.request.add_request.AddCarRequest;
 import com.bezkoder.springjwt.services.admin.upload.AdminUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

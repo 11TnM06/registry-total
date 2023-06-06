@@ -1,8 +1,7 @@
-package com.bezkoder.springjwt.payload.response.user_response;
+package com.bezkoder.springjwt.payload.response.statistic_response;
 
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 @Data
 public class ListExpiredCarResponse {

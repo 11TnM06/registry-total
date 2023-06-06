@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers.internal.admin.management;
 
-//import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
+//import com.bezkoder.springjwt.payload.request.add_request.AddCarRequest;
 import com.bezkoder.springjwt.payload.request.user_request.UpdateAccountRequest;
 import com.bezkoder.springjwt.services.admin.management.AdminManagementService;
 import org.springframework.beans.factory.annotation.Autowired;

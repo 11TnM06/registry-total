@@ -1,4 +1,4 @@
-package com.bezkoder.springjwt.payload.request.user_request;
+package com.bezkoder.springjwt.payload.request.add_request;
 
 import com.bezkoder.springjwt.models.*;
 import com.fasterxml.jackson.annotation.JsonProperty;

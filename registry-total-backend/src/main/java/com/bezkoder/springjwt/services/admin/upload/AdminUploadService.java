@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.services.admin.upload;
 
-import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
+import com.bezkoder.springjwt.payload.request.add_request.AddCarRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 

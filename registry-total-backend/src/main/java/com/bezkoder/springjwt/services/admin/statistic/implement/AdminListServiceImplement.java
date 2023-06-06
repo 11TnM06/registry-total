@@ -3,14 +3,13 @@ package com.bezkoder.springjwt.services.admin.statistic.implement;
 import com.bezkoder.springjwt.models.Car;
 import com.bezkoder.springjwt.models.Registration;
 import com.bezkoder.springjwt.models.TechnicalData;
-import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
-import com.bezkoder.springjwt.payload.request.user_request.ListRegisteredCarRequest;
-import com.bezkoder.springjwt.payload.response.user_response.*;
+import com.bezkoder.springjwt.payload.request.statistic_request.ListCarRequest;
+import com.bezkoder.springjwt.payload.request.statistic_request.ListRegisteredCarRequest;
+import com.bezkoder.springjwt.payload.response.statistic_response.*;
 import com.bezkoder.springjwt.repository.CarRepository;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
 import com.bezkoder.springjwt.respone_state.ResponseStatusEnum;
 import com.bezkoder.springjwt.services.admin.statistic.AdminListService;
-import com.bezkoder.springjwt.utils.Utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import static com.bezkoder.springjwt.utils.Utils.ListExpiredCarUtils;

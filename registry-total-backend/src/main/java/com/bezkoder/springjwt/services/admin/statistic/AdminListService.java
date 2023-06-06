@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.services.admin.statistic;
-import com.bezkoder.springjwt.payload.request.user_request.ListCarRequest;
-import com.bezkoder.springjwt.payload.request.user_request.ListRegisteredCarRequest;
+import com.bezkoder.springjwt.payload.request.statistic_request.ListCarRequest;
+import com.bezkoder.springjwt.payload.request.statistic_request.ListRegisteredCarRequest;
 import org.springframework.http.ResponseEntity;
 public interface AdminListService {
 

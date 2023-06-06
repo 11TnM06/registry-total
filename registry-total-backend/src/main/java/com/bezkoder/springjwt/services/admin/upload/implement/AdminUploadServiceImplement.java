@@ -1,9 +1,9 @@
 package com.bezkoder.springjwt.services.admin.upload.implement;
 
 import com.bezkoder.springjwt.models.*;
-import com.bezkoder.springjwt.payload.request.user_request.AddCarRequest;
-import com.bezkoder.springjwt.payload.response.user_response.ListCarResponse;
-import com.bezkoder.springjwt.payload.response.user_response.ListCompanyResponse;
+import com.bezkoder.springjwt.payload.request.add_request.AddCarRequest;
+import com.bezkoder.springjwt.payload.response.statistic_response.ListCarResponse;
+import com.bezkoder.springjwt.payload.response.statistic_response.ListCompanyResponse;
 
 import com.bezkoder.springjwt.repository.*;
 import com.bezkoder.springjwt.respone_state.ResponseFactory;
@@ -177,10 +177,33 @@ public class AdminUploadServiceImplement implements AdminUploadService {
 
         for (Car car : listCar) {
             if (car == null) continue;
+
+            if (carRepository.existsByLicensePlate(car.getLicensePlate())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByCarId(car.getCarId())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByEngineNumber(car.getEngineNumber())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByFrameNumber(car.getFrameNumber())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
             if (car.getPersonal() != null) {
+                if (personalRepository.existsByPersonalId(car.getPersonal().getPersonalId())) {
+                    return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_PERSONAL);
+                }
                 personalRepository.save(car.getPersonal());
             }
             if (car.getCompany() != null) {
+                if (companyRepository.existsByCompanyId(car.getCompany().getCompanyId())) {
+                    return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_COMPANY);
+                }
                 companyRepository.save(car.getCompany());
             }
 

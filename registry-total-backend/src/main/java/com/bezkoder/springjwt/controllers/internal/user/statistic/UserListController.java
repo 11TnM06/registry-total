@@ -1,6 +1,6 @@
 package com.bezkoder.springjwt.controllers.internal.user.statistic;
 
-import com.bezkoder.springjwt.payload.request.user_request.ListRegisteredCarRequest;
+import com.bezkoder.springjwt.payload.request.statistic_request.ListRegisteredCarRequest;
 import com.bezkoder.springjwt.services.user.statistic.UserListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
