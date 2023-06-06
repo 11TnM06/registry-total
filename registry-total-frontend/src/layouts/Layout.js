@@ -21,10 +21,7 @@ function Layout(props) {
   return (
     <div className="container">
       <nav>
-        <NavigationComponent
-          type={props.type}
-          companyName={props.companyName}
-        />
+        <NavigationComponent type={props.type} name={props.name} />
       </nav>
       <main>
         <header>
@@ -34,10 +31,7 @@ function Layout(props) {
                 <Icon.Navigation />
               </ResponsiveNavigation.Trigger>
               <ResponsiveNavigation.Content>
-                <NavigationComponent
-                  type={props.type}
-                  companyName={props.companyName}
-                />
+                <NavigationComponent type={props.type} name={props.name} />
               </ResponsiveNavigation.Content>
             </ResponsiveNavigation>
           </div>
@@ -54,10 +48,7 @@ function Layout(props) {
                 }
               />
               <Dropdown.Menu right zIndex={5}>
-                <Dropdown.Info
-                  userName={props.companyName}
-                  userEmail={props.email}
-                />
+                <Dropdown.Info userName={props.name} userEmail={props.email} />
                 <Dropdown.Item
                   label="Đổi mật khẩu"
                   onClick={onForgotPassword}
@@ -81,7 +72,10 @@ function NavigationComponent(props) {
     <React.Fragment>
       <div className="info">
         <span>Registry Total</span>
-        <a className="personal-info" href="/">
+        {/* <a className="personal-info" href="/"> */}
+
+        {/* </a> */}
+        <span className="personal-info">
           <Icon.AvatarBox>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf5GvxhVHYUqV9roWJ4I4xyszcLCUHxRpxXKfx6R-5gSQuxrApw2QADJwvxF6OLnM810&usqp=CAU"
@@ -90,16 +84,16 @@ function NavigationComponent(props) {
           </Icon.AvatarBox>
           <div>
             <div>
-              <strong>{props.companyName}</strong>
+              <strong>{props.name}</strong>
             </div>{" "}
           </div>
-        </a>
+        </span>
       </div>
       <div className="navigation">
         <Navigation>
           <Navigation.Category
             label="Quản lý xe và trung tâm đăng kiểm"
-            role={["register"]}
+            role={["admin"]}
             type={props.type}
           >
             <Navigation.Item label="Xe đã qua đăng ký" link="registered-car" />
@@ -110,7 +104,7 @@ function NavigationComponent(props) {
           </Navigation.Category>
           <Navigation.Category
             label="Theo dõi và thống kê"
-            role={["register"]}
+            role={["admin"]}
             type={props.type}
           >
             <Navigation.Item
@@ -122,14 +116,14 @@ function NavigationComponent(props) {
 
           <Navigation.Category
             label="Quản lý giấy chứng nhận"
-            role={["center"]}
+            role={["user"]}
             type={props.type}
           >
             <Navigation.Item label="Cấp giấy chứng nhận" link="add-certi" />
           </Navigation.Category>
           <Navigation.Category
             label="Thống kê"
-            role={["center"]}
+            role={["user"]}
             type={props.type}
           >
             <Navigation.Item

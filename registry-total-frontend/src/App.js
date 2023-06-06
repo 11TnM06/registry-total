@@ -62,7 +62,11 @@ function App() {
     //     <UseAuth.Auth element={<Error404 />} roles={["admin", "user"]} />
     //   ),
     // },
-    { path: "/", element: <Welcome /> },
+    {
+      path: "/",
+      element: <LoginLayout />,
+      children: [{ path: "", element: <Login /> }],
+    },
     { path: "/change-password", element: <ChangePassword /> },
     {
       path: "/user",
@@ -77,9 +81,9 @@ function App() {
       path: "register",
       element: (
         <Layout
-          companyName="REGISTER"
-          type="register"
-          email="register@gmail.com"
+          name={UseAuth.getInfo().name}
+          type="admin"
+          email={UseAuth.getInfo().email}
         ></Layout>
       ),
       children: [
@@ -105,9 +109,9 @@ function App() {
       path: "center",
       element: (
         <Layout
-          companyName="CENTER 1"
-          type="center"
-          email="center@gmail.com"
+          name={UseAuth.getInfo().name}
+          type="user"
+          email={UseAuth.getInfo().email}
         ></Layout>
       ),
       children: [
