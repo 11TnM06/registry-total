@@ -31,27 +31,27 @@ public class AdminListController {
         return adminListService.getAllCars();
     }
 
-    @GetMapping("/owner")
+    @PostMapping("/owner")
     public ResponseEntity<?> getOwner(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getOwner(listCarRequest);
     }
 
-    @GetMapping("/technical")
+    @PostMapping("/technical")
     public ResponseEntity<?> getTechnicalData(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getTechnicalData(listCarRequest);
     }
 
-    @GetMapping("/registration")
+    @PostMapping("/registration")
     public ResponseEntity<?> getRegistrations(@Valid @RequestBody ListCarRequest listCarRequest) {
         return adminListService.getRegistrations(listCarRequest);
     }
 
-    @GetMapping("/all/registered")
+    @PostMapping("/all/registered")
     public ResponseEntity<?> getAllRegisteredCars(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return adminListService.getAllRegisteredCars(listRegisteredCarRequest);
     }
 
-    @GetMapping("/all/expired")
+    @PostMapping("/all/expired")
     public ResponseEntity<?> getAllExpiredCars(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return adminListService.getAllExpiredCars(listRegisteredCarRequest);
     }

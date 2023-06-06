@@ -21,11 +21,11 @@ public class UserListController {
         this.userListService = userListService;
     }
 
-    @GetMapping("/all/registered")
+    @PostMapping("/all/registered")
     public ResponseEntity<?> getAllRegisteredCarsInCenter(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return userListService.getAllRegisteredCarsInCenter(listRegisteredCarRequest);
     }
-    @GetMapping("/all/expired")
+    @PostMapping("/all/expired")
     public ResponseEntity<?> getAllExpiredCarsInCenter(@Valid @RequestBody ListRegisteredCarRequest listRegisteredCarRequest) {
         return userListService.getAllExpiredCarsInCenter(listRegisteredCarRequest);
     }
