@@ -18,6 +18,26 @@
   border-color: red;
 }
 
+/* input[type="file"] {
+  display: none;
+} */
+
+.upload-button {
+  color: white;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.375rem;
+  width: auto;
+  box-sizing: border-box;
+  font-size: 1rem;
+  margin: 1rem 0;
+  background-color: green;
+}
+
+.upload-button:hover {
+  cursor: pointer;
+}
+
 .label {
   background-color: rgb(255, 255, 255);
   color: rgb(145, 158, 171);

@@ -195,6 +195,13 @@ function required(input) {
   return { state: true };
 }
 
+function requiredFile(input) {
+  if (!input) {
+    return { state: false, content: "File không được để trống" };
+  }
+  return { state: true };
+}
+
 const UseValidation = {
   loginUsername,
   loginPassword,
@@ -214,6 +221,7 @@ const UseValidation = {
   numberInBatch,
   name,
   required,
+  requiredFile,
 };
 
 export { UseValidation };

@@ -23,6 +23,7 @@ const key = {
   name: "Tên",
   role: "Vai trò",
   option: "Tùy chọn",
+  location: "Khu vực",
 };
 const UseTranslator = {};
 

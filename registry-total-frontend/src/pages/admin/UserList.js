@@ -6,11 +6,6 @@ import React from "react";
  * @description: show and manage user list
  */
 function UserList() {
-  const rolePos = {
-    admin: 1,
-    user: 2,
-  };
-
   const ref = React.useRef(null);
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -20,9 +15,11 @@ function UserList() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [retypePassword, setRetypePassword] = React.useState("");
-  const [role, setRole] = React.useState("admin");
+  const [role, setRole] = React.useState("user");
   const [name, setName] = React.useState("");
+  const [location, setLocation] = React.useState("");
   const [error, setError] = React.useState("");
+  const [file, setFile] = React.useState(null);
 
   const validRetypePassword = (input) => {
     return UseValidation.retypePassword(input, password);
@@ -34,6 +31,7 @@ function UserList() {
       UseValidation.email(email).state &&
       UseValidation.password(password).state &&
       UseValidation.name(name).state &&
+      UseValidation.required(location) &&
       validRetypePassword(retypePassword).state
     );
   };
@@ -53,6 +51,7 @@ function UserList() {
             username: item.username,
             email: item.email,
             name: item.name,
+            location: item.location,
             role: fetchRole,
           };
 
@@ -76,11 +75,11 @@ function UserList() {
       password: password,
       retypePassword: retypePassword,
       name: name,
-      role: [role],
+      location: location,
+      role: ["user"],
     }).then((res) => {
       if (res.status.code === "SUCCESS") {
         onReset();
-        onGetAll();
         ref.current.forceAddRowClose();
         alert("Add user successfully");
         window.location.reload();
@@ -106,8 +105,9 @@ function UserList() {
             id: userId,
             username: username,
             email: email,
-            role: role,
             name: name,
+            location: location,
+            role: role,
           };
           return prev;
         });
@@ -117,13 +117,16 @@ function UserList() {
             id: userId,
             username: username,
             email: email,
-            role: role,
             name: name,
+            location: location,
+            role: role,
           },
           "edit"
         );
         ref.current.forceEditRowClose();
         alert("Edit user successfully");
+      } else if (res.status.message.length == "0") {
+        setError("Lỗi không xác định");
       } else {
         setError(res.status.message);
       }
@@ -154,6 +157,7 @@ function UserList() {
     setName(row.name);
     setRole(row.role);
     setPassword("");
+    setLocation(row.location);
     setRetypePassword("");
   };
 
@@ -164,8 +168,28 @@ function UserList() {
     setPassword("");
     setRetypePassword("");
     setName("");
-    setRole("admin");
+    setRole("user");
     setError("");
+    setLocation("");
+  };
+
+  const onUploadFile = () => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    UseFetch.File("/api/admin/upload/users", "POST", formData).then((res) => {
+      if (res.status.code === "SUCCESS") {
+        alert("Add users successfully");
+        window.location.reload();
+      } else if (!res.status.message) {
+        setError("Lỗi không xác định");
+      } else {
+        setError(res.status.message);
+      }
+    });
+  };
+  const onValidFile = () => {
+    return UseValidation.requiredFile(file).state;
   };
 
   if (loading || !data.length) return <React.Fragment />;
@@ -176,6 +200,25 @@ function UserList() {
         title="Danh sách tài khoản"
         ref={ref}
         data={data}
+        uploadFile={
+          <Form>
+            <Form.Title content="Tải file người dùng" />
+            <Form.Input
+              label="File"
+              type="file"
+              onChange={(event) => {
+                setFile(event.target.files[0]);
+              }}
+            />
+            <Form.Error enabled={error !== ""} content={error} />
+
+            <Form.Submit
+              content="Tải file"
+              validation={onValidFile}
+              onClick={onUploadFile}
+            />
+          </Form>
+        }
         addRow={
           <Form>
             <Form.Title content="Thêm người dùng mới" />
@@ -209,12 +252,11 @@ function UserList() {
             </Form.Split>
             <Form.Split>
               <Form.Input label="Tên" type="text" reference={[name, setName]} />
-            </Form.Split>
-            <Form.Split>
-              <Option title="Chức vụ" value={role} onChange={setRole}>
-                <Option.Item value="admin" />
-                <Option.Item value="user" />
-              </Option>
+              <Form.Input
+                label="Khu vực"
+                type="text"
+                reference={[location, setLocation]}
+              />
             </Form.Split>
             <Form.Error enabled={error !== ""} content={error} />
             <Form.Submit
@@ -234,6 +276,7 @@ function UserList() {
                 label="Tên đăng nhập"
                 type="text"
                 reference={[username, setUsername, UseValidation.username]}
+                disabled
               />
             </Form.Split>
             <Form.Split>
@@ -260,12 +303,19 @@ function UserList() {
               />
               <Form.Input label="Tên" type="text" reference={[name, setName]} />
             </Form.Split>
-            <Form.Input
-              label="Vai trò"
-              type="text"
-              reference={[role, setRole]}
-              disabled
-            />
+            <Form.Split>
+              <Form.Input
+                label="Khu vực"
+                type="text"
+                reference={[location, setLocation]}
+              />
+              <Form.Input
+                label="Vai trò"
+                type="text"
+                reference={[role, setRole]}
+                disabled
+              />
+            </Form.Split>
 
             <Form.Error enabled={error !== ""} content={error} />
             <Form.Submit

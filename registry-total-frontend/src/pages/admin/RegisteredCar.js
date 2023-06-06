@@ -39,6 +39,7 @@ function RegisteredCar() {
   const [companyId, setCompanyId] = React.useState("");
   const [representative, setRepresentative] = React.useState("");
   const [type, setType] = React.useState("Cá nhân");
+  const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState("");
 
   const onValidCarPersonal = () => {
@@ -355,10 +356,34 @@ function RegisteredCar() {
         onReset();
         ref.current.updateTable(newRow, "add");
         ref.current.forceAddRowClose();
+      } else if (res.status.message.length == "0") {
+        setError("Lỗi không xác định");
       } else {
         setError(res.status.message);
       }
     });
+  };
+  const onValidFile = () => {
+    return UseValidation.requiredFile(file).state;
+  };
+  const onUploadFile = () => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    UseFetch.File("/api/admin/upload/cars", "POST", formData).then((res) => {
+      if (res.status.code === "SUCCESS") {
+        alert("Add cars successfully");
+        window.location.reload();
+      } else if (!res.status.message) {
+        setError("Lỗi không xác định");
+      } else {
+        setError(res.status.message);
+      }
+    });
+  };
+
+  const onResetFile = () => {
+    setFile(null);
   };
 
   const onReset = () => {
@@ -585,6 +610,25 @@ function RegisteredCar() {
         title="Danh sách xe đã đăng ký"
         data={data}
         noOption
+        uploadFile={
+          <Form>
+            <Form.Title content="Tải file xe đăng ký mới" />
+            <Form.Input
+              label="File"
+              type="file"
+              onChange={(event) => {
+                setFile(event.target.files[0]);
+              }}
+            />
+            <Form.Error enabled={error !== ""} content={error} />
+
+            <Form.Submit
+              content="Tải file"
+              validation={onValidFile}
+              onClick={onUploadFile}
+            />
+          </Form>
+        }
         addRow={
           <Form width="1200px">
             <Form.Title content="Thêm xe đăng ký mới" />
@@ -839,6 +883,7 @@ function RegisteredCar() {
           </Form>
         }
         onReset={onReset}
+        onResetFile={onResetFile}
       />
     </>
   );

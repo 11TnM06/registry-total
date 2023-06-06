@@ -22,6 +22,17 @@ function Navigation(props) {
   );
 }
 
+Navigation.UploadFile = function NavigationUploadFile(props) {
+  return (
+    <Dropdown ref={props.refs} onReset={props.onReset}>
+      <Dropdown.Main item={<TableComponent.Icon.Upload label="Tải File" />} />
+      <Dropdown.MenuWrapperResponsive width="30rem" right={props.right}>
+        {props.uploadFile}
+      </Dropdown.MenuWrapperResponsive>
+    </Dropdown>
+  );
+};
+
 Navigation.AddRow = function NavigationAddRow(props) {
   return (
     <Dropdown ref={props.refs} onReset={props.onReset}>

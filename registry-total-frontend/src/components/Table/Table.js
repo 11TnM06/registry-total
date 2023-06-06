@@ -137,6 +137,13 @@ const Table = forwardRef((props, ref) => {
                 addRow={props.addRow}
               />
             )}
+            {props.uploadFile ? (
+              <TableComponent.Navigation.UploadFile
+                // refs={addRowRef}
+                onReset={props.onResetFile}
+                uploadFile={props.uploadFile}
+              />
+            ) : null}
             <TableComponent.Navigation.Setting
               columns={Object.keys(props.data.length ? props.data[0] : [])}
               displayColumn={{ displayColumn, setDisplayColumn }}

@@ -8,6 +8,7 @@ function AddCerti() {
   const [expiredDate, setExpiredDate] = React.useState("");
   const [gcn, setGcn] = React.useState("");
   const [error, setError] = React.useState("");
+  const [file, setFile] = React.useState(null);
 
   const onValidCerti = () => {
     return (
@@ -53,8 +54,46 @@ function AddCerti() {
     });
   };
 
+  const onValidFile = () => {
+    return UseValidation.requiredFile(file).state;
+  };
+  const onUploadFile = () => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("file", file);
+    UseFetch.File("/api/user/upload/registrations", "POST", formData).then(
+      (res) => {
+        if (res.status.code === "SUCCESS") {
+          alert("Add registrations successfully");
+          window.location.reload();
+        } else if (!res.status.message) {
+          setError("Lỗi không xác định");
+        } else {
+          setError(res.status.message);
+        }
+      }
+    );
+  };
+
   return (
     <>
+      <Form>
+        <Form.Title content="Tải file cấp giấy chứng nhận" />
+        <Form.Input
+          label="File"
+          type="file"
+          onChange={(event) => {
+            setFile(event.target.files[0]);
+          }}
+        />
+        <Form.Error enabled={error !== ""} content={error} />
+
+        <Form.Submit
+          content="Tải file"
+          validation={onValidFile}
+          onClick={onUploadFile}
+        />
+      </Form>
       <Form>
         <Form.Title content="Cấp giấy chứng nhận" />
         <Form.Split>
