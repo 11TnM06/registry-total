@@ -1,5 +1,4 @@
 import { Login } from "./general/Login/Login";
-import { Logout } from "./general/Logout/Logout";
 import { ForgotPassword } from "./general/ForgotPassword/ForgotPassword";
 import { ResetPassword } from "./general/ResetPassword/ResetPassword";
 import { ChangePassword } from "./general/ChangePassword/ChangePassword";
@@ -34,7 +33,6 @@ import { StatisticProduct as WarrantyStatisticProduct } from "./warranty/Statist
 
 export {
   Login,
-  Logout,
   ForgotPassword,
   ResetPassword,
   Product,

@@ -178,12 +178,8 @@ function RegisteredCar() {
         },
       };
     }
-    console.log("post");
-    console.log(item);
 
     UseFetch("/api/admin/upload/car", "POST", item).then((res) => {
-      console.log("post");
-
       if (res.status.code === "SUCCESS") {
         var newRow = {
           id: (parseInt(data[data.length - 1].id) + 1).toString(),

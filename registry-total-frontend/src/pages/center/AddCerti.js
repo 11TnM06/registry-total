@@ -57,26 +57,30 @@ function AddCerti() {
     <>
       <Form>
         <Form.Title content="Cấp giấy chứng nhận" />
-        <Form.Input
-          label="Biển số xe"
-          type="text"
-          reference={[licensePlate, setLicensePlate, UseValidation.required]}
-        />
-        <Form.Input
-          label="Số tem GCN"
-          type="text"
-          reference={[gcn, setGcn, UseValidation.required]}
-        />
-        <Form.Input
-          label="Ngày đăng kiểm"
-          type="date"
-          reference={[registryDate, setRegistryDate, UseValidation.required]}
-        />
-        <Form.Input
-          label="Ngày hết hạn hiệu lực đăng kiểm"
-          type="date"
-          reference={[expiredDate, setExpiredDate, UseValidation.required]}
-        />
+        <Form.Split>
+          <Form.Input
+            label="Biển số xe"
+            type="text"
+            reference={[licensePlate, setLicensePlate, UseValidation.required]}
+          />
+          <Form.Input
+            label="Số tem GCN"
+            type="text"
+            reference={[gcn, setGcn, UseValidation.required]}
+          />
+        </Form.Split>
+        <Form.Split>
+          <Form.Input
+            label="Ngày đăng kiểm"
+            type="date"
+            reference={[registryDate, setRegistryDate, UseValidation.required]}
+          />
+          <Form.Input
+            label="Ngày hết hạn hiệu lực đăng kiểm"
+            type="date"
+            reference={[expiredDate, setExpiredDate, UseValidation.required]}
+          />
+        </Form.Split>
         <Form.Error enabled={error !== ""} content={error} />
 
         <Form.Submit

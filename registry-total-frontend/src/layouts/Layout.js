@@ -11,7 +11,7 @@ import "./style.css";
 function Layout(props) {
   const onLogout = () => {
     localStorage.removeItem("auth");
-    window.location.href = "/login";
+    window.location.href = "/user/login";
   };
 
   const onForgotPassword = () => {

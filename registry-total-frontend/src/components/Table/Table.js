@@ -9,7 +9,6 @@ const Table = forwardRef((props, ref) => {
   const tableRef = React.useRef(null);
   const addRowRef = React.useRef(null);
   const editRowRef = React.useRef(null);
-  const deleteRowRef = React.useRef(null);
 
   const [sort, setSort] = React.useState({ sortOrder: 0, sortColumn: null });
   const [tablePage, setTablePage] = React.useState({ page: 1, pageSize: 10 });

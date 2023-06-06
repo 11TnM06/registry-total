@@ -38,7 +38,7 @@ function UserList() {
     );
   };
 
-  React.useEffect(() => {
+  const onGetAll = () => {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
         var _res = res.data.map((item, count) => {
@@ -63,6 +63,10 @@ function UserList() {
         setLoading(false);
       }
     });
+  };
+
+  React.useEffect(() => {
+    onGetAll();
   }, []);
 
   const onAddUser = () => {
@@ -75,20 +79,11 @@ function UserList() {
       role: [role],
     }).then((res) => {
       if (res.status.code === "SUCCESS") {
-        var newRow = {
-          id: (parseInt(data[data.length - 1].id) + 1).toString(),
-          username: username,
-          email: email,
-          name: name,
-          role: role,
-        };
-        setData((prev) => {
-          prev.push(newRow);
-          return prev;
-        });
         onReset();
-        ref.current.updateTable(newRow, "add");
+        onGetAll();
         ref.current.forceAddRowClose();
+        alert("Add user successfully");
+        window.location.reload();
       } else {
         setError(res.status.message);
       }
@@ -128,6 +123,7 @@ function UserList() {
           "edit"
         );
         ref.current.forceEditRowClose();
+        alert("Edit user successfully");
       } else {
         setError(res.status.message);
       }
@@ -143,9 +139,9 @@ function UserList() {
           },
           "delete"
         );
-        console.log("Xóa thành công");
+        alert("Delete user successfully");
       } else {
-        console.log(res.status.message);
+        alert(res.status.message);
       }
     });
   };
@@ -234,13 +230,6 @@ function UserList() {
             <Form.Title content="Sửa thông tin tài khoản" />
             <Form.Split>
               <Form.Input label="Stt." type="text" reference={[id]} disabled />
-              <Form.Input
-                label="ID"
-                type="text"
-                reference={[userId]}
-                disabled
-              />
-
               <Form.Input
                 label="Tên đăng nhập"
                 type="text"
