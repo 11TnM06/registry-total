@@ -67,14 +67,12 @@ function App() {
       element: <LoginLayout />,
       children: [{ path: "", element: <Login /> }],
     },
-    { path: "/change-password", element: <ChangePassword /> },
     {
       path: "/user",
       element: <LoginLayout />,
       children: [
         { path: "login", element: <Login /> },
         { path: "forgot-password", element: <ForgotPassword /> },
-        { path: "reset-password", element: <ResetPassword /> },
       ],
     },
     {
@@ -103,6 +101,7 @@ function App() {
           path: "expired-car",
           element: <h1>add center</h1>,
         },
+        { path: "change-password", element: <ChangePassword /> },
       ],
     },
     {
@@ -118,6 +117,7 @@ function App() {
         { path: "add-certi", element: <AddCerti /> },
         { path: "inspected-car", element: <h1>inspected-car</h1> },
         { path: "expired-car", element: <h1>add center</h1> },
+        { path: "change-password", element: <ChangePassword /> },
       ],
     },
   ]);

@@ -9,8 +9,17 @@ import { Link } from "react-router-dom";
 function Form(props) {
   return (
     <form
-      className={"form " + (props.noContainer ? "" : "form-container")}
-      style={{ width: props.width, maxWidth: props.maxWidth }}
+      className={
+        "form " +
+        (props.noContainer ? "" : "form-container") +
+        " " +
+        (props.registeredCar ? "registered-car" : "")
+      }
+      style={{
+        width: props.width,
+        maxWidth: props.maxWidth,
+        minWidth: props.minWidth,
+      }}
     >
       {props.children}
     </form>

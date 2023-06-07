@@ -80,7 +80,14 @@
   border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 768px) {
+.registered-car {
+  min-width: 800px;
+}
+
+@media screen and (max-width: 1150px) {
+  .registered-car {
+    min-width: 0px;
+  }
   .form-split {
     flex-direction: column;
     row-gap: 1.25rem;

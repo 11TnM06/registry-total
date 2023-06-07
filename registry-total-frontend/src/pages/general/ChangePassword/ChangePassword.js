@@ -31,11 +31,18 @@ function ChangePassword(props) {
     }).then((res) => {
       if (res.status.code === "SUCCESS") {
         alert("Đổi mật khẩu thành công");
-        window.location.href = "/";
+        onReset();
       } else {
         setError("Mật khẩu cũ không chính xác");
       }
     });
+  };
+
+  const onReset = () => {
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+    setError("");
   };
 
   return (
