@@ -13,7 +13,11 @@ import { LoginLayout } from "./layouts/LoginLayout";
 import RegisteredCar from "./pages/admin/RegisteredCar";
 import { UserList } from "./pages/admin/UserList";
 import AddCerti from "./pages/center/AddCerti";
-import { UseAuth } from "./utils";
+
+
+import StatisticalTime from "./pages/center/StatisticalTime";
+import StatisticalExpired from "./pages/center/StatisticalExpired";
+
 
 function App() {
   const routes = useRoutes([
@@ -115,9 +119,11 @@ function App() {
       ),
       children: [
         { path: "add-certi", element: <AddCerti /> },
-        { path: "inspected-car", element: <h1>inspected-car</h1> },
-        { path: "expired-car", element: <h1>add center</h1> },
+
         { path: "change-password", element: <ChangePassword /> },
+        { path: "inspected-car", element: <StatisticalTime /> },
+        { path: "expired-car", element: < StatisticalExpired/> },
+
       ],
     },
   ]);
