@@ -13,7 +13,7 @@ import { LoginLayout } from "./layouts/LoginLayout";
 import RegisteredCar from "./pages/admin/RegisteredCar";
 import { UserList } from "./pages/admin/UserList";
 import AddCerti from "./pages/center/AddCerti";
-
+import {UseAuth} from "./utils";
 
 import StatisticalTime from "./pages/center/StatisticalTime";
 import StatisticalExpired from "./pages/center/StatisticalExpired";
