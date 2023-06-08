@@ -12,6 +12,8 @@ function AdminStatisticalExpired() {
   const [locationType, setLocationType] = React.useState("Cả nước");
   const [location, setLocation] = React.useState("");
   const [users, setUsers] = React.useState(null);
+  const [expỉred, setExpired] = React.useState("");
+  const [firstRegistration, setFirstRegistration] = React.useState("");
 
   const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const quarters = [1, 2, 3, 4];
@@ -227,6 +229,9 @@ function AdminStatisticalExpired() {
           };
           return _item;
         });
+
+        setExpired(res.data.expiredDate);
+        setFirstRegistration(res.data.firstRegistration);
         setData(_res);
         setLoading(false);
       }
@@ -245,7 +250,7 @@ function AdminStatisticalExpired() {
         <Form.Title content="Chọn phân loại" />
 
         <Form.SplitLeft>
-          <Option title="Tháng" value={timeType} onChange={setTimeType}>
+          <Option title="Tháng" value={time} onChange={setTime}>
             {months.map((item) => {
               return <Option.Item value={item} />;
             })}
@@ -325,6 +330,13 @@ function AdminStatisticalExpired() {
         />
       </Form>
 
+      <Form>
+        <Form.Title content="Dự đoán" />
+        <Form.Subtitle content={"Số lượng xe sắp hết hạn: " + expỉred} />
+        <Form.Subtitle
+          content={"Số lượng xe đăng ký mới: " + firstRegistration}
+        />
+      </Form>
       <Table title="Danh sách xe" data={data} noOption noAddRow />
     </>
   );
