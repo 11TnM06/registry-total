@@ -24,15 +24,6 @@ function AddCerti() {
     );
   };
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return `${day}/${month}/${year}`;
-  }
-
   const onReset = () => {
     setLicensePlate("");
     setRegistryDate("");
@@ -48,8 +39,8 @@ function AddCerti() {
   const onAddCerti = () => {
     var item = {
       licensePlate: licensePlate,
-      registryDate: formatDate(registryDate),
-      expiredDate: formatDate(expiredDate),
+      registryDate: registryDate,
+      expiredDate: expiredDate,
       gcn: gcn,
     };
     console.log(item);
@@ -284,7 +275,7 @@ function AddCerti() {
                 setFile(event.target.files[0]);
               }}
             />
-            <Form.Error enabled={error !== ""} content={error2} />
+            <Form.Error enabled={error2 !== ""} content={error2} />
 
             <Form.Submit
               content="Tải file"
