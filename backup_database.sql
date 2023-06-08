@@ -189,7 +189,7 @@ CREATE TABLE users
 
 LOCK TABLES users WRITE;
 INSERT INTO users (id, email, name, password, username, location)
-VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$12$BdyACvgO3zaooQVaQ6o7NeV64bQsqqlFZMPgsKG2/l8VV.yr4jKee',
+VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2y$10$78UkqRuiRjR8MkFvPQP44uzlWaRzpywQ239xTWAY0aNVSIoPa7rgS',
         'admin', 'Cả nước');
 INSERT INTO users (id, email, name, password, username, location)
 VALUES (2, '2903S@gmail.com', 'Trung Tâm Đăng Kiểm 2903S',
