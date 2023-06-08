@@ -15,6 +15,11 @@ import { UserList } from "./pages/admin/UserList";
 import AddCerti from "./pages/center/AddCerti";
 import { UseAuth } from "./utils";
 
+import StatisticalTime from "./pages/center/StatisticalTime";
+import StatisticalExpired from "./pages/center/StatisticalExpired";
+import AdminStatisticalRegistered from "./pages/admin/AdminStatisticalRegistered";
+import AdminStatisticalExpired from "./pages/admin/AdminStatisticalExpired";
+
 function App() {
   const routes = useRoutes([
     // {
@@ -67,14 +72,12 @@ function App() {
       element: <LoginLayout />,
       children: [{ path: "", element: <Login /> }],
     },
-    { path: "/change-password", element: <ChangePassword /> },
     {
       path: "/user",
       element: <LoginLayout />,
       children: [
         { path: "login", element: <Login /> },
         { path: "forgot-password", element: <ForgotPassword /> },
-        { path: "reset-password", element: <ResetPassword /> },
       ],
     },
     {
@@ -97,12 +100,13 @@ function App() {
         },
         {
           path: "inspected-car",
-          element: <h1>inspected-car</h1>,
+          element: <AdminStatisticalRegistered />,
         },
         {
           path: "expired-car",
-          element: <h1>add center</h1>,
+          element: <AdminStatisticalExpired />,
         },
+        { path: "change-password", element: <ChangePassword /> },
       ],
     },
     {
@@ -116,8 +120,9 @@ function App() {
       ),
       children: [
         { path: "add-certi", element: <AddCerti /> },
-        { path: "inspected-car", element: <h1>inspected-car</h1> },
-        { path: "expired-car", element: <h1>add center</h1> },
+        { path: "change-password", element: <ChangePassword /> },
+        { path: "inspected-car", element: <StatisticalTime /> },
+        { path: "expired-car", element: <StatisticalExpired /> },
       ],
     },
   ]);

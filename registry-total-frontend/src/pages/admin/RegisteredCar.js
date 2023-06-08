@@ -630,7 +630,7 @@ function RegisteredCar() {
           </Form>
         }
         addRow={
-          <Form width="1200px">
+          <Form registeredCar>
             <Form.Title content="Thêm xe đăng ký mới" />
             <Form.Split>
               <Form.Input
@@ -676,20 +676,19 @@ function RegisteredCar() {
                 label="Dòng xe"
                 type="text"
                 reference={[model, setModel, UseValidation.required]}
-              />
-
+              />{" "}
               <Form.Input
                 label="Phiên bản"
                 type="text"
                 reference={[patch, setPatch, UseValidation.required]}
               />
+            </Form.Split>
+            <Form.Split>
               <Form.Input
                 label="Màu sơn"
                 type="text"
                 reference={[color, setColor, UseValidation.required]}
               />
-            </Form.Split>
-            <Form.Split>
               <Form.Input
                 label="Số khung"
                 type="text"
@@ -708,6 +707,8 @@ function RegisteredCar() {
                   UseValidation.required,
                 ]}
               />
+            </Form.Split>
+            <Form.Split>
               <Form.Input
                 label="Mục đích sử dụng"
                 type="text"
@@ -718,13 +719,13 @@ function RegisteredCar() {
                 type="text"
                 reference={[size, setSize, UseValidation.required]}
               />
-            </Form.Split>
-            <Form.Split>
               <Form.Input
                 label="Khối lượng bản thân"
                 type="text"
                 reference={[selfWeight, setSelfWeight, UseValidation.required]}
               />
+            </Form.Split>
+            <Form.Split>
               <Form.Input
                 label="Số lượng người cho phép chở"
                 type="text"
@@ -734,7 +735,7 @@ function RegisteredCar() {
                 label="Chiều dài cơ sở"
                 type="text"
                 reference={[length, setLength, UseValidation.required]}
-              />
+              />{" "}
               <Form.Input
                 label="Kích thước thùng hàng"
                 type="text"
@@ -765,11 +766,13 @@ function RegisteredCar() {
                 type="text"
                 reference={[towingMass, setTowingMass, UseValidation.required]}
               />
-              <Option title="Chủ sở hữu" value={type} onChange={setType}>
-                <Option.Item value="Cá nhân" />
-                <Option.Item value="Cơ quan" />
-              </Option>
             </Form.Split>
+
+            <Option title="Chủ sở hữu" value={type} onChange={setType}>
+              <Option.Item value="Cá nhân" />
+              <Option.Item value="Cơ quan" />
+            </Option>
+
             {type === "Cá nhân" ? (
               <>
                 <Form.Split>

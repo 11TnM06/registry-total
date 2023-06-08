@@ -1,9 +1,11 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { Dropdown, Icon } from "../components";
 import { Navigation } from "./Navigation/Navigation";
 import { ResponsiveNavigation } from "./Navigation/ResponsiveNavigation";
 import "./style.css";
+import Avatar from "../assets/avatar.png";
+import Logo from "../assets/logo.png";
 
 /*
  * @description: Layout for main page
@@ -12,10 +14,6 @@ function Layout(props) {
   const onLogout = () => {
     localStorage.removeItem("auth");
     window.location.href = "/user/login";
-  };
-
-  const onForgotPassword = () => {
-    window.location.href = "/change-password";
   };
 
   return (
@@ -40,19 +38,18 @@ function Layout(props) {
               <Dropdown.Main
                 item={
                   <Icon.AvatarBox>
-                    <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf5GvxhVHYUqV9roWJ4I4xyszcLCUHxRpxXKfx6R-5gSQuxrApw2QADJwvxF6OLnM810&usqp=CAU"
-                      alt=""
-                    />
+                    <img src={Avatar} alt="" width="50" height="50" />
                   </Icon.AvatarBox>
                 }
               />
               <Dropdown.Menu right zIndex={5}>
                 <Dropdown.Info userName={props.name} userEmail={props.email} />
-                <Dropdown.Item
-                  label="Đổi mật khẩu"
-                  onClick={onForgotPassword}
-                />
+                <Link
+                  to="change-password"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  <Dropdown.Item label="Đổi mật khẩu" />
+                </Link>
                 <Dropdown.Item label="Đăng xuất" onClick={onLogout} />
               </Dropdown.Menu>
             </Dropdown>
@@ -71,22 +68,21 @@ function NavigationComponent(props) {
   return (
     <React.Fragment>
       <div className="info">
-        <span>Registry Total</span>
-        {/* <a className="personal-info" href="/"> */}
-
-        {/* </a> */}
+        <div className="logo">
+          <img
+            src={Logo}
+            width="50"
+            height="50"
+            style={{ marginRight: "10px" }}
+          ></img>
+          <div className="logo-text"> Registry Total</div>
+        </div>
         <span className="personal-info">
           <Icon.AvatarBox>
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgf5GvxhVHYUqV9roWJ4I4xyszcLCUHxRpxXKfx6R-5gSQuxrApw2QADJwvxF6OLnM810&usqp=CAU"
-              alt=""
-            />
+            <img src={Avatar} alt="" />
           </Icon.AvatarBox>
-          <div>
-            <div>
-              <strong>{props.name}</strong>
-            </div>{" "}
-          </div>
+
+          <div style={{ marginLeft: "10px" }}>{props.name}</div>
         </span>
       </div>
       <div className="navigation">

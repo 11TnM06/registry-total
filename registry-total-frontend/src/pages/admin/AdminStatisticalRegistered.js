@@ -1,85 +1,59 @@
 import React, { useEffect } from "react";
-import { Form, Popup, Section, Table } from "../../components";
+import { Button, Form, Option, Popup, Section, Table } from "../../components";
 import { UseFetch, UseValidation } from "../../utils";
 
-function AddCerti() {
-  const ref = React.useRef(null);
+function AdminStatisticalRegistered() {
   const [data, setData] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
-  const [licensePlate, setLicensePlate] = React.useState("");
-  const [registryDate, setRegistryDate] = React.useState("");
-  const [expiredDate, setExpiredDate] = React.useState("");
-  const [gcn, setGcn] = React.useState("");
-  const [error, setError] = React.useState("");
-  const [error2, setError2] = React.useState("");
+  const [loadingUsers, setLoadingUsers] = React.useState(true);
+  const [timeType, setTimeType] = React.useState("Tháng");
+  const [time, setTime] = React.useState("1");
+  const [year, setYear] = React.useState("2020");
+  const [locationType, setLocationType] = React.useState("Cả nước");
+  const [location, setLocation] = React.useState("");
+  const [users, setUsers] = React.useState(null);
 
-  const [file, setFile] = React.useState(null);
+  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const quarters = [1, 2, 3, 4];
+  const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 
-  const onValidCerti = () => {
+  const onValidStatistic = () => {
     return (
-      UseValidation.required(licensePlate).state &&
-      UseValidation.required(registryDate).state &&
-      UseValidation.required(expiredDate).state &&
-      UseValidation.required(gcn).state
+      UseValidation.required(locationType).state &&
+      UseValidation.required(timeType).state &&
+      UseValidation.required(time).state
     );
   };
 
-  const onReset = () => {
-    setLicensePlate("");
-    setRegistryDate("");
-    setExpiredDate("");
-    setGcn("");
-    setError("");
-    setError2("");
-  };
-
-  const onResetFile = () => {
-    setFile(null);
-  };
-  const onAddCerti = () => {
-    var item = {
-      licensePlate: licensePlate,
-      registryDate: registryDate,
-      expiredDate: expiredDate,
-      gcn: gcn,
-    };
-    console.log(item);
-    UseFetch("/api/user/upload/registration", "POST", item).then((res) => {
+  const onGetAllUser = () => {
+    UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
-        alert("Registrations added successfully!");
-        window.location.reload();
-        // onReset();
-      } else if (!res.status.message) {
-        setError("Lỗi không xác định");
-      } else {
-        setError(res.status.message);
+        var _res = res.data.map((item) => {
+          return item.username;
+        });
+        _res.shift();
+        setUsers(_res);
+        setLoadingUsers(false);
       }
     });
   };
 
-  const onValidFile = () => {
-    return UseValidation.requiredFile(file).state;
-  };
-  const onUploadFile = () => {
-    if (!file) return;
-    const formData = new FormData();
-    formData.append("file", file);
-    UseFetch.File("/api/user/upload/registrations", "POST", formData).then(
-      (res) => {
-        if (res.status.code === "SUCCESS") {
-          alert("Add registrations successfully");
-          window.location.reload();
-        } else if (!res.status.message) {
-          setError2("Lỗi không xác định");
-        } else {
-          setError2(res.status.message);
-        }
-      }
-    );
-  };
-
   useEffect(() => {
-    UseFetch("/api/user/list/all", "GET", null).then((res) => {
+    onGetAllUser();
+    loadData();
+  }, []);
+
+  const loadData = () => {
+    var item = {
+      locationType: locationType,
+      location: location.length == 0 ? null : location,
+      timeType: timeType,
+      time: time,
+      year: timeType === "Năm" ? time : year,
+    };
+    console.log(item);
+    setLoading(true);
+    UseFetch("/api/admin/list/all/registered", "POST", item).then((res) => {
       if (res.status.code === "SUCCESS") {
         var _res = res.data.map((item) => {
           var _item = {
@@ -257,157 +231,92 @@ function AddCerti() {
         setLoading(false);
       }
     });
-    console.log(data);
-  }, []);
+  };
 
-  if (loading || !data) return <React.Fragment />;
+  const handleButtonClick = () => {
+    loadData();
+  };
+
+  if (loadingUsers || loading || !data) return <React.Fragment />;
 
   return (
     <>
-      {data == "" ? (
-        <>
-          <Form>
-            <Form.Title content="Tải file cấp giấy chứng nhận" />
-            <Form.Input
-              label="File"
-              type="file"
-              onChange={(event) => {
-                setFile(event.target.files[0]);
-              }}
-            />
-            <Form.Error enabled={error2 !== ""} content={error2} />
+      <Form>
+        <Form.Title content="Chọn phân loại" />
 
-            <Form.Submit
-              content="Tải file"
-              validation={onValidFile}
-              onClick={onUploadFile}
-            />
-          </Form>
-          <Form>
-            <Form.Title content="Cấp giấy chứng nhận" />
-            <Form.Split>
-              <Form.Input
-                label="Biển số xe"
-                type="text"
-                reference={[
-                  licensePlate,
-                  setLicensePlate,
-                  UseValidation.required,
-                ]}
-              />
-              <Form.Input
-                label="Số tem GCN"
-                type="text"
-                reference={[gcn, setGcn, UseValidation.required]}
-              />
-            </Form.Split>
-            <Form.Split>
-              <Form.Input
-                label="Ngày đăng kiểm"
-                type="date"
-                reference={[
-                  registryDate,
-                  setRegistryDate,
-                  UseValidation.required,
-                ]}
-              />
-              <Form.Input
-                label="Ngày hết hạn hiệu lực đăng kiểm"
-                type="date"
-                reference={[
-                  expiredDate,
-                  setExpiredDate,
-                  UseValidation.required,
-                ]}
-              />
-            </Form.Split>
-            <Form.Error enabled={error !== ""} content={error} />
+        <Form.SplitLeft>
+          <Option title="Thời gian" value={timeType} onChange={setTimeType}>
+            <Option.Item value="Tháng" />
+            <Option.Item value="Quý" />
+            <Option.Item value="Năm" />
+          </Option>
+          <Option Option title={timeType} value={time} onChange={setTime}>
+            {timeType === "Tháng" && (
+              <>
+                {months.map((item) => {
+                  return <Option.Item value={item} />;
+                })}
+              </>
+            )}
+            {timeType === "Quý" && (
+              <>
+                {quarters.map((item) => {
+                  return <Option.Item value={item} />;
+                })}
+              </>
+            )}
+            {timeType === "Năm" && (
+              <>
+                {years.map((item) => {
+                  return <Option.Item value={item} />;
+                })}
+              </>
+            )}
+          </Option>
+          {timeType !== "Năm" && (
+            <Option Option title="Năm" value={year} onChange={setYear}>
+              {years.map((item) => {
+                return <Option.Item value={item} />;
+              })}
+            </Option>
+          )}
+        </Form.SplitLeft>
+        <Form.SplitLeft>
+          <Option
+            title="Địa điểm"
+            value={locationType}
+            onChange={setLocationType}
+          >
+            <Option.Item value="Trung tâm" />
+            <Option.Item value="Khu vực" />
+            <Option.Item value="Cả nước" />
+          </Option>
 
-            <Form.Submit
-              content="Thêm giấy chứng nhận"
-              validation={onValidCerti}
-              onClick={onAddCerti}
-            />
-          </Form>
-        </>
-      ) : (
-        <Table
-          title="Danh sách xe đã đăng kiểm"
-          data={data}
-          noOption
-          uploadFile={
-            <Form>
-              <Form.Title content="Tải file cấp giấy chứng nhận" />
-              <Form.Input
-                label="File"
-                type="file"
-                onChange={(event) => {
-                  setFile(event.target.files[0]);
-                }}
-              />
-              <Form.Error enabled={error !== ""} content={error} />
+          {locationType === "Trung tâm" && !loadingUsers && (
+            <Option title="Trung tâm" value={location} onChange={setLocation}>
+              {users.map((name) => {
+                return <Option.Item value={name} />;
+              })}
+            </Option>
+          )}
 
-              <Form.Submit
-                content="Tải file"
-                validation={onValidFile}
-                onClick={onUploadFile}
-              />
-            </Form>
-          }
-          addRow={
-            <Form>
-              <Form.Title content="Cấp giấy chứng nhận" />
-              <Form.Split>
-                <Form.Input
-                  label="Biển số xe"
-                  type="text"
-                  reference={[
-                    licensePlate,
-                    setLicensePlate,
-                    UseValidation.required,
-                  ]}
-                />
-                <Form.Input
-                  label="Số tem GCN"
-                  type="text"
-                  reference={[gcn, setGcn, UseValidation.required]}
-                />
-              </Form.Split>
-              <Form.Split>
-                <Form.Input
-                  label="Ngày đăng kiểm"
-                  type="date"
-                  reference={[
-                    registryDate,
-                    setRegistryDate,
-                    UseValidation.required,
-                  ]}
-                />
-                <Form.Input
-                  label="Ngày hết hạn hiệu lực đăng kiểm"
-                  type="date"
-                  reference={[
-                    expiredDate,
-                    setExpiredDate,
-                    UseValidation.required,
-                  ]}
-                />
-              </Form.Split>
-              <Form.Error enabled={error !== ""} content={error} />
+          {locationType === "Khu vực" && (
+            <Option title="Khu vực" value={location} onChange={setLocation}>
+              <Option.Item value="Hà Nội" />
+              <Option.Item value="Thanh Hóa" />
+            </Option>
+          )}
+        </Form.SplitLeft>
 
-              <Form.Submit
-                content="Thêm giấy chứng nhận"
-                validation={onValidCerti}
-                onClick={onAddCerti}
-              />
-            </Form>
-          }
-          onReset={onReset}
-          onResetFile={onResetFile}
+        <Form.Submit
+          content="Thống kê"
+          validation={onValidStatistic}
+          onClick={handleButtonClick}
         />
-      )}
+      </Form>
+
+      <Table title="Danh sách xe" data={data} noOption noAddRow />
     </>
   );
 }
-
-export default AddCerti;
+export default AdminStatisticalRegistered;

@@ -9,8 +9,17 @@ import { Link } from "react-router-dom";
 function Form(props) {
   return (
     <form
-      className={"form " + (props.noContainer ? "" : "form-container")}
-      style={{ width: props.width, maxWidth: props.maxWidth }}
+      className={
+        "form " +
+        (props.noContainer ? "" : "form-container") +
+        " " +
+        (props.registeredCar ? "registered-car" : "")
+      }
+      style={{
+        width: props.width,
+        maxWidth: props.maxWidth,
+        minWidth: props.minWidth,
+      }}
     >
       {props.children}
     </form>
@@ -19,6 +28,12 @@ function Form(props) {
 
 Form.Split = function FormSplit(props) {
   return <div className={"form-split " + props.format}>{props.children}</div>;
+};
+
+Form.SplitLeft = function FormSplitLeft(props) {
+  return (
+    <div className={"form-split-left " + props.format}>{props.children}</div>
+  );
 };
 
 Form.SplitFlex = function FormSplitFlex(props) {
