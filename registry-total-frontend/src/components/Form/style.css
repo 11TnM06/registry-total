@@ -27,6 +27,13 @@
   column-gap: 1.25rem;
 }
 
+.form-split-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  column-gap: 1.25rem;
+}
+
 .form-title {
   margin: 0;
 }

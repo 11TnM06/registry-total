@@ -30,6 +30,12 @@ Form.Split = function FormSplit(props) {
   return <div className={"form-split " + props.format}>{props.children}</div>;
 };
 
+Form.SplitLeft = function FormSplitLeft(props) {
+  return (
+    <div className={"form-split-left " + props.format}>{props.children}</div>
+  );
+};
+
 Form.SplitFlex = function FormSplitFlex(props) {
   return (
     <div className={"form-split-flex " + props.format}>{props.children}</div>
