@@ -1,5 +1,5 @@
 import React from "react";
-import {Popup, Section, Table, Option, Button} from "../../components";
+import {Popup, Section, Table, Option, Button, Form} from "../../components";
 import { useEffect } from "react";
 import { UseFetch } from "../../utils";
 
@@ -9,7 +9,10 @@ function StatisticalExpired() {
     const [loading, setLoading] = React.useState(true);
     const [timeType, setTimeType] = React.useState("Tháng");
     const [time, setTime] = React.useState("10");
-    let [year, setYear] = React.useState("2024");
+    const [year, setYear] = React.useState("2024");
+    const [expiredDate, setExpiredDate] = React.useState("");
+    const [firstRegistration, setFirstRegistration] = React.useState("");
+
 
     var item = {
         locationType: null,
@@ -24,25 +27,23 @@ function StatisticalExpired() {
     }, []);
 
     const loadData = () => {
-
-        console.log(item)
         setLoading(true);
             UseFetch("/api/user/list/all/expired", "POST", item).then((res) => {
                 if (res.status.code === "SUCCESS") {
-                    var _res = res.data.map((item) => {
+                    var _res = res.data.cars.map((item) => {
                         var _item = {
-                            id: item.cars.car.id,
-                            licensePlate: item.cars.car.licensePlate,
+                            id: item.car.id,
+                            licensePlate: item.car.licensePlate,
                             carId: item.car.carId,
-                            registrationsDate: item.cars.car.registrationDate,
-                            registrationsPlace: item.cars.car.registrationPlace,
-                            carBrand: item.cars.car.brand,
-                            model: item.cars.car.model,
-                            patch: item.cars.car.patch,
-                            color: item.cars.car.color,
-                            frameNumber: item.cars.car.frameNumber,
-                            engineNumber: item.cars.car.engineNumber,
-                            purpose: item.cars.car.purpose,
+                            registrationsDate: item.car.registrationDate,
+                            registrationsPlace: item.car.registrationPlace,
+                            carBrand: item.car.brand,
+                            model: item.car.model,
+                            patch: item.car.patch,
+                            color: item.car.color,
+                            frameNumber: item.car.frameNumber,
+                            engineNumber: item.car.engineNumber,
+                            purpose: item.car.purpose,
                             technical: (
                                 <Popup>
                                     <Popup.Trigger>
@@ -51,39 +52,39 @@ function StatisticalExpired() {
                                     <Popup.Content>
                                         <Section title="Thông số kỹ thuật" noContainer>
                                             <div>
-                                                <strong>Biển số xe:</strong> {item.cars.car.licensePlate}
+                                                <strong>Biển số xe:</strong> {item.car.licensePlate}
                                             </div>
                                             <div>
                                                 <strong>Kích thước bao (mm) :</strong>{" "}
-                                                {item.cars.technical.size}
+                                                {item.technical.size}
                                             </div>
                                             <div>
                                                 <strong>Khối lượng bản thân (kg) :</strong>{" "}
-                                                {item.cars.technical.selfWeight}
+                                                {item.technical.selfWeight}
                                             </div>
                                             <div>
                                                 <strong>Số lượng người cho phép chở:</strong>{" "}
-                                                {item.cars.technical.maxPeople}
+                                                {item.technical.maxPeople}
                                             </div>
                                             <div>
                                                 <strong>Chiều dài cơ sở (mm) : </strong>{" "}
-                                                {item.cars.technical.length}
+                                                {item.technical.length}
                                             </div>
                                             <div>
                                                 <strong>Kích thước thùng hàng:</strong>{" "}
-                                                {item.cars.technical.containerSize}
+                                                {item.technical.containerSize}
                                             </div>
                                             <div>
                                                 <strong>Khối lượng hàng hóa cho phép chở (kg) :</strong>{" "}
-                                                {item.cars.technical.maxContainerWeight}
+                                                {item.technical.maxContainerWeight}
                                             </div>
                                             <div>
                                                 <strong>Khối lượng toàn bộ cho phép chở (kg) :</strong>{" "}
-                                                {item.cars.technical.maxWeight}
+                                                {item.technical.maxWeight}
                                             </div>
                                             <div>
                                                 <strong>Khối lượng kéo theo cho phép (kg) :</strong>{" "}
-                                                {item.cars.technical.towingMass}
+                                                {item.technical.towingMass}
                                             </div>
                                         </Section>
                                     </Popup.Content>
@@ -96,56 +97,56 @@ function StatisticalExpired() {
                                     </Popup.Trigger>
                                     <Popup.Content>
                                         <Section title="Thông tin chủ sở hữu" noContainer>
-                                            {item.cars.personal ? (
+                                            {item.personal ? (
                                                 <>
                                                     <div>
-                                                        <strong>Tên chủ sở hữu:</strong> {item.cars.personal.name}
+                                                        <strong>Tên chủ sở hữu:</strong> {item.personal.name}
                                                     </div>
                                                     <div>
-                                                        <strong>Giới tính:</strong> {item.cars.personal.gender}
+                                                        <strong>Giới tính:</strong> {item.personal.gender}
                                                     </div>
                                                     <div>
-                                                        <strong>Ngày sinh:</strong> {item.cars.personal.dob}
+                                                        <strong>Ngày sinh:</strong> {item.personal.dob}
                                                     </div>
 
                                                     <div>
-                                                        <strong>Số điện thoại:</strong> {item.cars.personal.phone}
+                                                        <strong>Số điện thoại:</strong> {item.personal.phone}
                                                     </div>
                                                     <div>
                                                         <strong>Địa chỉ thường trú:</strong>{" "}
-                                                        {item.cars.personal.address}
+                                                        {item.personal.address}
                                                     </div>
                                                     <div>
-                                                        <strong>Số CCCD:</strong> {item.cars.personal.personalId}
+                                                        <strong>Số CCCD:</strong> {item.personal.personalId}
                                                     </div>
                                                     <div>
                                                         <strong>Nơi cấp CCCD:</strong>{" "}
-                                                        {item.cars.personal.registrationPlace}
+                                                        {item.personal.registrationPlace}
                                                     </div>
                                                     <div>
                                                         <strong>Ngày cấp CCCD:</strong>{" "}
-                                                        {item.cars.personal.registrationDate}
+                                                        {item.personal.registrationDate}
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
                                                     <div>
-                                                        <strong>Tên đơn vị:</strong> {item.cars.company.name}
+                                                        <strong>Tên đơn vị:</strong> {item.company.name}
                                                     </div>
                                                     <div>
-                                                        <strong>Mã đơn vị:</strong> {item.cars.company.companyId}
+                                                        <strong>Mã đơn vị:</strong> {item.company.companyId}
                                                     </div>
                                                     <div>
                                                         <strong>Số điện thoại liên lạc:</strong>{" "}
-                                                        {item.cars.company.phone}
+                                                        {item.company.phone}
                                                     </div>
                                                     <div>
                                                         <strong>Địa chỉ trụ sở:</strong>{" "}
-                                                        {item.cars.company.address}
+                                                        {item.company.address}
                                                     </div>
                                                     <div>
                                                         <strong>Người đại diện:</strong>{" "}
-                                                        {item.cars.company.representative}
+                                                        {item.company.representative}
                                                     </div>
                                                 </>
                                             )}
@@ -161,15 +162,15 @@ function StatisticalExpired() {
                                     <Popup.Content>
                                         <Section title="Thông tin đăng kiểm" noContainer>
                                             <div>
-                                                <strong>Biển số xe:</strong> {item.cars.car.licensePlate}
+                                                <strong>Biển số xe:</strong> {item.car.licensePlate}
                                             </div>
 
-                                            {item.cars.registrations.length == 0 ? (
+                                            {item.registrations.length == 0 ? (
                                                 <div>
                                                     <strong>Chưa đăng kiểm</strong>
                                                 </div>
                                             ) : (
-                                                item.cars.registrations.map((registraion, count) => {
+                                                item.registrations.map((registraion, count) => {
                                                     return (
                                                         <>
                                                             <div>
@@ -198,12 +199,12 @@ function StatisticalExpired() {
                                     </Popup.Content>
                                 </Popup>
                             ),
-                            expiredDate: item.expiredDate,
-                            firstRegistration: item.firstRegistration,
                         };
                         return _item;
                     });
                     setData(_res);
+                    setExpiredDate(res.data.expiredDate);
+                    setFirstRegistration(res.data.firstRegistration);
                     setLoading(false);
                 }
             });
@@ -217,7 +218,6 @@ function StatisticalExpired() {
 
     return (
         <>
-
             {timeType && (
                 <Option Option title={timeType} value={time} onChange={setTime}>
                     {timeType === 'Tháng' && (
@@ -251,6 +251,15 @@ function StatisticalExpired() {
                     <Option.Item value='2025' />
                 </>
             </Option>
+
+            <Section title="Dự đoán">
+                <Section.Div>
+                    <strong> {"Số lượng xe sắp hết hạn: " + expiredDate}</strong>
+                </Section.Div>
+                <Section.Div>
+                    <strong> {"Số lượng xe đăng ký mới: " + firstRegistration} </strong>
+                </Section.Div>
+            </Section>
 
             <Button onClick={handleButtonClick}>Thống kê</Button>
 
