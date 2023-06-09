@@ -252,22 +252,19 @@ function StatisticalExpired() {
               <Option.Item value="2025" />
             </>
           </Option>
-
-          <Section title="Dự đoán">
-            <Section.Div>
-              <strong> {"Số lượng xe sắp hết hạn: " + expiredDate}</strong>
-            </Section.Div>
-            <Section.Div>
-              <strong>
-                {" "}
-                {"Số lượng xe đăng ký mới: " + firstRegistration}{" "}
-              </strong>
-            </Section.Div>
-          </Section>
-
-          <Form.Submit content="Thống kê" onClick={handleButtonClick} />
         </Form.SplitLeft>
+
+        <Form.Submit content="Thống kê" onClick={handleButtonClick} />
       </Form>
+      <Section title="Dự đoán">
+        <Section.Div>
+          <strong> {"Số lượng xe sắp hết hạn: " + expiredDate}</strong>
+        </Section.Div>
+        <Section.Div>
+          <strong> {"Số lượng xe đăng ký mới: " + firstRegistration} </strong>
+        </Section.Div>
+      </Section>
+
       <Table title="Danh sách xe sắp hết hạn" data={data} noOption noAddRow />
     </>
   );
