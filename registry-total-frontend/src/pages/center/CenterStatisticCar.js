@@ -100,11 +100,7 @@ function CenterStatisticalCar() {
           }
         }
 
-        let _data = UsePreprocessChart.Admin(
-          dateData,
-          "Xe đăng kiểm",
-          timeType
-        );
+        let _data = UsePreprocessChart(dateData, "Xe đăng kiểm", timeType);
 
         setData(_data);
       }
