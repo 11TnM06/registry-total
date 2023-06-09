@@ -75,13 +75,17 @@ public class AdminUploadServiceImplement implements AdminUploadService {
 
 
         if (company != null) {
-            companyRepository.save(company);
+            if(!companyRepository.existsByCompanyId(company.getCompanyId())){
+                companyRepository.save(company);
+            }
             car.setCompany(company);
 
         }
 
         if (personal != null) {
-            personalRepository.save(personal);
+            if (!personalRepository.existsByPersonalId(personal.getPersonalId())) {
+                personalRepository.save(personal);
+            }
             car.setPersonal(personal);
         }
 
@@ -90,7 +94,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
 
         carRepository.save(car);
 
-        return ResponseFactory.success("add car successfully!");
+        return ResponseFactory.success("Thêm xe thành công!");
     }
 
     public ResponseEntity<?> uploadCars(MultipartFile multipartFile) {
@@ -183,11 +187,19 @@ public class AdminUploadServiceImplement implements AdminUploadService {
 
             if (car == null) continue;
 
-            if (car.getPersonal() != null) {
-                personalRepository.save(car.getPersonal());
-            }
             if (car.getCompany() != null) {
-                companyRepository.save(car.getCompany());
+                if(!companyRepository.existsByCompanyId(car.getCompany().getCompanyId())){
+                    companyRepository.save(car.getCompany());
+                }
+                car.setCompany(car.getCompany());
+
+            }
+
+            if (car.getPersonal() != null) {
+                if (!personalRepository.existsByPersonalId(car.getPersonal().getPersonalId())) {
+                    personalRepository.save(car.getPersonal());
+                }
+                car.setPersonal(car.getPersonal());
             }
 
             technicalRepository.save(car.getTechnical());
