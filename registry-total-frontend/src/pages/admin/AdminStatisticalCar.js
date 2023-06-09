@@ -209,11 +209,84 @@ function AdminStatisticalCar() {
     }
   };
 
+  const handleRegionAll = () => {
+    var item = {
+      locationType: locationType,
+      location: location.length == 0 ? null : location,
+      timeType: "Tất cả",
+      time: null,
+      year: null,
+    };
+    UseFetch(`/api/admin/list/all/registered`, "POST", item).then((res) => {
+      if (res.status.code === "SUCCESS") {
+        var _res = res.data.map((item) => {
+          if (item.registrations.length > 0) {
+            var _item = {
+              registraions: item.registrations,
+            };
+            return _item;
+          }
+          return null;
+        });
+        var dateData = [];
+        if (timeType === "Năm") {
+          if (carType == "Xe đăng kiểm") {
+            _res.map((item) => {
+              if (item) {
+                item.registraions.map((date) => {
+                  dateData.push(date.registryDate);
+                });
+              }
+            });
+          } else {
+            _res.map((item) => {
+              if (item) {
+                item.registraions.map((date) => {
+                  dateData.push(date.expiredDate);
+                });
+              }
+            });
+          }
+        } else {
+          if (carType == "Xe đăng kiểm") {
+            _res.map((item) => {
+              if (item) {
+                item.registraions.map((date) => {
+                  if (date.registryDate.split("-")[0] == year) {
+                    dateData.push(date.registryDate);
+                  }
+                });
+              }
+            });
+          } else {
+            _res.map((item) => {
+              if (item) {
+                item.registraions.map((date) => {
+                  if (date.registryDate.split("-")[0] == year) {
+                    dateData.push(date.expiredDate);
+                  }
+                });
+              }
+            });
+          }
+        }
+        let _data = UsePreprocessChart.Admin(
+          dateData,
+          "Xe đăng kiểm",
+          timeType
+        );
+        setData(_data);
+      }
+    });
+  };
+
   const handleButtonClick = () => {
     if (locationType == "Cả nước") {
       handleCountry();
-    } else {
+    } else if (timeType != "Năm") {
       handleRegion();
+    } else {
+      handleRegionAll();
     }
   };
 
