@@ -1,8 +1,7 @@
 import React from "react";
-import { Popup, Section, Table, Option, Button } from "../../components";
+import { Popup, Section, Table, Option, Button, Form } from "../../components";
 import { useEffect } from "react";
 import { UseFetch } from "../../utils";
-import { Form } from "react-router-dom";
 
 function StatisticalTime() {
   const [data, setData] = React.useState(null);
@@ -282,8 +281,8 @@ function StatisticalTime() {
             </Option>
           )}
         </Form.SplitLeft>
+        <Form.Submit content="Thống kê" onClick={handleButtonClick} />
       </Form>
-      <Form.Submit content="Thống kê" onClick={handleButtonClick} />
 
       <Table title="Danh sách xe" data={data} noOption noAddRow />
     </>
