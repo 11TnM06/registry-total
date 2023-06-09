@@ -21,38 +21,40 @@ public class Utils {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int registryYear = cal.get(Calendar.YEAR);
-        if (timeType.equals("Tháng")) {
-            int month = cal.get(Calendar.MONTH) + 1;
-
-            if (month == Integer.parseInt(time) && registryYear == Integer.parseInt(year)) {
-                if (registryLocation != null) {
-                    if (registryLocation.equals(location)) {
+        switch (timeType) {
+            case "Tháng" -> {
+                int month = cal.get(Calendar.MONTH) + 1;
+                if (month == Integer.parseInt(time) && registryYear == Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
                         return true;
                     }
-                } else {
-                    return true;
                 }
             }
 
-            //System.out.println("month: " + month + " time: " + time + " year: " + year + " registryYear: " + registryYear + " location: " + location + " registryLocation: " + registryLocation);
-
-        } else if (timeType.equals("Năm")) {
-            if (registryYear == Integer.parseInt(year)) {
-                if (registryLocation != null) {
-                    if (registryLocation.equals(location)) {
+            case "Năm" -> {
+                if (registryYear == Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
                         return true;
                     }
-                } else {
-                    return true;
                 }
             }
-        } else {
-            int quarter = cal.get(Calendar.MONTH) / 3 + 1;
-            if (quarter == Integer.parseInt(time) && registryYear == Integer.parseInt(year)) {
-                if (registryLocation != null) {
-                    if (registryLocation.equals(location)) {
+            case "Quý" -> {
+                int quarter = cal.get(Calendar.MONTH) / 3 + 1;
+                if (quarter == Integer.parseInt(time) && registryYear == Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
                         return true;
                     }
+                }
+            }
+            default -> {
+                if (registryLocation != null) {
+                    return registryLocation.equals(location);
                 } else {
                     return true;
                 }

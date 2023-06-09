@@ -15,7 +15,6 @@ public class ListRegisteredCarRequest {
 
     String time;
 
-    @NotBlank
     String year;
 
 
