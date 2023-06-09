@@ -1,22 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 import { Form, Option, Section } from "../../components";
 import { UseFetch, UsePreprocessChart } from "../../utils";
 
 function CenterStatisticalCar() {
   const [data, setData] = React.useState(null);
-  const posOption = React.useMemo(
-    () => ({ "Nhà máy": 2, TTBH: 3, "Đại lý": 4 }),
-    []
-  );
-  const [loadingUsers, setLoadingUsers] = React.useState(true);
-  const [users, setUsers] = React.useState(null);
   const [timeType, setTimeType] = React.useState("Tháng");
   const [year, setYear] = React.useState("2020");
   const [carType, setCarType] = React.useState("Xe đăng kiểm");
 
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An", "Đà Nẵng"];
 
   function createArray(min, max) {
     let arr = [];
@@ -25,25 +18,6 @@ function CenterStatisticalCar() {
     }
     return arr;
   }
-
-  const onGetAllUser = () => {
-    UseFetch("/api/admin/user/all", "GET", null).then((res) => {
-      if (res.status.code === "SUCCESS") {
-        var _res = res.data.map((item) => {
-          return item.username;
-        });
-        _res.shift();
-        setUsers(_res);
-        setLoadingUsers(false);
-      }
-    });
-  };
-
-  useEffect(() => {
-    onGetAllUser();
-  }, []);
-
-  React.useEffect(() => {}, []);
 
   const handleData = () => {
     UseFetch(`/api/user/list/all`, "GET").then((res) => {

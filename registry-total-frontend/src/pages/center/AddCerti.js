@@ -3,7 +3,6 @@ import { Form, Popup, Section, Table } from "../../components";
 import { UseFetch, UseValidation } from "../../utils";
 
 function AddCerti() {
-  const ref = React.useRef(null);
   const [data, setData] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const [licensePlate, setLicensePlate] = React.useState("");
@@ -216,7 +215,7 @@ function AddCerti() {
                       <strong>Biển số xe:</strong> {item.car.licensePlate}
                     </div>
 
-                    {item.registrations.length == 0 ? (
+                    {item.registrations.length === 0 ? (
                       <div>
                         <strong>Chưa đăng kiểm</strong>
                       </div>
