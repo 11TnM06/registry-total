@@ -64,8 +64,8 @@ td {
 }
 
 td {
-    max-width: 10rem;
-    text-overflow: ellipsis;
+    max-width: 15rem;
+
     overflow: hidden;
 }
 
