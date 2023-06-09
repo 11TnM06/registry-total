@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route, useRoutes } from "react-router-dom";
+import { Routes, Route, useRoutes } from "react-router-dom";
 import {
   ChangePassword,
   Error404,
   ForgotPassword,
   Login,
-  Product,
   ResetPassword,
   Welcome,
 } from "./pages";
@@ -101,6 +100,10 @@ function App() {
           element: <CenterStatisticalCar />,
         },
       ],
+    },
+    {
+      path: "*",
+      element: <Error404 />,
     },
   ]);
 
