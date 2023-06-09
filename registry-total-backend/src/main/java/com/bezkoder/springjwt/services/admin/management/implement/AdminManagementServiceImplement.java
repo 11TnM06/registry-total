@@ -89,7 +89,7 @@ public class AdminManagementServiceImplement implements AdminManagementService {
 
         user.setRoles(roles);
         userRepository.save(user);
-        return ResponseFactory.success("User registered successfully!");
+        return ResponseFactory.success("Đăng ký người dùng thành công!");
     }
 
     public ResponseEntity<?> getAllAccounts() {
