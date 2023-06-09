@@ -89,9 +89,6 @@ public class UserListServiceImplement implements UserListService {
                 }
             }
         }
-        for (Car car : cars) {
-            listCarResponse.add(new ListCarResponse(car));
-        }
 
         int expiredDate = cars.size();
         int firstRegistration = 0;
