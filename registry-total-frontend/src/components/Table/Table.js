@@ -139,7 +139,6 @@ const Table = forwardRef((props, ref) => {
             )}
             {props.uploadFile ? (
               <TableComponent.Navigation.UploadFile
-                // refs={addRowRef}
                 onReset={props.onResetFile}
                 uploadFile={props.uploadFile}
               />

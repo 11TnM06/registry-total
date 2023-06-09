@@ -1,5 +1,5 @@
 import React from "react";
-import { Popup, Section, Table, Option, Button, Form } from "../../components";
+import { Popup, Section, Table, Option, Form } from "../../components";
 import { useEffect } from "react";
 import { UseFetch } from "../../utils";
 

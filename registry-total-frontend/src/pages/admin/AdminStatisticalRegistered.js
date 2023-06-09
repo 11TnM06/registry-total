@@ -13,10 +13,10 @@ function AdminStatisticalRegistered() {
   const [location, setLocation] = React.useState("");
   const [users, setUsers] = React.useState(null);
 
-  const months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-  const quarters = [1, 2, 3, 4];
-  const years = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
-
+  const months = createArray(1, 12);
+  const quarters = createArray(1, 4);
+  const years = createArray(2018, 2027);
+  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An", "Đà Nẵng"];
   const onValidStatistic = () => {
     return (
       UseValidation.required(locationType).state &&
@@ -24,6 +24,14 @@ function AdminStatisticalRegistered() {
       UseValidation.required(time).state
     );
   };
+
+  function createArray(min, max) {
+    let arr = [];
+    for (let i = min; i <= max; i++) {
+      arr.push(i);
+    }
+    return arr;
+  }
 
   const onGetAllUser = () => {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
@@ -250,6 +258,7 @@ function AdminStatisticalRegistered() {
             <Option.Item value="Quý" />
             <Option.Item value="Năm" />
           </Option>
+
           <Option Option title={timeType} value={time} onChange={setTime}>
             {timeType === "Tháng" && (
               <>
@@ -302,8 +311,9 @@ function AdminStatisticalRegistered() {
 
           {locationType === "Khu vực" && (
             <Option title="Khu vực" value={location} onChange={setLocation}>
-              <Option.Item value="Hà Nội" />
-              <Option.Item value="Thanh Hóa" />
+              {regions.map((name) => {
+                return <Option.Item value={name} />;
+              })}
             </Option>
           )}
         </Form.SplitLeft>

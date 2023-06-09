@@ -19,6 +19,8 @@ import StatisticalTime from "./pages/center/StatisticalTime";
 import StatisticalExpired from "./pages/center/StatisticalExpired";
 import AdminStatisticalRegistered from "./pages/admin/AdminStatisticalRegistered";
 import AdminStatisticalExpired from "./pages/admin/AdminStatisticalExpired";
+import { AdminStatisticalCar } from "./pages/admin/AdminStatisticalCar";
+import { CenterStatisticalCar } from "./pages/center/CenterStatisticCar";
 
 function App() {
   const routes = useRoutes([
@@ -106,6 +108,10 @@ function App() {
           path: "expired-car",
           element: <AdminStatisticalExpired />,
         },
+        {
+          path: "statistic-car",
+          element: <AdminStatisticalCar />,
+        },
         { path: "change-password", element: <ChangePassword /> },
       ],
     },
@@ -123,6 +129,10 @@ function App() {
         { path: "change-password", element: <ChangePassword /> },
         { path: "inspected-car", element: <StatisticalTime /> },
         { path: "expired-car", element: <StatisticalExpired /> },
+        {
+          path: "statistic-car",
+          element: <CenterStatisticalCar />,
+        },
       ],
     },
   ]);

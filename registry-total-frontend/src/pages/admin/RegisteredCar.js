@@ -59,10 +59,7 @@ function RegisteredCar() {
       UseValidation.required(selfWeight).state &&
       UseValidation.required(maxPeople).state &&
       UseValidation.required(length).state &&
-      UseValidation.required(containerSize).state &&
-      UseValidation.required(maxContainerWeight).state &&
       UseValidation.required(maxWeight).state &&
-      UseValidation.required(towingMass).state &&
       UseValidation.required(type).state &&
       UseValidation.required(personalId).state &&
       UseValidation.required(name).state &&
@@ -91,10 +88,7 @@ function RegisteredCar() {
       UseValidation.required(selfWeight).state &&
       UseValidation.required(maxPeople).state &&
       UseValidation.required(length).state &&
-      UseValidation.required(containerSize).state &&
-      UseValidation.required(maxContainerWeight).state &&
       UseValidation.required(maxWeight).state &&
-      UseValidation.required(towingMass).state &&
       UseValidation.required(type).state &&
       UseValidation.required(name).state &&
       UseValidation.required(address).state &&
@@ -126,10 +120,11 @@ function RegisteredCar() {
           selfWeight: selfWeight,
           maxPeople: maxPeople,
           length: length,
-          containerSize: containerSize,
-          maxContainerWeight: maxContainerWeight,
+          containerSize: containerSize.length == "" ? null : containerSize,
+          maxContainerWeight:
+            maxContainerWeight.length == "" ? null : maxContainerWeight,
           maxWeight: maxWeight,
-          towingMass: towingMass,
+          towingMass: towingMass == "" ? null : towingMass,
         },
         personal: {
           personalId: personalId,
@@ -164,10 +159,11 @@ function RegisteredCar() {
           selfWeight: selfWeight,
           maxPeople: maxPeople,
           length: length,
-          containerSize: containerSize,
-          maxContainerWeight: maxContainerWeight,
+          containerSize: containerSize.length == "" ? null : containerSize,
+          maxContainerWeight:
+            maxContainerWeight.length == "" ? null : maxContainerWeight,
           maxWeight: maxWeight,
-          towingMass: towingMass,
+          towingMass: towingMass == "" ? null : towingMass,
         },
         personal: null,
         company: {
@@ -179,6 +175,7 @@ function RegisteredCar() {
         },
       };
     }
+    console.log(item);
 
     UseFetch("/api/admin/upload/car", "POST", item).then((res) => {
       if (res.status.code === "SUCCESS") {
@@ -739,22 +736,14 @@ function RegisteredCar() {
               <Form.Input
                 label="Kích thước thùng hàng"
                 type="text"
-                reference={[
-                  containerSize,
-                  setContainerSize,
-                  UseValidation.required,
-                ]}
+                reference={[containerSize, setContainerSize]}
               />
             </Form.Split>
             <Form.Split>
               <Form.Input
                 label="Khối lượng hàng hóa cho phép chở"
                 type="text"
-                reference={[
-                  maxContainerWeight,
-                  setMaxContainerWeight,
-                  UseValidation.required,
-                ]}
+                reference={[maxContainerWeight, setMaxContainerWeight]}
               />
               <Form.Input
                 label="Khối lượng toàn bộ cho phép"
@@ -764,7 +753,7 @@ function RegisteredCar() {
               <Form.Input
                 label="Khối lượng kéo theo cho phép"
                 type="text"
-                reference={[towingMass, setTowingMass, UseValidation.required]}
+                reference={[towingMass, setTowingMass]}
               />
             </Form.Split>
 

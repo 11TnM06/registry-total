@@ -256,6 +256,7 @@ function StatisticalExpired() {
 
         <Form.Submit content="Thống kê" onClick={handleButtonClick} />
       </Form>
+
       <Section title="Dự đoán">
         <Section.Div>
           <strong> {"Số lượng xe sắp hết hạn: " + expiredDate}</strong>
