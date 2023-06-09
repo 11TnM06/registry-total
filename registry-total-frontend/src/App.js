@@ -24,51 +24,6 @@ import { CenterStatisticalCar } from "./pages/center/CenterStatisticCar";
 
 function App() {
   const routes = useRoutes([
-    // {
-    //   element: <UseAuth.Auth element={<Layout />} roles={["admin", "user"]} />,
-    //   children: [
-    //     { path: "/", element: <Welcome /> },
-    //     { path: "/change-password", element: <ChangePassword /> },
-    //     { path: "/logout", element: <Logout /> },
-    //   ],
-    // },
-    // {
-    //   path: "register",
-    //   element: <UseAuth.Auth element={<Layout />} roles={["admin"]} />,
-    //   children: [
-    //     {
-    //       path: "registered-car",
-    //       element: <RegisteredCar />,
-    //     },
-    //     {
-    //       path: "add-center",
-    //       element: <UserList />,
-    //     },
-    //     {
-    //       path: "inspected-car",
-    //       element: <h1>inspected-car</h1>,
-    //     },
-    //     {
-    //       path: "expired-car",
-    //       element: <h1>add center</h1>,
-    //     },
-    //   ],
-    // },
-    // {
-    //   path: "center",
-    //   element: <UseAuth.Auth element={<Layout />} roles={["user"]} />,
-    //   children: [
-    //     { path: "add-certi", element: <AddCerti /> },
-    //     { path: "inspected-car", element: <h1>inspected-car</h1> },
-    //     { path: "expired-car", element: <h1>add center</h1> },
-    //   ],
-    // },
-    // {
-    //   path: "*",
-    //   element: (
-    //     <UseAuth.Auth element={<Error404 />} roles={["admin", "user"]} />
-    //   ),
-    // },
     {
       path: "/",
       element: <LoginLayout />,
@@ -83,6 +38,10 @@ function App() {
       ],
     },
     {
+      path: "welcome",
+      element: <Welcome />,
+    },
+    {
       path: "register",
       element: (
         <Layout
@@ -92,6 +51,10 @@ function App() {
         ></Layout>
       ),
       children: [
+        {
+          path: "",
+          element: <Welcome />,
+        },
         {
           path: "registered-car",
           element: <RegisteredCar />,
@@ -125,6 +88,10 @@ function App() {
         ></Layout>
       ),
       children: [
+        {
+          path: "",
+          element: <Welcome />,
+        },
         { path: "add-certi", element: <AddCerti /> },
         { path: "change-password", element: <ChangePassword /> },
         { path: "inspected-car", element: <StatisticalTime /> },

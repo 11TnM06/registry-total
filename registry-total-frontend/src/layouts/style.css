@@ -160,6 +160,12 @@
   display: block;
 }
 
+@media screen and (max-width: 920px) {
+  .dropbtn {
+    max-width: 120px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .container nav {
     display: none;
@@ -171,5 +177,11 @@
 
   .container main header .left-header {
     display: flex;
+  }
+  .top-navigation {
+    display: none;
+  }
+  .logo-left {
+    display: none;
   }
 }

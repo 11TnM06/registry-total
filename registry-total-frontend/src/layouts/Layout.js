@@ -33,15 +33,17 @@ function Layout(props) {
               </ResponsiveNavigation.Content>
             </ResponsiveNavigation>
           </div>
-          <div className="logo logo-left">
-            <img
-              src={Logo}
-              width="50"
-              height="50"
-              style={{ marginRight: "10px" }}
-            ></img>
-            <div className="logo-text"> Registry Total</div>
-          </div>
+          <Link to="" style={{ color: "black" }}>
+            <div className="logo logo-left">
+              <img
+                src={Logo}
+                width="50"
+                height="50"
+                style={{ marginRight: "10px" }}
+              ></img>
+              <div className="logo-text"> Registry Total</div>
+            </div>
+          </Link>
           <TopNavigationComponent type={props.type} name={props.name} />
           <div className="right-header">
             <Dropdown>
@@ -124,22 +126,24 @@ function NavigationComponent(props) {
   return (
     <React.Fragment>
       <div className="info">
-        <div className="logo">
-          <img
-            src={Logo}
-            width="50"
-            height="50"
-            style={{ marginRight: "10px" }}
-          ></img>
-          <div className="logo-text"> Registry Total</div>
-        </div>
-        <span className="personal-info">
+        <Link to="" style={{ color: "black", textDecoration: "none" }}>
+          <div className="logo">
+            <img
+              src={Logo}
+              width="50"
+              height="50"
+              style={{ marginRight: "10px", marginLeft: "20px" }}
+            ></img>
+            <div className="logo-text"> Registry Total</div>
+          </div>
+        </Link>
+        {/* <span className="personal-info">
           <Icon.AvatarBox>
             <img src={Avatar} alt="" />
           </Icon.AvatarBox>
 
           <div style={{ marginLeft: "10px" }}>{props.name}</div>
-        </span>
+        </span> */}
       </div>
       <div className="navigation">
         <Navigation>
