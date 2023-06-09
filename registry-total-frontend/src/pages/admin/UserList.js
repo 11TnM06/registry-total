@@ -81,7 +81,7 @@ function UserList() {
       if (res.status.code === "SUCCESS") {
         onReset();
         ref.current.forceAddRowClose();
-        alert("Add user successfully");
+        alert("Thêm người dùng thành công!");
         window.location.reload();
       } else {
         setError(res.status.message);
@@ -124,7 +124,7 @@ function UserList() {
           "edit"
         );
         ref.current.forceEditRowClose();
-        alert("Edit user successfully");
+        alert("Chỉnh sửa người dùng thành công!");
       } else if (res.status.message.length == "0") {
         setError("Lỗi không xác định");
       } else {
@@ -142,7 +142,7 @@ function UserList() {
           },
           "delete"
         );
-        alert("Delete user successfully");
+        alert("Xóa người dùng thành công");
       } else {
         alert(res.status.message);
       }
@@ -182,7 +182,7 @@ function UserList() {
     formData.append("file", file);
     UseFetch.File("/api/admin/upload/users", "POST", formData).then((res) => {
       if (res.status.code === "SUCCESS") {
-        alert("Add users successfully");
+        alert("Tải file thành công!");
         window.location.reload();
       } else if (!res.status.message) {
         setError("Lỗi không xác định");

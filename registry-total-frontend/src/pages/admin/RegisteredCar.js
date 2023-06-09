@@ -350,6 +350,7 @@ function RegisteredCar() {
           prev.push(newRow);
           return prev;
         });
+        alert("Thêm xe đăng ký thành công!");
         onReset();
         ref.current.updateTable(newRow, "add");
         ref.current.forceAddRowClose();
@@ -369,7 +370,7 @@ function RegisteredCar() {
     formData.append("file", file);
     UseFetch.File("/api/admin/upload/cars", "POST", formData).then((res) => {
       if (res.status.code === "SUCCESS") {
-        alert("Add cars successfully");
+        alert("Tải file thành công!");
         window.location.reload();
       } else if (!res.status.message) {
         setError("Lỗi không xác định");

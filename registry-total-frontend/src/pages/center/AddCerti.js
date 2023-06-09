@@ -46,7 +46,7 @@ function AddCerti() {
     console.log(item);
     UseFetch("/api/user/upload/registration", "POST", item).then((res) => {
       if (res.status.code === "SUCCESS") {
-        alert("Registrations added successfully!");
+        alert("Đăng kiểm thành công!");
         window.location.reload();
         // onReset();
       } else if (!res.status.message) {
@@ -67,7 +67,7 @@ function AddCerti() {
     UseFetch.File("/api/user/upload/registrations", "POST", formData).then(
       (res) => {
         if (res.status.code === "SUCCESS") {
-          alert("Add registrations successfully");
+          alert("Tải file thành công");
           window.location.reload();
         } else if (!res.status.message) {
           setError2("Lỗi không xác định");
