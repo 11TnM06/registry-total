@@ -18,9 +18,9 @@ function Layout(props) {
 
   return (
     <div className="container">
-      <nav>
+      {/* <nav>
         <NavigationComponent type={props.type} name={props.name} />
-      </nav>
+      </nav> */}
       <main>
         <header>
           <div className="left-header">
@@ -33,6 +33,16 @@ function Layout(props) {
               </ResponsiveNavigation.Content>
             </ResponsiveNavigation>
           </div>
+          <div className="logo logo-left">
+            <img
+              src={Logo}
+              width="50"
+              height="50"
+              style={{ marginRight: "10px" }}
+            ></img>
+            <div className="logo-text"> Registry Total</div>
+          </div>
+          <TopNavigationComponent type={props.type} name={props.name} />
           <div className="right-header">
             <Dropdown>
               <Dropdown.Main
@@ -63,6 +73,52 @@ function Layout(props) {
   );
 }
 export { Layout };
+
+function TopNavigationComponent(props) {
+  return (
+    <React.Fragment>
+      {props.type == "admin" ? (
+        <div className="top-navigation">
+          <div className="top-item">
+            <div className="dropbtn">QUẢN LÝ</div>
+            <div class="dropdown-content">
+              <Link to="registered-car">XE ĐÃ ĐĂNG KÝ</Link>
+              <Link to="add-center">CẤP TÀI KHOẢN</Link>
+            </div>
+          </div>
+          <div className="top-item">
+            <div className="dropbtn">THỐNG KÊ</div>
+            <div class="dropdown-content">
+              <Link to="inspected-car">XE ĐÃ ĐĂNG KIỂM</Link>
+              <Link to="expired-car">XE SẮP HẾT HẠN</Link>
+              <Link to="statistic-car">THỐNG KÊ XE</Link>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="top-navigation">
+          <div className="top-item">
+            <Link
+              to="add-certi"
+              style={{ textDecoration: "none" }}
+              className="dropbtn"
+            >
+              CẤP GIẤY CHỨNG NHẬN
+            </Link>
+          </div>
+          <div className="top-item">
+            <div className="dropbtn">THỐNG KÊ</div>
+            <div class="dropdown-content">
+              <Link to="inspected-car">XE ĐÃ ĐĂNG KIỂM</Link>
+              <Link to="expired-car">XE SẮP HẾT HẠN</Link>
+              <Link to="statistic-car">THỐNG KÊ XE</Link>
+            </div>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
+  );
+}
 
 function NavigationComponent(props) {
   return (

@@ -161,6 +161,9 @@ function UserList() {
     setRetypePassword("");
   };
 
+  const onResetFile = () => {
+    setFile(null);
+  };
   const onReset = () => {
     setId("");
     setUsername("");
@@ -327,6 +330,7 @@ function UserList() {
         }
         onFetchEditRow={onFetchEditRow}
         onReset={onReset}
+        onResetFile={onResetFile}
       />
     </React.Fragment>
   );
