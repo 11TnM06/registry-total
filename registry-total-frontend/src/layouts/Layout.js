@@ -108,6 +108,7 @@ function NavigationComponent(props) {
               link="inspected-car"
             />
             <Navigation.Item label="Xe sắp hết hạn" link="expired-car" />
+            <Navigation.Item label="Thống kê xe" link="statistic-car" />
           </Navigation.Category>
 
           <Navigation.Category
@@ -127,6 +128,7 @@ function NavigationComponent(props) {
               link="inspected-car"
             />
             <Navigation.Item label="Xe sắp hết hạn" link="expired-car" />
+            <Navigation.Item label="Thống kê xe" link="statistic-car" />
           </Navigation.Category>
         </Navigation>
       </div>
