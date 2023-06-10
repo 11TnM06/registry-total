@@ -152,21 +152,15 @@ function NavigationComponent(props) {
             role={["admin"]}
             type={props.type}
           >
-            <Navigation.Item label="Xe đã qua đăng ký" link="registered-car" />
-            <Navigation.Item
-              label="Cấp tài khoản trung tâm"
-              link="add-center"
-            />
+            <Navigation.Item label="Xe đã đăng ký" link="registered-car" />
+            <Navigation.Item label="Cấp tài khoản " link="add-center" />
           </Navigation.Category>
           <Navigation.Category
             label="Theo dõi và thống kê"
             role={["admin"]}
             type={props.type}
           >
-            <Navigation.Item
-              label="Xe đã được đăng kiểm"
-              link="inspected-car"
-            />
+            <Navigation.Item label="Xe đã đăng kiểm" link="inspected-car" />
             <Navigation.Item label="Xe sắp hết hạn" link="expired-car" />
             <Navigation.Item label="Thống kê xe" link="statistic-car" />
           </Navigation.Category>
@@ -183,10 +177,7 @@ function NavigationComponent(props) {
             role={["user"]}
             type={props.type}
           >
-            <Navigation.Item
-              label="Xe đã được đăng kiểm"
-              link="inspected-car"
-            />
+            <Navigation.Item label="Xe đã đăng kiểm" link="inspected-car" />
             <Navigation.Item label="Xe sắp hết hạn" link="expired-car" />
             <Navigation.Item label="Thống kê xe" link="statistic-car" />
           </Navigation.Category>
