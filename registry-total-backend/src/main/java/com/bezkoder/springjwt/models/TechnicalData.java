@@ -42,7 +42,7 @@ public class TechnicalData extends BaseEntity {
     @Column(name = "towing_mass")
     private String towingMass;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "technical")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "technical", cascade = CascadeType.ALL)
     @JsonIgnore
     private Car car;
 

@@ -178,6 +178,7 @@ public class AdminUploadServiceImplement implements AdminUploadService {
                     car.setTechnical(technicalData);
                     break;
                 }
+
             }
             listCarResponse.add(new ListCarResponse(car));
 
@@ -187,6 +188,21 @@ public class AdminUploadServiceImplement implements AdminUploadService {
 
             if (car == null) continue;
 
+            if (carRepository.existsByLicensePlate(car.getLicensePlate())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByCarId(car.getCarId())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByEngineNumber(car.getEngineNumber())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
+
+            if (carRepository.existsByFrameNumber(car.getFrameNumber())) {
+                return ResponseFactory.error(HttpStatus.valueOf(403), ResponseStatusEnum.EXISTED_CAR);
+            }
             if (car.getCompany() != null) {
                 if(!companyRepository.existsByCompanyId(car.getCompany().getCompanyId())){
                     companyRepository.save(car.getCompany());
