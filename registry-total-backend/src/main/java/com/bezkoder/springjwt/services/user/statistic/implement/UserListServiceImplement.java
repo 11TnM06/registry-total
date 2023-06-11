@@ -52,7 +52,7 @@ public class UserListServiceImplement implements UserListService {
                     continue;
                 }
                 Date date = registration.getRegistryDate();
-                if (ListRegisteredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter())) {
+                if (ListRegisteredCarUtils(date, timeType, time, year, location, registration.getRegistryCenter())) {
                     cars.add(car);
                 }
             }
@@ -77,29 +77,32 @@ public class UserListServiceImplement implements UserListService {
         List<Car> cars = new ArrayList<>();
         List<Car> tmp_car = carRepository.findAll();
 
+        int firstRegistration = 0;
         for (Car car : tmp_car) {
             List<Registration> registrations = car.getRegistrations();
+            if (registrations.isEmpty()) {
+                Date date = car.getRegistrationDate();
+                if (predictFirstTimeRegistry(date, timeType, time, year, user.getLocation(), car.getRegistrationPlace())) {
+                    firstRegistration++;
+                }
+                continue;
+            }
             for (Registration registration : registrations) {
                 if (registration == null) {
                     continue;
                 }
                 Date date = registration.getExpiredDate();
-                if (ListExpiredCarUtils(car, date, timeType, time, year, location, registration.getRegistryCenter())) {
+                if (ListExpiredCarUtils(date, timeType, time, year, location, registration.getRegistryCenter())) {
                     cars.add(car);
                 }
             }
         }
 
         int expiredDate = cars.size();
-        int firstRegistration = 0;
         for (Car car : cars) {
             listCarResponse.add(new ListCarResponse(car));
-            if (car.getRegistrations() == null && car.getRegistrationPlace().equals(location)) {
-                firstRegistration++;
-            }
         }
 
-        firstRegistration += expiredDate;
         ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
         return ResponseFactory.success(listExpiredCarResponse);
     }

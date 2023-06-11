@@ -17,7 +17,7 @@ import java.io.OutputStream;
 import java.util.*;
 
 public class Utils {
-    public static boolean ListRegisteredCarUtils(Car car, Date date, String timeType, String time, String year, String location, String registryLocation) {
+    public static boolean ListRegisteredCarUtils(Date date, String timeType, String time, String year, String location, String registryLocation) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int registryYear = cal.get(Calendar.YEAR);
@@ -64,7 +64,7 @@ public class Utils {
         return false;
     }
 
-    public static boolean ListExpiredCarUtils(Car car, Date date, String timeType, String time, String year, String location, String registryLocation) {
+    public static boolean ListExpiredCarUtils(Date date, String timeType, String time, String year, String location, String registryLocation) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
 
@@ -496,5 +496,68 @@ public class Utils {
         return file_data;
     }
 
+    public static Boolean predictFirstTimeRegistry(Date date, String timeType, String time, String year, String location, String registryLocation) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int registryYear = cal.get(Calendar.YEAR);
+        switch (timeType) {
+            case "Tháng" -> {
+                int month = cal.get(Calendar.MONTH) + 1;
+                if (registryYear == Integer.parseInt(year)) {
+                    if (month <= Integer.parseInt(time)) {
+                        if (registryLocation != null) {
+                            return registryLocation.equals(location);
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+                else if (registryYear < Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
+                        return true;
+                    }
+                }
+            }
 
+            case "Năm" -> {
+                if (registryYear <= Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
+                        return true;
+                    }
+                }
+            }
+            case "Quý" -> {
+                int quarter = cal.get(Calendar.MONTH) / 3 + 1;
+                if (registryYear == Integer.parseInt(year)) {
+                    if (quarter <= Integer.parseInt(time)) {
+                        if (registryLocation != null) {
+                            return registryLocation.equals(location);
+                        } else {
+                            return true;
+                        }
+                    }
+                }
+                else if (registryYear < Integer.parseInt(year)) {
+                    if (registryLocation != null) {
+                        return registryLocation.equals(location);
+                    } else {
+                        return true;
+                    }
+                }
+            }
+            default -> {
+                if (registryLocation != null) {
+                    return registryLocation.equals(location);
+                } else {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 }
