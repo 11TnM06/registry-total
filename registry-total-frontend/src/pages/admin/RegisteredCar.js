@@ -310,50 +310,23 @@ function RegisteredCar() {
                   <div>
                     <strong>Biển số xe:</strong> {item.car.licensePlate}
                   </div>
-                  {item.registrations === null ||
-                  item.registrations.length == 0 ? (
-                    <div>
-                      <strong>Chưa đăng kiểm</strong>
-                    </div>
-                  ) : (
-                    item.registrations.map((registraion, count) => {
-                      return (
-                        <>
-                          <div>
-                            <strong>Lần {count + 1} </strong>
-                          </div>
-                          <div>
-                            <strong>Số tem GCN:</strong> {registraion.gcn}
-                          </div>
-                          <div>
-                            <strong>Ngày đăng kiểm</strong>{" "}
-                            {registraion.registryDate}
-                          </div>
-                          <div>
-                            <strong>Hạn hiệu lực đăng kiểm:</strong>{" "}
-                            {registraion.expiredDate}{" "}
-                          </div>
-                          <div>
-                            <strong>Trung tâm đăng kiểm</strong>{" "}
-                            {registraion.registryCenter}{" "}
-                          </div>
-                        </>
-                      );
-                    })
-                  )}
+
+                  <div>
+                    <strong>Chưa đăng kiểm</strong>
+                  </div>
                 </Section>
               </Popup.Content>
             </Popup>
           ),
         };
-        setData((prev) => {
-          prev.push(newRow);
-          return prev;
-        });
+        // setData((prev) => {
+        //   prev.push(newRow);
+        //   return prev;
+        // });
         alert("Thêm xe đăng ký thành công!");
         onReset();
-        ref.current.updateTable(newRow, "add");
         ref.current.forceAddRowClose();
+        ref.current.updateTable(newRow, "add");
       } else if (res.status.message.length == "0") {
         setError("Lỗi không xác định");
       } else {
@@ -605,6 +578,7 @@ function RegisteredCar() {
   return (
     <>
       <Table
+        ref={ref}
         title="Danh sách xe đã đăng ký"
         data={data}
         noOption
