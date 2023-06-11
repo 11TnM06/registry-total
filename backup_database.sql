@@ -158,11 +158,11 @@ CREATE TABLE registry_information
 
 LOCK TABLES registry_information WRITE;
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
-VALUES (1, '327A-32238', '2019-10-19', '2021-10-19', '2903S', 1);
+VALUES (1, '327A-32238', '2019-10-19', '2021-10-19', '3803S', 1);
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
 VALUES (2, '327A-32987', '2020-5-19', '2022-05-19', '3003S', 2);
 INSERT INTO registry_information (id, gcn, registry_date, expired_date, registry_center, registry_car_id)
-VALUES (3, '327A-32939', '2021-1-19', '2023-01-19', '2903S', 1);
+VALUES (3, '327A-32939', '2021-1-19', '2023-01-19', '3803S', 1);
 UNLOCK TABLES;
 # ALTER TABLE registry_information DROP FOREIGN KEY registry_information_fk;
 
@@ -189,11 +189,11 @@ CREATE TABLE users
 
 LOCK TABLES users WRITE;
 INSERT INTO users (id, email, name, password, username, location)
-VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2y$10$78UkqRuiRjR8MkFvPQP44uzlWaRzpywQ239xTWAY0aNVSIoPa7rgS',
+VALUES (1, 'admin@gmail.com', 'Registry Admin System', '$2a$10$1uJwpUKQ3fwqmN.4TO0yned3WYrGcUmVygzORWnPAWfHPuTioK326',
         'admin', 'Cả nước');
 INSERT INTO users (id, email, name, password, username, location)
-VALUES (2, '2903S@gmail.com', 'Trung Tâm Đăng Kiểm 2903S',
-        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '2903S', 'Hà Nội');
+VALUES (2, '3803S@gmail.com', 'Trung Tâm Đăng Kiểm 3803S',
+        '$2a$10$NKbnbm0n2OoCdOCHL2lOhuBCuScjIOcejqmKWLfUUTjktSyd5fC.G', '3803S', 'Hà Nội');
 INSERT INTO users (id, email, name, password, username, location)
 VALUES (3, '3003S@gmail.com', 'Trung Tâm Đăng Kiểm 3003S',
         '$2a$10$vN9S6zid9S7CDAZGocIxiuTLvgcWXtmRNSCFtVgdysc8pijXvO7wW', '3003S', 'Thanh Hóa');
@@ -242,5 +242,4 @@ VALUES (2, 1);
 INSERT INTO user_roles (user_id, role_id)
 VALUES (3, 1);
 UNLOCK TABLES;
-
 
