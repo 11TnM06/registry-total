@@ -9,8 +9,8 @@ function AdminStatisticalExpired() {
   const [timeType, setTimeType] = React.useState("Tháng");
   const [time, setTime] = React.useState("1");
   const [year, setYear] = React.useState("2020");
-  const [locationType, setLocationType] = React.useState("Cả nước");
-  const [location, setLocation] = React.useState("");
+  const [locationType, setLocationType] = React.useState("Khu vực");
+  const [location, setLocation] = React.useState("Hà Nội");
   const [users, setUsers] = React.useState(null);
   const [expỉred, setExpired] = React.useState("");
   const [firstRegistration, setFirstRegistration] = React.useState("");
