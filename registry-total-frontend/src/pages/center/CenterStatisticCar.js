@@ -65,7 +65,7 @@ function CenterStatisticalCar() {
             _res.map((item) => {
               if (item) {
                 item.registraions.map((date) => {
-                  if (date.registryDate.split("-")[0] == year) {
+                  if (date.expiredDate.split("-")[0] == year) {
                     dateData.push(date.expiredDate);
                   }
                 });

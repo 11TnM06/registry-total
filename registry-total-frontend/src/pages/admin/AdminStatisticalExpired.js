@@ -17,7 +17,7 @@ function AdminStatisticalExpired() {
 
   const months = createArray(1, 12);
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An", "Đà Nẵng"];
+  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
 
   function createArray(min, max) {
     let arr = [];
@@ -317,6 +317,8 @@ function AdminStatisticalExpired() {
 
           {locationType === "Trung tâm" && !loadingUsers && (
             <Option title="Trung tâm" value={location} onChange={setLocation}>
+              <Option.Item value="Chọn" />
+
               {users.map((name) => {
                 return <Option.Item value={name} />;
               })}
@@ -325,6 +327,8 @@ function AdminStatisticalExpired() {
 
           {locationType === "Khu vực" && (
             <Option title="Khu vực" value={location} onChange={setLocation}>
+              <Option.Item value="Chọn" />
+
               {regions.map((name) => {
                 return <Option.Item value={name} />;
               })}

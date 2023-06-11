@@ -231,6 +231,8 @@ function StatisticalTime() {
 
           {timeType && (
             <Option Option title={timeType} value={time} onChange={setTime}>
+              <Option.Item value="Chọn" />
+
               {timeType === "Tháng" && (
                 <>
                   <Option.Item value="1" />
