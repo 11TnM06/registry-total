@@ -122,6 +122,7 @@ function Body(props) {
                               <Form.Split>
                                 <Form.Submit
                                   content="Hủy"
+                                  type="secondary"
                                   onClick={() => onCloseOther(i)}
                                 />
                                 <Form.Submit
@@ -131,7 +132,7 @@ function Body(props) {
                                     props.onDelete(v);
                                     onCloseOther(i);
                                   }}
-                                />
+                                />{" "}
                               </Form.Split>
                             </Form>
                           </Popup.Content>
