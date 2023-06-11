@@ -9,14 +9,14 @@ function AdminStatisticalRegistered() {
   const [timeType, setTimeType] = React.useState("Tháng");
   const [time, setTime] = React.useState("1");
   const [year, setYear] = React.useState("2020");
-  const [locationType, setLocationType] = React.useState("Cả nước");
-  const [location, setLocation] = React.useState("");
+  const [locationType, setLocationType] = React.useState("Khu vực");
+  const [location, setLocation] = React.useState("Hà Nội");
   const [users, setUsers] = React.useState(null);
 
   const months = createArray(1, 12);
   const quarters = createArray(1, 4);
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An", "Đà Nẵng"];
+  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
   const onValidStatistic = () => {
     return (
       UseValidation.required(locationType).state &&
@@ -260,6 +260,7 @@ function AdminStatisticalRegistered() {
           </Option>
 
           <Option Option title={timeType} value={time} onChange={setTime}>
+            <Option.Item value="Chọn" />
             {timeType === "Tháng" && (
               <>
                 {months.map((item) => {
@@ -284,6 +285,7 @@ function AdminStatisticalRegistered() {
           </Option>
           {timeType !== "Năm" && (
             <Option Option title="Năm" value={year} onChange={setYear}>
+              <Option.Item value="Chọn" />
               {years.map((item) => {
                 return <Option.Item value={item} />;
               })}
@@ -297,12 +299,18 @@ function AdminStatisticalRegistered() {
             onChange={setLocationType}
           >
             <Option.Item value="Trung tâm" />
-            <Option.Item value="Khu vực" />
+            <Option.Item
+              value="Khu vực"
+              onClick={() => {
+                console.log(1);
+              }}
+            />
             <Option.Item value="Cả nước" />
           </Option>
 
           {locationType === "Trung tâm" && !loadingUsers && (
             <Option title="Trung tâm" value={location} onChange={setLocation}>
+              <Option.Item value="Chọn" />
               {users.map((name) => {
                 return <Option.Item value={name} />;
               })}
@@ -311,6 +319,7 @@ function AdminStatisticalRegistered() {
 
           {locationType === "Khu vực" && (
             <Option title="Khu vực" value={location} onChange={setLocation}>
+              <Option.Item value="Chọn" />
               {regions.map((name) => {
                 return <Option.Item value={name} />;
               })}

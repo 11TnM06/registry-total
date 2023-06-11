@@ -15,7 +15,7 @@ function AdminStatisticalCar() {
   const [carType, setCarType] = React.useState("Xe đăng kiểm");
 
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An", "Đà Nẵng"];
+  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
 
   function createArray(min, max) {
     let arr = [];
@@ -90,7 +90,7 @@ function AdminStatisticalCar() {
             _res.map((item) => {
               if (item) {
                 item.registraions.map((date) => {
-                  if (date.registryDate.split("-")[0] == year) {
+                  if (date.expiredDate.split("-")[0] == year) {
                     dateData.push(date.expiredDate);
                   }
                 });
@@ -114,9 +114,12 @@ function AdminStatisticalCar() {
       time: year,
       year: year,
     };
+    console.log(item);
+
     if (carType == "Xe đăng kiểm") {
       UseFetch(`/api/admin/list/all/registered`, "POST", item).then((res) => {
         if (res.status.code === "SUCCESS") {
+          console.log(res);
           var _res = res.data.map((item) => {
             if (item.registrations.length > 0) {
               var _item = {
@@ -159,6 +162,7 @@ function AdminStatisticalCar() {
             setData({ options: {}, series: [] });
             return;
           }
+          console.log(res);
           var _res = res.data.cars.map((item) => {
             if (item.registrations.length > 0) {
               var _item = {
@@ -168,6 +172,7 @@ function AdminStatisticalCar() {
             }
             return null;
           });
+          console.log(_res);
           var dateData = [];
           if (timeType === "Năm") {
             _res.map((item) => {
@@ -181,7 +186,8 @@ function AdminStatisticalCar() {
             _res.map((item) => {
               if (item) {
                 item.registraions.map((date) => {
-                  if (date.registryDate.split("-")[0] == year) {
+                  console.log(date);
+                  if (date.expiredDate.split("-")[0] == year) {
                     dateData.push(date.expiredDate);
                   }
                 });
@@ -189,11 +195,7 @@ function AdminStatisticalCar() {
             });
           }
 
-          let _data = UsePreprocessChart.Admin(
-            dateData,
-            "Xe hết hạn",
-            timeType
-          );
+          let _data = UsePreprocessChart(dateData, "Xe hết hạn", timeType);
 
           setData(_data);
         }
@@ -254,7 +256,7 @@ function AdminStatisticalCar() {
             _res.map((item) => {
               if (item) {
                 item.registraions.map((date) => {
-                  if (date.registryDate.split("-")[0] == year) {
+                  if (date.expiredDate.split("-")[0] == year) {
                     dateData.push(date.expiredDate);
                   }
                 });
@@ -309,6 +311,7 @@ function AdminStatisticalCar() {
           </Option>
           {locationType === "Trung tâm" && !loadingUsers && (
             <Option title="Trung tâm" value={location} onChange={setLocation}>
+              <Option.Item value="Chọn" />
               {users.map((name) => {
                 return <Option.Item value={name} />;
               })}
@@ -316,6 +319,8 @@ function AdminStatisticalCar() {
           )}
           {locationType === "Khu vực" && (
             <Option title="Khu vực" value={location} onChange={setLocation}>
+              {" "}
+              <Option.Item value="Chọn" />
               {regions.map((item) => {
                 return <Option.Item value={item} />;
               })}
