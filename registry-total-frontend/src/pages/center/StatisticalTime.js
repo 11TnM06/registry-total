@@ -22,6 +22,11 @@ function StatisticalTime() {
     loadData();
   }, []);
 
+  /**
+   * Loads data from the server and sets it in the component's state.
+   *
+   * @return {void} No return value.
+   */
   const loadData = () => {
     item = {
       locationType: null,

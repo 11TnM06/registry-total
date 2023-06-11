@@ -16,7 +16,14 @@ function AdminStatisticalRegistered() {
   const months = createArray(1, 12);
   const quarters = createArray(1, 4);
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
+  const regions = [
+    "Hà Nội",
+    "Hải Phòng",
+    "Thanh Hóa",
+    "Đà Nẵng",
+    "Nghệ An",
+    "Hà Tĩnh",
+  ];
   const onValidStatistic = () => {
     return (
       UseValidation.required(locationType).state &&
@@ -33,6 +40,12 @@ function AdminStatisticalRegistered() {
     return arr;
   }
 
+  /**
+   * Fetches all users from the server and updates the component state
+   * accordingly.
+   *
+   * @return {void} This function does not return anything.
+   */
   const onGetAllUser = () => {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
@@ -51,6 +64,11 @@ function AdminStatisticalRegistered() {
     loadData();
   }, []);
 
+  /**
+   * Loads data from the server based on the selected location and time.
+   *
+   * @return {void} Nothing is returned.
+   */
   const loadData = () => {
     var item = {
       locationType: locationType,
@@ -241,6 +259,12 @@ function AdminStatisticalRegistered() {
     });
   };
 
+  /**
+   * Handles button click event by calling the loadData function.
+   *
+   * @param none
+   * @return none
+   */
   const handleButtonClick = () => {
     loadData();
   };

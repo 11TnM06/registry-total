@@ -19,6 +19,12 @@ function CenterStatisticalCar() {
     return arr;
   }
 
+  /**
+   * Handles the data fetched from the "/api/user/list/all" endpoint and
+   * preprocesses it to be used for generating a chart.
+   *
+   * @return {void} No return value.
+   */
   const handleData = () => {
     UseFetch(`/api/user/list/all`, "GET").then((res) => {
       if (res.status.code === "SUCCESS") {

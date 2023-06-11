@@ -15,8 +15,22 @@ function AdminStatisticalCar() {
   const [carType, setCarType] = React.useState("Xe đăng kiểm");
 
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
+  const regions = [
+    "Hà Nội",
+    "Hải Phòng",
+    "Thanh Hóa",
+    "Đà Nẵng",
+    "Nghệ An",
+    "Hà Tĩnh",
+  ];
 
+  /**
+   * Creates an array of numbers from min to max, inclusive.
+   *
+   * @param {number} min - The minimum number in the range.
+   * @param {number} max - The maximum number in the range.
+   * @return {array} Returns the created array of numbers.
+   */
   function createArray(min, max) {
     let arr = [];
     for (let i = min; i <= max; i++) {
@@ -25,6 +39,11 @@ function AdminStatisticalCar() {
     return arr;
   }
 
+  /**
+   * Fetches all users from the server and sets the users state.
+   *
+   * @return {void} This function does not return anything.
+   */
   const onGetAllUser = () => {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
@@ -44,6 +63,12 @@ function AdminStatisticalCar() {
 
   React.useEffect(() => {}, []);
 
+  /**
+   * This function handles the country data fetched from the server and sets the
+   * data for plotting a chart based on the time type and car type selected by the user.
+   *
+   * @return {void} No return value.
+   */
   const handleCountry = () => {
     UseFetch(`/api/admin/list/all`, "GET").then((res) => {
       if (res.status.code === "SUCCESS") {
@@ -106,6 +131,11 @@ function AdminStatisticalCar() {
     });
   };
 
+  /**
+   * This function handles region data when timetype is month or quarter
+   *
+   * @return {void} No return value.
+   */
   const handleRegion = () => {
     var item = {
       locationType: locationType,
@@ -203,6 +233,11 @@ function AdminStatisticalCar() {
     }
   };
 
+  /**
+   * Handles the region data for all locations and times.
+   *
+   * @return {type} void
+   */
   const handleRegionAll = () => {
     var item = {
       locationType: locationType,

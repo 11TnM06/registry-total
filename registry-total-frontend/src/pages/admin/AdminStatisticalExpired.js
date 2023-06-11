@@ -17,8 +17,22 @@ function AdminStatisticalExpired() {
 
   const months = createArray(1, 12);
   const years = createArray(2018, 2027);
-  const regions = ["Hà Nội", "Thanh Hóa", "Đà Nẵng", "Nghệ An"];
+  const regions = [
+    "Hà Nội",
+    "Hải Phòng",
+    "Thanh Hóa",
+    "Đà Nẵng",
+    "Nghệ An",
+    "Hà Tĩnh",
+  ];
 
+  /**
+   * Creates an array of numbers from min to max (inclusive).
+   *
+   * @param {number} min - the minimum value of the array.
+   * @param {number} max - the maximum value of the array.
+   * @return {Array<number>} an array of numbers from min to max (inclusive).
+   */
   function createArray(min, max) {
     let arr = [];
     for (let i = min; i <= max; i++) {
@@ -27,6 +41,11 @@ function AdminStatisticalExpired() {
     return arr;
   }
 
+  /**
+   * Checks if locationType, timeType, and time are all required and valid.
+   *
+   * @return {boolean} Returns true if all required fields are valid, false otherwise.
+   */
   const onValidStatistic = () => {
     return (
       UseValidation.required(locationType).state &&
@@ -35,6 +54,12 @@ function AdminStatisticalExpired() {
     );
   };
 
+  /**
+   * Retrieves all users from the server and sets the state of the component
+   * with the list of usernames.
+   *
+   * @return {void} This function does not return anything.
+   */
   const onGetAllUser = () => {
     UseFetch("/api/admin/user/all", "GET", null).then((res) => {
       if (res.status.code === "SUCCESS") {
@@ -53,6 +78,15 @@ function AdminStatisticalExpired() {
     loadData();
   }, []);
 
+  /**
+   * Loads data for displaying a list of cars that have expired registrations.
+   *
+   * @param {string} locationType - the type of location to filter by
+   * @param {string} location - the location to filter by, null if not provided
+   * @param {string} timeType - the type of time to filter by (day, week, month, year)
+   * @param {string} time - the time to filter by
+   * @return {void} no return value
+   */
   const loadData = () => {
     var item = {
       locationType: locationType,
@@ -246,6 +280,12 @@ function AdminStatisticalExpired() {
     });
   };
 
+  /**
+   * Handles button click and loads data.
+   *
+   * @param {void} No parameters needed for this function.
+   * @return {void} No return value.
+   */
   const handleButtonClick = () => {
     loadData();
   };
@@ -268,41 +308,6 @@ function AdminStatisticalExpired() {
               return <Option.Item value={item} />;
             })}
           </Option>
-          {/* <Option title="Thời gian" value={timeType} onChange={setTimeType}>
-            <Option.Item value="Tháng" />
-            <Option.Item value="Quý" />
-            <Option.Item value="Năm" />
-          </Option>
-          <Option Option title={timeType} value={time} onChange={setTime}>
-            {timeType === "Tháng" && (
-              <>
-                {months.map((item) => {
-                  return <Option.Item value={item} />;
-                })}
-              </>
-            )}
-            {timeType === "Quý" && (
-              <>
-                {quarters.map((item) => {
-                  return <Option.Item value={item} />;
-                })}
-              </>
-            )}
-            {timeType === "Năm" && (
-              <>
-                {years.map((item) => {
-                  return <Option.Item value={item} />;
-                })}
-              </>
-            )}
-          </Option>
-          {timeType !== "Năm" && (
-            <Option Option title="Năm" value={year} onChange={setYear}>
-              {years.map((item) => {
-                return <Option.Item value={item} />;
-              })}
-            </Option>
-          )} */}
         </Form.SplitLeft>
         <Form.SplitLeft>
           <Option

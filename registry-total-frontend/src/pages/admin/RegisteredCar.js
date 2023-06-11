@@ -42,6 +42,11 @@ function RegisteredCar() {
   const [file, setFile] = React.useState(null);
   const [error, setError] = React.useState("");
 
+  /**
+   * Checks if all required fields for a valid personal car are present and valid.
+   *
+   * @return {boolean} Returns true if all required fields are valid, false otherwise.
+   */
   const onValidCarPersonal = () => {
     return (
       UseValidation.required(licensePlate).state &&
@@ -71,6 +76,11 @@ function RegisteredCar() {
       UseValidation.required(phone).state
     );
   };
+  /**
+   * Checks if all required fields for a valid company's car are present and valid.
+   *
+   * @return {boolean} True if all required fields are present and valid, false otherwise.
+   */
   const onValidCarCompany = () => {
     return (
       UseValidation.required(licensePlate).state &&
@@ -98,6 +108,12 @@ function RegisteredCar() {
     );
   };
 
+  /**
+   * Handles adding a new car and its information to the database and updates the table UI accordingly.
+   *
+   * @param {void}
+   * @return {void}
+   */
   const onAddCar = () => {
     var item;
     if (type === "Cá nhân") {

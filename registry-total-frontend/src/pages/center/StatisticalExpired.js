@@ -24,6 +24,11 @@ function StatisticalExpired() {
     loadData();
   }, []);
 
+  /**
+   * Loads user data from the server and updates the state of the component.
+   *
+   * @return {void}
+   */
   const loadData = () => {
     setLoading(true);
     UseFetch("/api/user/list/all/expired", "POST", item).then((res) => {
