@@ -183,11 +183,12 @@ public class AdminListServiceImplement implements AdminListService {
         int firstRegistration = 0;
         for (Car car : cars) {
             listCarResponse.add(new ListCarResponse(car));
-            if (car.getRegistrations() == null) {
+            if (car.getRegistrations() == null && car.getRegistrationPlace().equals(location)) {
                 firstRegistration++;
             }
         }
 
+        firstRegistration += expiredDate;
         ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
         return ResponseFactory.success(listExpiredCarResponse);
     }

@@ -99,6 +99,7 @@ public class UserListServiceImplement implements UserListService {
             }
         }
 
+        firstRegistration += expiredDate;
         ListExpiredCarResponse listExpiredCarResponse = new ListExpiredCarResponse(listCarResponse, expiredDate, firstRegistration);
         return ResponseFactory.success(listExpiredCarResponse);
     }
